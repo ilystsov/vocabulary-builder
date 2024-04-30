@@ -1,13 +1,14 @@
 ## Vocabulary Builder
-### Постановка задачи
-Создание сайта для изучения английского языка.
-Минимальная планируемая функциональность:
+### Project Overview
+The goal of this project is to develop a website dedicated to facilitating English language learning. 
 
-- Получение случайного слова с примером использования.
-- Регистрация пользователей и сохранение избранных слов.
-- Тестирование пользователя по выученным словам.
+#### Key Features:
 
-### Предполагаемые инструменты
+- Retrieving a random word with an example of its use.
+- User registration and saving favorite words.
+- Testing the user on learned words.
+
+### Anticipated Stack 
 
 - FastAPI
 - PostgreSQL
@@ -19,7 +20,7 @@
 - JavaScript
 - Docker 
 
-### Макет интерфейса
+### Interface Mockup
 ![][interface_draft]
 
 
