@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 fastapi = "*"
+python-dotenv = "*"
+sqlalchemy = "*"
+alembic = "*"
 
 [dev-packages]
 
