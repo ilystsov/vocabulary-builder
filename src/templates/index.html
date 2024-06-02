@@ -22,12 +22,12 @@
         <h1>Улучши свой английский.</h1>
         <button id="new-word-btn">Хочу узнать новое слово!</button>
         <div id="word-display">
-            <h2>Слово для изучения: <span id="word">{{word}}</span></h2>
-            <p>Пример использования (англ.): <span id="context">{{context}}</span></p>
-            <p>Пример использования (рус.): <span id="translated_context">{{translated_context}}</span></p>
+            <h2>Слово для изучения: <span id="word">{{ word }}</span></h2>
+            <p>Пример использования (англ.): <span id="context">{{ context }}</span></p>
+            <p>Пример использования (рус.): <span id="translated_context">{{ translated_context }}</span></p>
         </div>
     </div>
 
-
+    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
 </body>
 </html>
