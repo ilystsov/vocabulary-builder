@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Макет Vocabulary Builder</title>
+    <title>{{ _('Макет Vocabulary Builder') }}</title>
     <link href="{{ url_for('static', path='/css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">Vocabulary Builder</div>
-        <nav>
-            <ul>
-                <li><a href="#test">Тесты</a></li>
-                <li><a href="#favorites">Избранное</a></li>
-            </ul>
-        </nav>
-        <button class="login-btn">Вход/Регистрация</button>
-    </header>
+<header>
+    <div class="logo">Vocabulary Builder</div>
+    <nav>
+        <ul>
+            <li><a href="#test">{{ _('Тесты') }}</a></li>
+            <li><a href="#favorites">{{ _('Избранное') }}</a></li>
+        </ul>
+    </nav>
+    <button class="login-btn">{{ _('Вход/Регистрация') }}</button>
+</header>
+<div id="language-selector">
+    <form id="language-form" method="get">
+        <label>{{ _('Выберите язык:') }}</label>
+        <button name="language" value="ru" type="button" onclick="changeLanguage('ru')" {% if language == "ru" %}disabled{% endif %}>Русский</button>
+        <button name="language" value="fr" type="button" onclick="changeLanguage('fr')" {% if language == "fr" %}disabled{% endif %}>Français</button>
+    </form>
+</div>
+<script src="/static/js/language_selector.js"></script>
 
-    <div id="main-content">
-        <h1>Улучши свой английский.</h1>
-        <button id="new-word-btn">Хочу узнать новое слово!</button>
-        <div id="word-display">
-            <h2>Слово для изучения: <span id="word">{{ word }}</span></h2>
-            <p>Пример использования (англ.): <span id="context">{{ context }}</span></p>
-            <p>Пример использования (рус.): <span id="translated_context">{{ translated_context }}</span></p>
-        </div>
+<div id="main-content">
+    <h1>{{ _('Улучши свой английский.') }}</h1>
+    <button id="new-word-btn">{{ _('Хочу узнать новое слово!') }}</button>
+    <div id="word-display">
+        <h2>{{ _('Слово для изучения:') }} <span id="word">{{ word }}</span></h2>
+        <p>{{ _('Пример использования (англ.):') }} <span id="context">{{ context }}</span></p>
+        <p>{{ _('Пример использования (рус.):') }} <span id="translated_context">{{ translated_context }}</span></p>
     </div>
+</div>
 
-    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+<script src="{{ url_for('static', path='/js/new_word.js') }}"></script>
 </body>
 </html>
