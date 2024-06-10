@@ -2,3 +2,5 @@
 .env
 *.db
 tmp.py
+*.mo
+*.pot
