@@ -1,3 +1,5 @@
+import gettext
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, Depends
@@ -28,6 +30,18 @@ app.mount(
 templates = Jinja2Templates(directory="src/templates")
 
 
+def _(language: str):
+    try:
+        translations = gettext.translation(
+            domain="translations",
+            localedir=os.path.join(os.path.dirname(__file__), "locales"),
+            languages=[language]
+        )
+    except FileNotFoundError:
+        translations = gettext.NullTranslations()
+    return translations.gettext
+
+
 def fetch_random_word_data(db: Session):
     random_row = get_random_word(db)
     data = {
@@ -41,7 +55,17 @@ def fetch_random_word_data(db: Session):
 
 @app.get('/', response_class=HTMLResponse)
 def get_main_page(request: Request, db: Session = Depends(get_db)):
+   return handle_main_page(request, db)
+
+
+@app.get('/{language}', response_class=HTMLResponse)
+def get_main_page_in_language(request: Request, language: str, db: Session = Depends(get_db)):
+    return handle_main_page(request, db, language)
+
+
+def handle_main_page(request: Request, db: Session, language: str = 'ru'):
     context = fetch_random_word_data(db)
+    context.update({'_': _(language)})
     return templates.TemplateResponse(
         request=request,
         name='index.html',
