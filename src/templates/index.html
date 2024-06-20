@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ language }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +18,12 @@
     <button class="login-btn">{{ _('Вход/Регистрация') }}</button>
 </header>
 <div id="language-selector">
-    <form id="language-form" method="get">
+    <form id="language-form" action="/" method="get">
         <label>{{ _('Выберите язык:') }}</label>
-        <button name="language" value="ru" type="button" onclick="changeLanguage('ru')" {% if language == "ru" %}disabled{% endif %}>Русский</button>
-        <button name="language" value="fr" type="button" onclick="changeLanguage('fr')" {% if language == "fr" %}disabled{% endif %}>Français</button>
+        <a href="/ru"><button type="button" {% if language == 'ru' %}disabled{% endif %}>Русский</button></a>
+        <a href="/fr"><button type="button" {% if language == 'fr' %}disabled{% endif %}>Français</button></a>
     </form>
 </div>
-<script src="/static/js/language_selector.js"></script>
 
 <div id="main-content">
     <h1>{{ _('Улучши свой английский.') }}</h1>
