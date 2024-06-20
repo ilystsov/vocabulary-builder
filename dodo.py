@@ -43,3 +43,13 @@ def task_i18n():
         'actions': [],
         'task_dep': ['mo', 'po', 'pot'],
     }
+
+
+def task_html():
+    """Generate HTML docs"""
+    return {
+        'actions': ['sphinx-build -b html docs docs/_build/html'],
+        'file_dep': ['docs/api.rst', 'docs/index.rst', 'docs/conf.py'],
+        'targets': ['docs/_build/html/index.html'],
+        'clean': [lambda: shutil.rmtree('docs/_build')],
+    }
