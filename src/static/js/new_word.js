@@ -1,5 +1,6 @@
 document.getElementById('new-word-btn').addEventListener('click', async function() {
-    const response = await fetch('/new_word');
+    const language = window.location.pathname.split('/')[1];
+    const response = await fetch(`/${language}/new_word`);
     const data = await response.json();
     document.getElementById('word').textContent = data.word;
     document.getElementById('context').textContent = data.context;
