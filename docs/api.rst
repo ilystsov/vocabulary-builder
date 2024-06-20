@@ -1,12 +1,12 @@
 Vocabulary Builder Handlers
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.vocabulary_builder
    :members:
    :private-members:
 
 Database CRUD Operations
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.db.crud
    :members:
