@@ -18,5 +18,11 @@ pydocstyle = "*"
 black = "*"
 isort = "*"
 
+[scripts]
+flake8 = "flake8 ."
+pydocstyle = "pydocstyle ."
+black = "black ."
+isort = "isort ."
+
 [requires]
 python_version = "3.10"
