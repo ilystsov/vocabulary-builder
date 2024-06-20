@@ -1,6 +1,6 @@
 ## Vocabulary Builder
 ### Project Overview
-The goal of this project is to develop a website dedicated to facilitating English language learning. 
+The goal of this project is to develop a website dedicated to facilitating English language learning.
 
 #### Key Features:
 
@@ -8,17 +8,17 @@ The goal of this project is to develop a website dedicated to facilitating Engli
 - User registration and saving favorite words.
 - Testing the user on learned words.
 
-### Anticipated Stack 
+### Anticipated Stack
 
 - FastAPI
 - PostgreSQL
 - SQLAlchemy
 - alembic
 - Jinja2
-- HTML 
-- CSS 
+- HTML
+- CSS
 - JavaScript
-- Docker 
+- Docker
 
 ### Interface Mockup
 ![][interface_draft]
