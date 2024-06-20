@@ -7,7 +7,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from starlette.requests import Request
-from starlette.responses import HTMLResponse, JSONResponse
+from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 from src.db.crud import get_random_word
 from src.db.database import SessionLocal
@@ -57,6 +57,11 @@ def fetch_random_word_data(db: Session):
         'translated_context': random_row.translated_context,
     }
     return data
+
+
+@app.get('/', response_class=RedirectResponse)
+def redirect_to_ru():
+    return RedirectResponse(url='/ru')
 
 
 @app.get('/{language}', response_class=HTMLResponse)
