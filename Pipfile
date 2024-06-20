@@ -13,7 +13,10 @@ alembic = "*"
 babel = "*"
 doit = "*"
 sphinx = "*"
-
+flake8 = "*"
+pydocstyle = "*"
+black = "*"
+isort = "*"
 
 [requires]
 python_version = "3.10"
