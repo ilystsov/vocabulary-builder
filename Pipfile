@@ -12,6 +12,8 @@ alembic = "*"
 [dev-packages]
 babel = "*"
 doit = "*"
+sphinx = "*"
+
 
 [requires]
 python_version = "3.10"
