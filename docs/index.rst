@@ -1,9 +1,9 @@
-.. vocabulary-builder documentation master file, created by
+.. Vocabulary Builder documentation master file, created by
    sphinx-quickstart on Thu Jun 20 14:56:35 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to vocabulary-builder's documentation!
+Welcome to Vocabulary Builder's documentation!
 ==============================================
 
 .. toctree::

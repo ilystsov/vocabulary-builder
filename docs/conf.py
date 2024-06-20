@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'vocabulary-builder'
+project = 'Vocabulary Builder'
 copyright = '2024, Ilya Lystsov, Kirill Suglobov'
 author = 'Ilya Lystsov, Kirill Suglobov'
 
