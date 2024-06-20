@@ -4,3 +4,4 @@
 tmp.py
 *.mo
 *.pot
+_build
