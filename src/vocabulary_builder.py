@@ -1,7 +1,7 @@
 import gettext
 import os
 from pathlib import Path
-
+from enum import Enum
 from fastapi import FastAPI, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -13,6 +13,12 @@ from src.db.crud import get_random_word
 from src.db.database import SessionLocal
 
 app = FastAPI()
+
+
+class LanguageModel(str, Enum):
+    ru = "ru"
+    fr = "fr"
+
 
 def get_db():
     db = SessionLocal()
@@ -53,17 +59,8 @@ def fetch_random_word_data(db: Session):
     return data
 
 
-@app.get('/', response_class=HTMLResponse)
-def get_main_page(request: Request, db: Session = Depends(get_db)):
-   return handle_main_page(request, db)
-
-
 @app.get('/{language}', response_class=HTMLResponse)
-def get_main_page_in_language(request: Request, language: str, db: Session = Depends(get_db)):
-    return handle_main_page(request, db, language)
-
-
-def handle_main_page(request: Request, db: Session, language: str = 'ru'):
+def get_main_page_in_language(request: Request, language: LanguageModel, db: Session = Depends(get_db)):
     context = fetch_random_word_data(db)
     context.update({'_': _(language)})
     return templates.TemplateResponse(
@@ -73,7 +70,7 @@ def handle_main_page(request: Request, db: Session, language: str = 'ru'):
     )
 
 
-@app.get('/new_word', response_class=JSONResponse)
-def get_new_word(db: Session = Depends(get_db)):
+@app.get('/{language}/new_word', response_class=JSONResponse)
+def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
     data = fetch_random_word_data(db)
     return data
