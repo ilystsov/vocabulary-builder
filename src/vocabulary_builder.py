@@ -7,12 +7,14 @@ from enum import Enum
 from fastapi import FastAPI, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 from src.db.crud import get_random_word
 from src.db.database import SessionLocal
+
 
 app = FastAPI()
 
@@ -34,6 +36,7 @@ def get_db():
     finally:
         db.close()
 
+
 app.mount(
     "/static",
     StaticFiles(directory=Path(__file__).parent.absolute() / "static"),
@@ -53,7 +56,7 @@ def _(language: str):
         translations = gettext.translation(
             domain="translations",
             localedir=os.path.join(os.path.dirname(__file__), "locales"),
-            languages=[language]
+            languages=[language],
         )
     except FileNotFoundError:
         translations = gettext.NullTranslations()
@@ -68,10 +71,10 @@ def fetch_random_word_data(db: Session):
     """
     random_row = get_random_word(db)
     data = {
-        'word': random_row.word,
-        'translated_word': random_row.translated_word,
-        'context': random_row.context,
-        'translated_context': random_row.translated_context,
+        "word": random_row.word,
+        "translated_word": random_row.translated_word,
+        "context": random_row.context,
+        "translated_context": random_row.translated_context,
     }
     return data
 
@@ -97,10 +100,10 @@ def get_main_page_in_language(request: Request, language: LanguageModel, db: Ses
     :return: HTML response with the main page content in the specified language.
     """
     context = fetch_random_word_data(db)
-    context.update({'_': _(language)})
+    context.update({"_": _(language)})
     return templates.TemplateResponse(
         request=request,
-        name='index.html',
+        name="index.html",
         context=context,
     )
 

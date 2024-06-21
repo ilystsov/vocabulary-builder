@@ -13,7 +13,17 @@ alembic = "*"
 babel = "*"
 doit = "*"
 sphinx = "*"
+flake8 = "*"
+pydocstyle = "*"
+black = "*"
+isort = "*"
+pre-commit = "*"
 
+[scripts]
+flake8 = "flake8 ."
+pydocstyle = "pydocstyle ."
+black = "black ."
+isort = "isort ."
 
 [requires]
 python_version = "3.10"

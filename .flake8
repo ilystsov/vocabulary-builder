@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 88
+exclude = .git,__pycache__,old,build,dist
+per-file-ignores =
+    src/db/db_filling_example.py:E501
