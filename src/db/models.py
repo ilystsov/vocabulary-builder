@@ -27,3 +27,18 @@ class WordModel(BaseModel):
     translated_word: Mapped[str] = mapped_column(nullable=False)
     context: Mapped[str] = mapped_column(nullable=False)
     translated_context: Mapped[str] = mapped_column(nullable=False)
+
+
+class UserModel(BaseModel):
+    """
+    Represents a user in the system.
+
+    :param id: Primary key.
+    :param username: The username of the user.
+    :param hashed_password: The hashed password of the user.
+    """
+
+    __tablename__ = "users"
+    id: Mapped[UUID] = mapped_column(default=uuid.uuid4, primary_key=True)
+    username: Mapped[str] = mapped_column(nullable=False, unique=True)
+    hashed_password: Mapped[str] = mapped_column(nullable=False)
