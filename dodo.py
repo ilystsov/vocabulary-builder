@@ -1,4 +1,5 @@
 import glob
+import shutil
 
 from doit.task import clean_targets
 from doit.tools import create_folder
@@ -54,8 +55,8 @@ def task_i18n():
 def task_html():
     """Generate HTML docs"""
     return {
-        'actions': ['sphinx-build -b html docs docs/_build/html'],
-        'file_dep': ['docs/api.rst', 'docs/index.rst', 'docs/conf.py'],
-        'targets': ['docs/_build/html/index.html'],
-        'clean': [lambda: shutil.rmtree('docs/_build')],
+        "actions": ["sphinx-build -b html docs docs/_build/html"],
+        "file_dep": ["docs/api.rst", "docs/index.rst", "docs/conf.py"],
+        "targets": ["docs/_build/html/index.html"],
+        "clean": [lambda: shutil.rmtree("docs/_build")],
     }
