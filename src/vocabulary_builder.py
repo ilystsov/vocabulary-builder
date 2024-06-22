@@ -5,15 +5,17 @@ import os
 from enum import Enum
 from pathlib import Path
 
-from fastapi import Depends, FastAPI
+import bcrypt
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
 
-from src.db.crud import get_random_word
+from src.db.crud import create_user, get_random_word, get_user_by_username
 from src.db.database import SessionLocal
+from src.models import UserCreate
 
 
 app = FastAPI()
@@ -124,3 +126,24 @@ def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
     """
     data = fetch_random_word_data(db)
     return data
+
+
+def get_hashed_password(password: str) -> str:
+    hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+    return hashed_password
+
+
+@app.post("/register")
+def register_user(user: UserCreate, db: Session = Depends(get_db)):
+    """
+    Endpoint to register a new user.
+
+    :param user: User registration data.
+    :param db: Database session dependency.
+    :return: JSON response with a message.
+    """
+    db_user = get_user_by_username(db, user.username)
+    if db_user:
+        raise HTTPException(status_code=400, detail="Username already registered")
+    create_user(db, user.username, get_hashed_password(user.password))
+    return {"message": "User registered successfully"}
