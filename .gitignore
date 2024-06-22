@@ -1,8 +1,8 @@
+_*/
 .idea
 .env
 *.db
 tmp.py
 *.mo
 *.pot
-_build
 node_modules
