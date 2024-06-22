@@ -16,7 +16,7 @@ from fastapi.templating import Jinja2Templates
 from jwt import InvalidTokenError
 from sqlalchemy.orm import Session
 from starlette.requests import Request
-from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
+from starlette.responses import HTMLResponse, JSONResponse
 
 from src.db.crud import create_user, get_random_word, get_user_by_username
 from src.db.database import SessionLocal
@@ -97,19 +97,9 @@ def fetch_random_word_data(db: Session):
     return data
 
 
-@app.get("/", response_class=RedirectResponse)
-def redirect_to_ru():
-    """
-    Redirects the root URL ('/') to the Russian language version ('/ru').
-
-    :return: Redirect response to '/ru'.
-    """
-    return RedirectResponse(url="/ru")
-
-
-@app.get("/{language}", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 def get_main_page_in_language(
-    request: Request, language: LanguageModel, db: Session = Depends(get_db)
+    request: Request, language: LanguageModel = "ru", db: Session = Depends(get_db)
 ):
     """
     Serves the main page in the specified language.
@@ -128,7 +118,7 @@ def get_main_page_in_language(
     )
 
 
-@app.get("/{language}/new_word", response_class=JSONResponse)
+@app.get("/new_word", response_class=JSONResponse)
 def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
     """
     Fetches a new random word and returns it as a JSON response
@@ -164,10 +154,8 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     return bcrypt.checkpw(plain_password.encode(), hashed_password.encode())
 
 
-@app.post("/{language}/register")
-def register_user(
-    language: LanguageModel, user: UserCreate, db: Session = Depends(get_db)
-):
+@app.post("/register")
+def register_user(user: UserCreate, db: Session = Depends(get_db)):
     """
     Endpoint to register a new user.
 
@@ -215,9 +203,8 @@ def create_access_token(data: dict, expires_delta: timedelta):
     return encoded_jwt
 
 
-@app.post("/{language}/login")
+@app.post("/login")
 async def login_for_access_token(
-    language: LanguageModel,
     form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db),
 ) -> Token:
@@ -263,7 +250,7 @@ async def get_current_user(
     return UserBase(username=username)
 
 
-@app.get("/{language}/learn")
+@app.get("/learn")
 async def learn(
     language: LanguageModel,
     current_user: UserBase = Depends(get_current_user),

@@ -1,11 +1,12 @@
-document
-    .getElementById('new-word-btn')
-    .addEventListener('click', async function () {
-        const language = window.location.pathname.split('/')[1];
-        const response = await fetch(`/${language}/new_word`);
-        const data = await response.json();
-        document.getElementById('word').textContent = data.word;
-        document.getElementById('context').textContent = data.context;
-        document.getElementById('translated_context').textContent =
-            data.translated_context;
-    });
+document.getElementById('new-word-btn').addEventListener('click', function () {
+    const language =
+        new URLSearchParams(window.location.search).get('language') || 'ru';
+    fetch(`/new_word?language=${language}`)
+        .then((response) => response.json())
+        .then((data) => {
+            document.getElementById('word').textContent = data.word;
+            document.getElementById('context').textContent = data.context;
+            document.getElementById('translated_context').textContent =
+                data.translated_context;
+        });
+});
