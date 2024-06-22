@@ -2,10 +2,10 @@
 
 import gettext
 import os
-from pathlib import Path
 from enum import Enum
-from fastapi import FastAPI, Depends
-from fastapi.templating import Jinja2Templates
+from pathlib import Path
+
+from fastapi import Depends, FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
@@ -45,6 +45,7 @@ app.mount(
 
 templates = Jinja2Templates(directory="src/templates")
 
+
 def _(language: str):
     """
     Retrieves the gettext translation function for the specified language.
@@ -61,6 +62,7 @@ def _(language: str):
     except FileNotFoundError:
         translations = gettext.NullTranslations()
     return translations.gettext
+
 
 def fetch_random_word_data(db: Session):
     """
@@ -79,18 +81,20 @@ def fetch_random_word_data(db: Session):
     return data
 
 
-@app.get('/', response_class=RedirectResponse)
+@app.get("/", response_class=RedirectResponse)
 def redirect_to_ru():
     """
     Redirects the root URL ('/') to the Russian language version ('/ru').
 
     :return: Redirect response to '/ru'.
     """
-    return RedirectResponse(url='/ru')
+    return RedirectResponse(url="/ru")
 
 
-@app.get('/{language}', response_class=HTMLResponse)
-def get_main_page_in_language(request: Request, language: LanguageModel, db: Session = Depends(get_db)):
+@app.get("/{language}", response_class=HTMLResponse)
+def get_main_page_in_language(
+    request: Request, language: LanguageModel, db: Session = Depends(get_db)
+):
     """
     Serves the main page in the specified language.
 
@@ -108,10 +112,11 @@ def get_main_page_in_language(request: Request, language: LanguageModel, db: Ses
     )
 
 
-@app.get('/{language}/new_word', response_class=JSONResponse)
+@app.get("/{language}/new_word", response_class=JSONResponse)
 def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
     """
-    Fetches a new random word and returns it as a JSON response according to the specified language.
+    Fetches a new random word and returns it as a JSON response
+    according to the specified language.
 
     :param language: Language code.
     :param db: Database session dependency.

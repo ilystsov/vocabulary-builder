@@ -63,4 +63,3 @@ msgstr "Exemple d'utilisation (français):"
 
 #~ msgid "Français"
 #~ msgstr ""
-
