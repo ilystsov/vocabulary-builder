@@ -9,6 +9,7 @@ python-dotenv = "*"
 sqlalchemy = "*"
 alembic = "*"
 bcrypt = "*"
+pydantic = "*"
 
 [dev-packages]
 babel = "*"
