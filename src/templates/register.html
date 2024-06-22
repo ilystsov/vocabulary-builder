@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Register') }}</title>
+    <link href="{{ url_for('static', path='/css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="logo">Vocabulary Builder</div>
+    <nav>
+        <ul>
+            <li><a href="/?language=ru">Русский</a></li>
+            <li><a href="/?language=fr">Français</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="register-form">
+    <form action="/register" method="post">
+        <input type="hidden" name="language" value="{{ language }}">
+        <label for="username">{{ _('Username') }}</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">{{ _('Password') }}</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">{{ _('Register') }}</button>
+    </form>
+</div>
+</body>
+</html>
