@@ -9,8 +9,8 @@ from pathlib import Path
 import bcrypt
 import jwt
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, HTTPException
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi import Depends, FastAPI, Form, HTTPException
+from fastapi.security import OAuth2PasswordBearer
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from jwt import InvalidTokenError
@@ -21,7 +21,7 @@ from starlette.responses import HTMLResponse, JSONResponse
 from src.db.crud import create_user, get_random_word, get_user_by_username
 from src.db.database import SessionLocal
 from src.exceptions import CredentialsException, IncorrectUsernamePasswordException
-from src.models import Token, UserBase, UserCreate
+from src.models import Token, UserBase
 
 
 load_dotenv()
@@ -154,22 +154,6 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     return bcrypt.checkpw(plain_password.encode(), hashed_password.encode())
 
 
-@app.post("/register")
-def register_user(user: UserCreate, db: Session = Depends(get_db)):
-    """
-    Endpoint to register a new user.
-
-    :param user: User registration data.
-    :param db: Database session dependency.
-    :return: JSON response with a message.
-    """
-    db_user = get_user_by_username(db, user.username)
-    if db_user:
-        raise HTTPException(status_code=400, detail="Username already registered")
-    create_user(db, user.username, get_hashed_password(user.password))
-    return {"message": "User registered successfully"}
-
-
 def authenticate_user(
     username: str, password: str, db: Session = Depends(get_db)
 ) -> UserBase | bool:
@@ -203,29 +187,6 @@ def create_access_token(data: dict, expires_delta: timedelta):
     return encoded_jwt
 
 
-@app.post("/login")
-async def login_for_access_token(
-    form_data: OAuth2PasswordRequestForm = Depends(),
-    db: Session = Depends(get_db),
-) -> Token:
-    """
-    Endpoint to log in and get an access token.
-
-    :param form_data: OAuth2 password request form
-    (password, username, optional fields).
-    :param db: Database session dependency.
-    :return: JWT access token.
-    """
-    user = authenticate_user(form_data.username, form_data.password, db)
-    if not user:
-        raise IncorrectUsernamePasswordException
-    access_token = create_access_token(
-        data={"sub": user.username},
-        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
-    )
-    return Token(access_token=access_token, token_type="bearer")
-
-
 async def get_current_user(
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db),
@@ -248,6 +209,83 @@ async def get_current_user(
     if user is None:
         raise CredentialsException
     return UserBase(username=username)
+
+
+@app.get("/register", response_class=HTMLResponse)
+def register_page(request: Request, language: str = "ru"):
+    """
+    Serves the registration page.
+
+    :param request: HTTP request.
+    :param language: Language code.
+    :return: HTML response with the registration page.
+    """
+    return templates.TemplateResponse(
+        "register.html", {"request": request, "language": language, "_": _(language)}
+    )
+
+
+@app.post("/register")
+async def register_user(
+    username: str = Form(...),
+    password: str = Form(...),
+    language: str = Form("ru"),
+    db: Session = Depends(get_db),
+):
+    """
+    Endpoint to register a new user.
+
+    :param username: Username from form data.
+    :param password: Password from form data.
+    :param language: Language from form data (default is 'ru').
+    :param db: Database session dependency.
+    :return: JSON response with a message.
+    """
+    db_user = get_user_by_username(db, username)
+    if db_user:
+        raise HTTPException(status_code=400, detail="Username already registered")
+    create_user(db, username, get_hashed_password(password))
+    return {"message": "User registered successfully"}
+
+
+@app.get("/login", response_class=HTMLResponse)
+def login_page(request: Request, language: str = "ru"):
+    """
+    Serves the login page.
+
+    :param request: HTTP request.
+    :param language: Language code.
+    :return: HTML response with the login page.
+    """
+    return templates.TemplateResponse(
+        "login.html", {"request": request, "language": language, "_": _(language)}
+    )
+
+
+@app.post("/login")
+async def login_for_access_token(
+    username: str = Form(...),
+    password: str = Form(...),
+    language: str = Form("ru"),
+    db: Session = Depends(get_db),
+) -> Token:
+    """
+    Endpoint to log in and get an access token.
+
+    :param username: Username from form data.
+    :param password: Password from form data.
+    :param language: Language from form data (default is 'ru').
+    :param db: Database session dependency.
+    :return: JWT access token.
+    """
+    user = authenticate_user(username, password, db)
+    if not user:
+        raise IncorrectUsernamePasswordException
+    access_token = create_access_token(
+        data={"sub": user.username},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
+    )
+    return Token(access_token=access_token, token_type="bearer")
 
 
 @app.get("/learn")
