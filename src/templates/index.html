@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-content">
+                <a aria-label="Vocabulary Builder Home" class="flex-link" href="/">
+                    <div class="logo-container">
+                        <div class="logo"></div>
+                        <h1 class="site-title">Vocabulary Builder</h1>
+                    </div>
+                </a>
+                <nav class="nav-icons">
+                    <div class="dropdown">
+                        <button class="nav-icon"><i class="fas fa-globe"></i></button>
+                        <div class="dropdown-content">
+                            <a href="#">Русский</a>
+                            <a href="#">Français</a>
+                            <a href="#">Українська</a>
+                        </div>
+                    </div>
+                    <button class="nav-icon" onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
+                </nav>
+                <nav class="nav-links">
+                    <a href="#" class="nav-link">Тесты</a>
+                    <a href="#" class="nav-link">Избранное</a>
+                </nav>
+                <div class="auth-links">
+                    <a href="#" class="auth-link" onclick="redirectToLogIn()">Вход</a>
+                    <a href="#" class="auth-link" onclick="redirectToSignUp()">Регистрация</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-container">
+            <div class="main-content">
+                <h1 class="h1-adaptive">Headlong</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur dolorum ullam ducimus facilis officia, hic asperiores at fugiat sequi similique. Voluptatum impedit corporis itaque reprehenderit perferendis nulla labore ut iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reprehenderit accusantium, hic commodi repellat alias tenetur laudantium est animi eaque iusto labore, asperiores nobis error nulla ducimus illum possimus minima.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique itaque voluptate aut, aliquid dolorem necessitatibus tenetur ratione doloribus dolorum commodi illo vitae! Veritatis aut cumque dignissimos dolores accusamus quod numquam.</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-copyright">&copy; 2024 Vocabulary Builder. All rights reserved.</p>
+                <nav class="footer-nav">
+                    <a href="#" class="footer-link">О нас</a>
+                    <a href="#" class="footer-link">Контакты</a>
+                    <a href="#" class="footer-link">Политика конфиденциальности</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/index.js') }}"></script>
+</body>
+</html>
