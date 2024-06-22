@@ -34,4 +34,4 @@ repos:
     rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
-        files: \.(html|css|js|json|md|yml)$
+        files: \.(css|js|json|md|yml)$
