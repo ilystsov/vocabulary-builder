@@ -4,3 +4,4 @@ exclude = .git,__pycache__,old,build,dist
 per-file-ignores =
     src/db/db_filling_example.py:E501
     src/vocabulary_builder.py:B008
+    src/db/migration/env.py:F401
