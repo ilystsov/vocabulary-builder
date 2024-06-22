@@ -5,3 +5,4 @@ tmp.py
 *.mo
 *.pot
 _build
+node_modules
