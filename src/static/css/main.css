@@ -57,6 +57,20 @@
     text-align: center;
 }
 
+/* Word section */
+.word-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.word-card-welcome-container {
+    display: none;
+    margin-top: 25px;
+}
+
 @media (max-width: 480px) {
     .h1-adaptive {
         font-size: 2em;
