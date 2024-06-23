@@ -23,6 +23,18 @@
     margin: 0 0 10px 0;
 }
 
+/* Shina & shift */
+.shine-shift {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.shine-shift:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 0 10px 2px rgb(0, 140, 240, 0.9);
+}
+
 /* Simple button */
 .simple-button {
     background-color: rgb(0, 140, 240);
