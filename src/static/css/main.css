@@ -23,6 +23,21 @@
     margin: 0 0 10px 0;
 }
 
+/* Welcome section*/
+.welcome-section {
+    text-align: center;
+}
+
+.h1-adaptive {
+    font-size: 2.5em;
+    margin: 0 0 10px 0;
+}
+
+.welcome-section p {
+    font-size: 1.2em;
+    color: #666;
+}
+
 @media (max-width: 480px) {
     .h1-adaptive {
         font-size: 2em;
