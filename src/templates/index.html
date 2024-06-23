@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/word_card.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -72,6 +73,56 @@
 
                 <section id="word-section-welcome" class="word-section">
                     <button id="new-word-welcome-button" class="simple-button new-word-button" onclick="getWelcomeNewWordCard()">Получить новое слово</button>
+                    <div id="word-card-welcome-container" class="word-card-welcome-container">
+                        <div class="word-card shine-translate">
+                            <div class="word-card__header">
+                                <div class="word-card__word-container">
+                                    <span class="word-card__word">Issue</span>
+                                    <div class="word-card__star" onclick="toggleStar()"></div>
+                                </div>
+                                <span class="word-card__part-of-speech">Существительное</span>
+                                <div class="word-card__transcription-audio">
+                                    <span class="word-card__transcription">/ˈɪʃ.uː/</span>
+                                    <button class="word-card__audio-button" onclick="playAudio()"><i class="fas fa-volume-up"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="word-card__divider word-card__divider--header"></div>
+                            <div class="word-card__content">
+                                <ol class="word-card__meanings-list">
+                                    <li class="word-card__meaning-block">
+                                        <div class="word-card__meaning">Важная тема или проблема для обсуждения или дебатов.</div>
+                                        <div class="word-card__examples-label">Примеры:</div>
+                                        <ul class="word-card__examples-list">
+                                            <li>
+                                                <p class="word-card__example">Climate change is a significant issue.</p>
+                                                <p class="word-card__example-translation">Изменение климата - это значительная проблема.</p>
+                                            </li>
+                                            <li>
+                                                <p class="word-card__example">The issue was discussed at the meeting.</p>
+                                                <p class="word-card__example-translation">Проблема обсуждалась на встрече.</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <div class="word-card__divider word-card__divider--meaning"></div>
+                                    <li class="word-card__meaning-block">
+                                        <div class="word-card__meaning">Действие по поставке или распределению чего-либо.</div>
+                                        <div class="word-card__examples-label">Примеры:</div>
+                                        <ul class="word-card__examples-list">
+                                            <li>
+                                                <p class="word-card__example">The issue of shares was completed.</p>
+                                                <p class="word-card__example-translation">Выпуск акций был завершен.</p>
+                                            </li>
+                                            <li>
+                                                <p class="word-card__example">The issue of the new currency was well received.</p>
+                                                <p class="word-card__example-translation">Выпуск новой валюты был хорошо принят.</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>
@@ -89,5 +140,6 @@
     </div>
 
     <script src="{{ url_for('static', path='/js/index.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/word_card.js') }}"></script>
 </body>
 </html>
