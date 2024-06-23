@@ -178,6 +178,15 @@ body.modal-active {
     text-decoration: none;
 }
 
+.login-button,
+.register-button {
+    margin: 10px 10px 0 10px;
+}
+
+.new-word-button {
+    font-size: 1.2em;
+}
+
 @media (max-width: 480px) {
     .h1-adaptive {
         font-size: 2em;
