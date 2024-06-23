@@ -42,12 +42,14 @@ function getWelcomeNewWordCard() {
 function showModal() {
     const modal = document.getElementById('registration-modal');
     modal.style.display = 'block';
+    document.body.classList.add('modal-active');
     return false;
 }
 
 function closeModal() {
     const modal = document.getElementById('registration-modal');
     modal.style.display = 'none';
+    document.body.classList.remove('modal-active');
 }
 
 // ==============
