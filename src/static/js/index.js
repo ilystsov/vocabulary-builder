@@ -16,11 +16,11 @@ function welcomeNewWordFeature() {
 }
 
 function welcomeFavouriteFeature() {
-    return;
+    showModal();
 }
 
 function welcomeTestingFeature() {
-    return;
+    showModal();
 }
 
 function getWelcomeNewWordCard() {
@@ -32,6 +32,18 @@ function getWelcomeNewWordCard() {
     wordCardContainer.style.display = 'block';
 
     scrollToWelcomeNewWord();
+}
+
+// Modal
+function showModal() {
+    const modal = document.getElementById('registration-modal');
+    modal.style.display = 'block';
+    return false;
+}
+
+function closeModal() {
+    const modal = document.getElementById('registration-modal');
+    modal.style.display = 'none';
 }
 
 // ==============

@@ -139,6 +139,21 @@
         </footer>
     </div>
 
+    <!-- Registration Modal -->
+    <div id="registration-modal" class="modal">
+        <div class="modal-container">
+            <div class="modal__header">
+                <h2 class="h2-adaptive">Необходима авторизация</h2>
+                <button class="close-button" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal__content">
+                <p>Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить доступ к этой функции.</p>
+                <button class="simple-button login-button" onclick="redirectToLogin()">Войти</button>
+                <button class="simple-button register-button" onclick="redirectToRegister()">Зарегистрироваться</button>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ url_for('static', path='/js/index.js') }}"></script>
     <script src="{{ url_for('static', path='/js/word_card.js') }}"></script>
 </body>
