@@ -2,8 +2,17 @@ function toggleTheme() {
     return;
 }
 
+// Welcome functions
+function scrollToWelcomeNewWord() {
+    const wordSectionWelcome = document.getElementById('word-section-welcome');
+    wordSectionWelcome.scrollIntoView({ behavior: 'smooth' });
+}
+
 function welcomeNewWordFeature() {
-    return;
+    scrollToWelcomeNewWord();
+
+    const button = document.getElementById('new-word-welcome-button');
+    highlightButton(button);
 }
 
 function welcomeFavouriteFeature() {
@@ -12,11 +21,6 @@ function welcomeFavouriteFeature() {
 
 function welcomeTestingFeature() {
     return;
-}
-
-function scrollToWelcomeNewWord() {
-    const wordSectionWelcome = document.getElementById('word-section-welcome');
-    wordSectionWelcome.scrollIntoView({ behavior: 'smooth' });
 }
 
 function getWelcomeNewWordCard() {
@@ -28,6 +32,16 @@ function getWelcomeNewWordCard() {
     wordCardContainer.style.display = 'block';
 
     scrollToWelcomeNewWord();
+}
+
+// ==============
+
+function highlightButton(button) {
+    button.classList.add('highlight');
+
+    setTimeout(() => {
+        button.classList.remove('highlight');
+    }, 300);
 }
 
 function redirectToSignUp() {
