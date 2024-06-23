@@ -16,11 +16,15 @@ function welcomeNewWordFeature() {
 }
 
 function welcomeFavouriteFeature() {
-    showModal();
+    if (!checkRegistration()) {
+        return;
+    }
 }
 
 function welcomeTestingFeature() {
-    showModal();
+    if (!checkRegistration()) {
+        return;
+    }
 }
 
 function getWelcomeNewWordCard() {
@@ -54,6 +58,17 @@ function highlightButton(button) {
     setTimeout(() => {
         button.classList.remove('highlight');
     }, 300);
+}
+
+function checkRegistration() {
+    // Replace this with actual registration check logic
+    const isRegistered = false; // Example: false indicates the user is not registered
+
+    if (!isRegistered) {
+        return showModal();
+    } else {
+        return true;
+    }
 }
 
 function redirectToSignUp() {
