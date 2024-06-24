@@ -16,10 +16,11 @@ class WordModel(BaseModel):
     Represents a word with its basic attributes.
 
     :param id: Primary key.
-    :param word: The word in the original language.
+    :param word: The word in the target language.
     :param part_of_speech: The part of speech of the word.
-    :param transcription: The transcription of the word.
-    :param audio: The audio file of the word pronunciation.
+    :param transcription: The phonetic transcription of the word.
+    :param audio: The audio pronunciation of the word in binary format.
+    :param meanings: The list of meanings associated with the word.
     """
 
     __tablename__ = "words"
@@ -28,46 +29,45 @@ class WordModel(BaseModel):
     part_of_speech: Mapped[str] = mapped_column(nullable=False)
     transcription: Mapped[str] = mapped_column(nullable=False)
     audio: Mapped[bytes] = mapped_column(LargeBinary, nullable=False)
-    translations: Mapped[list["TranslationModel"]] = relationship(back_populates="word")
+    meanings: Mapped[list["MeaningModel"]] = relationship()
 
 
-class TranslationModel(BaseModel):
+class MeaningModel(BaseModel):
     """
-    Represents a translation of a word.
+    Represents a meaning of a word.
 
     :param id: Primary key.
-    :param word_id: Foreign key to the word.
-    :param language: The language of the translation.
-    :param translation: The translated word.
+    :param word_id: Foreign key referencing the associated word.
+    :param meaning: The meaning of the word in a specific language.
+    :param meaning_language: The language of the meaning.
+    :param examples: The list of examples demonstrating the use of the meaning.
     """
 
-    __tablename__ = "translations"
+    __tablename__ = "meanings"
     id: Mapped[UUID] = mapped_column(default=uuid.uuid4, primary_key=True)
     word_id: Mapped[UUID] = mapped_column(ForeignKey("words.id"), nullable=False)
-    language: Mapped[str] = mapped_column(nullable=False)
-    translation: Mapped[str] = mapped_column(nullable=False)
-    word: Mapped["WordModel"] = relationship("WordModel", back_populates="translations")
-    examples: Mapped[list["ExampleModel"]] = relationship(back_populates="translation")
+    meaning: Mapped[str] = mapped_column(nullable=False)
+    meaning_language: Mapped[str] = mapped_column(nullable=False)
+    examples: Mapped[list["ExampleModel"]] = relationship()
 
 
 class ExampleModel(BaseModel):
     """
-    Represents an example usage of a translated word.
+    Represents an example sentence demonstrating the use of a word.
 
     :param id: Primary key.
-    :param translation_id: Foreign key to the translation.
-    :param example_eng: Example sentence in English.
-    :param example_trans: Translated example sentence.
+    :param meaning_id: Foreign key referencing the associated meaning.
+    :param example: The example sentence in the target language.
+    :param example_translation: The translation of the example sentence.
+    :param example_translation_language: The language of the example translation.
     """
 
     __tablename__ = "examples"
     id: Mapped[UUID] = mapped_column(default=uuid.uuid4, primary_key=True)
-    translation_id: Mapped[UUID] = mapped_column(
-        ForeignKey("translations.id"), nullable=False
-    )
-    example_eng: Mapped[str] = mapped_column(nullable=False)
-    example_trans: Mapped[str] = mapped_column(nullable=False)
-    translation: Mapped["TranslationModel"] = relationship(back_populates="examples")
+    meaning_id: Mapped[UUID] = mapped_column(ForeignKey("meanings.id"), nullable=False)
+    example: Mapped[str] = mapped_column(nullable=False)
+    example_translation: Mapped[str] = mapped_column(nullable=False)
+    example_translation_language: Mapped[str] = mapped_column(nullable=False)
 
 
 class UserModel(BaseModel):
