@@ -41,14 +41,13 @@ function getWelcomeNewWordCard() {
 // Modal
 function showModal() {
     const modal = document.getElementById('registration-modal');
-    modal.style.display = 'block';
+    modal.classList.remove('hidden');
     document.body.classList.add('modal-active');
-    return false;
 }
 
 function closeModal() {
     const modal = document.getElementById('registration-modal');
-    modal.style.display = 'none';
+    modal.classList.add('hidden');
     document.body.classList.remove('modal-active');
 }
 
