@@ -11,7 +11,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.db.database import BaseModel
 
 
-class Word(BaseModel):
+class WordModel(BaseModel):
     """
     Represents a word with its basic attributes.
 
@@ -27,11 +27,11 @@ class Word(BaseModel):
     word: Mapped[str] = mapped_column(nullable=False)
     part_of_speech: Mapped[str] = mapped_column(nullable=False)
     transcription: Mapped[str] = mapped_column(nullable=False)
-    audio: Mapped[LargeBinary] = mapped_column(nullable=False)
-    translations: Mapped[list["Translation"]] = relationship(back_populates="word")
+    audio: Mapped[bytes] = mapped_column(LargeBinary, nullable=False)
+    translations: Mapped[list["TranslationModel"]] = relationship(back_populates="word")
 
 
-class Translation(BaseModel):
+class TranslationModel(BaseModel):
     """
     Represents a translation of a word.
 
@@ -46,11 +46,11 @@ class Translation(BaseModel):
     word_id: Mapped[UUID] = mapped_column(ForeignKey("words.id"), nullable=False)
     language: Mapped[str] = mapped_column(nullable=False)
     translation: Mapped[str] = mapped_column(nullable=False)
-    word: Mapped["Word"] = relationship("Word", back_populates="translations")
-    examples: Mapped[list["Example"]] = relationship(back_populates="translation")
+    word: Mapped["WordModel"] = relationship("WordModel", back_populates="translations")
+    examples: Mapped[list["ExampleModel"]] = relationship(back_populates="translation")
 
 
-class Example(BaseModel):
+class ExampleModel(BaseModel):
     """
     Represents an example usage of a translated word.
 
@@ -67,7 +67,7 @@ class Example(BaseModel):
     )
     example_eng: Mapped[str] = mapped_column(nullable=False)
     example_trans: Mapped[str] = mapped_column(nullable=False)
-    translation: Mapped["Translation"] = relationship(back_populates="examples")
+    translation: Mapped["TranslationModel"] = relationship(back_populates="examples")
 
 
 class UserModel(BaseModel):
