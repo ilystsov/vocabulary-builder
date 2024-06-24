@@ -5,14 +5,16 @@ from doit.task import clean_targets
 from doit.tools import create_folder
 
 
-LOCALES_DIRECTORY = "src/locales"
+LOCALES_DIRECTORY = "vocabulary_builder/locales"
 
 
 def task_pot():
     """Recreate .pot file."""
     return {
-        "actions": ["pybabel extract --mapping babel.cfg -o translations.pot src"],
-        "file_dep": glob.glob("src/templates/*.html"),
+        "actions": [
+            "pybabel extract --mapping babel.cfg -o translations.pot vocabulary_builder"
+        ],
+        "file_dep": glob.glob("vocabulary_builder/templates/*.html"),
         "targets": ["translations.pot"],
         "clean": [clean_targets],
     }

@@ -1,20 +1,20 @@
 Vocabulary Builder Handlers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: src.vocabulary_builder
+.. automodule:: vocabulary_builder.vocabulary_builder
    :members:
    :private-members:
 
 Database CRUD Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: src.db.crud
+.. automodule:: vocabulary_builder.db.crud
    :members:
    :private-members:
 
 Database SQLAlchemy Models
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: src.db.models
+.. automodule:: vocabulary_builder.db.models
    :members:
    :private-members:

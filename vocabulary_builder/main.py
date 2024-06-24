@@ -18,10 +18,17 @@ from sqlalchemy.orm import Session
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse
 
-from src.db.crud import create_user, get_random_word, get_user_by_username
-from src.db.database import SessionLocal
-from src.exceptions import CredentialsException, IncorrectUsernamePasswordException
-from src.models import Token, UserBase
+from vocabulary_builder.db.crud import (
+    create_user,
+    get_random_word,
+    get_user_by_username,
+)
+from vocabulary_builder.db.database import SessionLocal
+from vocabulary_builder.exceptions import (
+    CredentialsException,
+    IncorrectUsernamePasswordException,
+)
+from vocabulary_builder.models import Token, UserBase
 
 
 load_dotenv()
@@ -59,7 +66,7 @@ app.mount(
     name="static",
 )
 
-templates = Jinja2Templates(directory="src/templates")
+templates = Jinja2Templates(directory="vocabulary_builder/templates")
 
 
 def _(language: str):

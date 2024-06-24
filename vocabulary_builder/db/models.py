@@ -8,7 +8,7 @@ from uuid import UUID
 from sqlalchemy import ForeignKey, LargeBinary
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from src.db.database import BaseModel
+from vocabulary_builder.db.database import BaseModel
 
 
 class WordModel(BaseModel):
