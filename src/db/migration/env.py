@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from sqlalchemy import engine_from_config, pool
 
 from src.db.database import BaseModel
-from src.db.models import ExampleModel, TranslationModel, UserModel, WordModel
+from src.db.models import ExampleModel, MeaningModel, UserModel, WordModel
 
 
 # this is the Alembic Config object, which provides
