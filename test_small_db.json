@@ -1,0 +1,119 @@
+[
+    {
+        "word": "accomplish",
+        "part_of_speech": "verb",
+        "transcription": "əˈkɒmplɪʃ",
+        "meanings": [
+            {
+                "meaning": "достигать",
+                "language": "ru",
+                "examples": [
+                    {
+                        "example": "She was able to accomplish her goals through hard work and determination.",
+                        "translation": "Она смогла достичь своих целей благодаря упорному труду и решительности.",
+                        "language": "ru"
+                    },
+                    {
+                        "example": "He managed to accomplish the task in record time.",
+                        "translation": "Он сумел выполнить задание в рекордные сроки.",
+                        "language": "ru"
+                    }
+                ]
+            },
+            {
+                "meaning": "accomplir",
+                "language": "fr",
+                "examples": [
+                    {
+                        "example": "She was able to accomplish her goals through hard work and determination.",
+                        "translation": "Elle a pu accomplir ses objectifs grâce à son travail acharné et sa détermination.",
+                        "language": "fr"
+                    },
+                    {
+                        "example": "He managed to accomplish the task in record time.",
+                        "translation": "Il a réussi à accomplir la tâche en un temps record.",
+                        "language": "fr"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "word": "intricate",
+        "part_of_speech": "adjective",
+        "transcription": "ˈɪntrɪkət",
+        "meanings": [
+            {
+                "meaning": "сложный",
+                "language": "ru",
+                "examples": [
+                    {
+                        "example": "The artist’s work is known for its intricate designs and detailed patterns.",
+                        "translation": "Работы художника известны своими сложными дизайнами и детализированными узорами.",
+                        "language": "ru"
+                    },
+                    {
+                        "example": "The plot of the novel was very intricate.",
+                        "translation": "Сюжет романа был очень сложным.",
+                        "language": "ru"
+                    }
+                ]
+            },
+            {
+                "meaning": "complexe",
+                "language": "fr",
+                "examples": [
+                    {
+                        "example": "The artist’s work is known for its intricate designs and detailed patterns.",
+                        "translation": "Le travail de l'artiste est connu pour ses designs complexes et ses motifs détaillés.",
+                        "language": "fr"
+                    },
+                    {
+                        "example": "The plot of the novel was very intricate.",
+                        "translation": "L'intrigue du roman était très complexe.",
+                        "language": "fr"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "word": "contemplate",
+        "part_of_speech": "verb",
+        "transcription": "ˈkɒntəmpleɪt",
+        "meanings": [
+            {
+                "meaning": "размышлять",
+                "language": "ru",
+                "examples": [
+                    {
+                        "example": "He sat on the porch to contemplate the beautiful sunset.",
+                        "translation": "Он сел на крыльце, чтобы поразмышлять о прекрасном закате.",
+                        "language": "ru"
+                    },
+                    {
+                        "example": "She often contemplates the meaning of life.",
+                        "translation": "Она часто размышляет о смысле жизни.",
+                        "language": "ru"
+                    }
+                ]
+            },
+            {
+                "meaning": "contempler",
+                "language": "fr",
+                "examples": [
+                    {
+                        "example": "He sat on the porch to contemplate the beautiful sunset.",
+                        "translation": "Il s'est assis sur le porche pour contempler le magnifique coucher de soleil.",
+                        "language": "fr"
+                    },
+                    {
+                        "example": "She often contemplates the meaning of life.",
+                        "translation": "Elle contemple souvent le sens de la vie.",
+                        "language": "fr"
+                    }
+                ]
+            }
+        ]
+    }
+]
