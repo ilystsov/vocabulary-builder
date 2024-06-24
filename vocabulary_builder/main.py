@@ -94,12 +94,34 @@ def fetch_random_word_data(db: Session):
     :param db: Database session.
     :return: A dictionary with word data.
     """
-    random_row = get_random_word(db)
+    random_word = get_random_word(db)
+    if not random_word:
+        return None
+
+    meanings = []
+    for meaning in random_word.meanings:
+        examples = [
+            {
+                "example": example.example,
+                "example_translation": example.example_translation,
+                "example_translation_language": example.example_translation_language,
+            }
+            for example in meaning.examples
+        ]
+        meanings.append(
+            {
+                "meaning": meaning.meaning,
+                "meaning_language": meaning.meaning_language,
+                "examples": examples,
+            }
+        )
+
     data = {
-        "word": random_row.word,
-        "translated_word": random_row.translated_word,
-        "context": random_row.context,
-        "translated_context": random_row.translated_context,
+        "word": random_word.word,
+        "part_of_speech": random_word.part_of_speech,
+        "transcription": random_word.transcription,
+        "audio": random_word.audio,
+        "meanings": meanings,
     }
     return data
 
