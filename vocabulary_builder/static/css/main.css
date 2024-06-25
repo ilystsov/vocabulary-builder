@@ -54,6 +54,11 @@
     background-color: rgb(255, 215, 0);
 }
 
+.simple-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 /* Welcome section*/
 .welcome-section {
     text-align: center;
