@@ -121,16 +121,28 @@ function toggleStar() {
 function fetchAndDisplayWordCard() {
     const language =
         new URLSearchParams(window.location.search).get('language') || 'ru';
+    const loadingIndicator = document.getElementById('loading-indicator');
+    const newWordButton = document.getElementById('new-word-button');
+    const wordCardContainer = document.getElementById('word-card-container');
 
+    newWordButton.disabled = true; // Disable the button
+    loadingIndicator.classList.remove('hidden'); // Show loading indicator
+    wordCardContainer.classList.add('hidden'); // Hide word card container
+
+    console.log('start fetching');
     fetch(`/new_word?language=${language}`)
         .then((response) => response.json())
         .then((data) => {
-            const wordCardContainer = document.getElementById(
-                'word-card-container',
-            );
+            console.log('here');
             wordCardContainer.innerHTML = ''; // Clear previous word card
             const wordCard = createWordCard(data);
             wordCardContainer.appendChild(wordCard);
+            console.log('end fetching');
         })
-        .catch((error) => console.error('Error fetching word data:', error));
+        .catch((error) => console.error('Error fetching word data:', error))
+        .finally(() => {
+            wordCardContainer.classList.remove('hidden'); // Show word card container
+            loadingIndicator.classList.add('hidden'); // Hide loading indicator
+            newWordButton.disabled = false; // Enable the button
+        });
 }

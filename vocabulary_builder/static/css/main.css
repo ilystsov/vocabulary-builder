@@ -94,6 +94,19 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    gap: 15px;
+}
+
+.new-word-button {
+    /* margin: 0 auto; */
+    font-size: 1.2em;
+}
+
+.loading-indicator {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+    animation: fadein 0.5s;
 }
 
 .word-card-container {
@@ -179,9 +192,13 @@ body.modal-active {
     margin: 10px 10px 0 10px;
 }
 
-.new-word-button {
-    margin: 15px auto;
-    font-size: 1.2em;
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 480px) {
