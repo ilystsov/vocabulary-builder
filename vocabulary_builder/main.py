@@ -87,43 +87,44 @@ def _(language: str):
     return translations.gettext
 
 
-def fetch_random_word_data(db: Session):
+def fetch_random_word_data(db: Session, language: str):
     """
-    Fetches a random word and its translations from the database.
+    Fetches a random word and formats it as a JSON response for the specified language.
 
-    :param db: Database session.
-    :return: A dictionary with word data.
+    :param db: The database session.
+    :param language: The target language for the translation.
+    :return: A dictionary containing the word and its translation information for the
+        specified language.
     """
-    random_word = get_random_word(db)
+    random_word, results = get_random_word(db, language)
+
     if not random_word:
         return None
 
-    meanings = []
-    for meaning in random_word.meanings:
-        examples = [
-            {
-                "example": example.example,
-                "example_translation": example.example_translation,
-                "example_translation_language": example.example_translation_language,
-            }
-            for example in meaning.examples
-        ]
-        meanings.append(
-            {
-                "meaning": meaning.meaning,
-                "meaning_language": meaning.meaning_language,
-                "examples": examples,
-            }
-        )
-
-    data = {
+    # Structure the data
+    word_info = {
         "word": random_word.word,
         "part_of_speech": random_word.part_of_speech,
         "transcription": random_word.transcription,
         "audio": random_word.audio,
-        "meanings": meanings,
+        "semantics": [],
     }
-    return data
+
+    for semantic, translation in results:
+        semantic_info = {
+            "translation": {"word": translation.word, "examples": []},
+            "examples": [],
+        }
+
+        for example in semantic.examples:
+            semantic_info["examples"].append(example.example)
+
+        for example_translation in translation.examples:
+            semantic_info["translation"]["examples"].append(example_translation.example)
+
+        word_info["semantics"].append(semantic_info)
+
+    return word_info
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -157,8 +158,10 @@ def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
     :param db: Database session dependency.
     :return: JSON response with the new word data.
     """
-    data = fetch_random_word_data(db)
-    return data
+    word_data = fetch_random_word_data(db, language)
+    if word_data:
+        return word_data
+    return {"message": "No word found"}
 
 
 def get_hashed_password(password: str) -> str:
