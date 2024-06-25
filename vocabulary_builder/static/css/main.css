@@ -89,12 +89,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 15px;
 }
 
-.word-card-welcome-container {
-    display: none;
-    margin-top: 25px;
+.word-card-container {
+    display: block;
 }
 
 /* Modal styles */
@@ -177,6 +175,7 @@ body.modal-active {
 }
 
 .new-word-button {
+    margin: 15px auto;
     font-size: 1.2em;
 }
 
