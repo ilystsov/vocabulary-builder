@@ -46,6 +46,7 @@ class LanguageModel(str, Enum):
     ru = "ru"
     uk = "uk"
     fr = "fr"
+    de = "de"
 
 
 def get_db():
