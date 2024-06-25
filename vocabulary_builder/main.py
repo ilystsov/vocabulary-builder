@@ -44,6 +44,7 @@ app = FastAPI()
 
 class LanguageModel(str, Enum):
     ru = "ru"
+    uk = "uk"
     fr = "fr"
 
 
