@@ -31,7 +31,7 @@
 }
 
 .shine-shift:hover {
-    transform: translateY(-7px);
+    transform: translateY(2px);
     box-shadow: 0 0 10px 2px rgb(0, 140, 240, 0.9);
 }
 
