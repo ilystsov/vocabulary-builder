@@ -141,7 +141,7 @@ def get_main_page_in_language(
     :param db: Database session dependency.
     :return: HTML response with the main page content in the specified language.
     """
-    context = fetch_random_word_data(db)
+    context = fetch_random_word_data(db, language)
     context.update({"_": _(language)})
     return templates.TemplateResponse(
         request=request,
