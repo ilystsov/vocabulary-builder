@@ -76,16 +76,17 @@ function redirectToLogIn() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // for all pages
-    fetchAndDisplayWordCard();
-    document
-        .getElementById('new-word-button')
-        .addEventListener('click', fetchAndDisplayWordCard);
-
     // for welcome page
     if (document.body.classList.contains('welcome-page')) {
         document
             .getElementById('new-word-button')
             .addEventListener('click', fetchAndDisplayWordCardWelcome);
+        return;
     }
+
+    // for all pages
+    fetchAndDisplayWordCard();
+    document
+        .getElementById('new-word-button')
+        .addEventListener('click', fetchAndDisplayWordCard);
 });
