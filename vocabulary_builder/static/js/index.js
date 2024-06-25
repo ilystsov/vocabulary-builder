@@ -31,7 +31,6 @@ function fetchAndDisplayWordCardWelcome() {
     fetchAndDisplayWordCard();
     const wordCardContainer = document.getElementById('word-card-container');
     wordCardContainer.classList.remove('hidden');
-    scrollToWordSectionWelcome();
 }
 
 // Modal
