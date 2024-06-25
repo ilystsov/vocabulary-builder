@@ -3,15 +3,15 @@ function toggleTheme() {
 }
 
 // Welcome functions
-function scrollToWelcomeNewWord() {
+function scrollToWordSectionWelcome() {
     const wordSectionWelcome = document.getElementById('word-section-welcome');
     wordSectionWelcome.scrollIntoView({ behavior: 'smooth' });
 }
 
 function welcomeNewWordFeature() {
-    scrollToWelcomeNewWord();
+    scrollToWordSectionWelcome();
 
-    const button = document.getElementById('new-word-welcome-button');
+    const button = document.getElementById('new-word-button');
     highlightButton(button);
 }
 
@@ -27,15 +27,11 @@ function welcomeTestingFeature() {
     }
 }
 
-function getWelcomeNewWordCard() {
-    // FETCH
-
-    const wordCardContainer = document.getElementById(
-        'word-card-welcome-container',
-    );
-    wordCardContainer.style.display = 'block';
-
-    scrollToWelcomeNewWord();
+function fetchAndDisplayWordCardWelcome() {
+    fetchAndDisplayWordCard();
+    const wordCardContainer = document.getElementById('word-card-container');
+    wordCardContainer.classList.remove('hidden');
+    scrollToWordSectionWelcome();
 }
 
 // Modal
@@ -79,3 +75,18 @@ function redirectToSignUp() {
 function redirectToLogIn() {
     window.location.href = '/login';
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    // for all pages
+    fetchAndDisplayWordCard();
+    document
+        .getElementById('new-word-button')
+        .addEventListener('click', fetchAndDisplayWordCard);
+
+    // for welcome page
+    if (document.body.classList.contains('welcome-page')) {
+        document
+            .getElementById('new-word-button')
+            .addEventListener('click', fetchAndDisplayWordCardWelcome);
+    }
+});
