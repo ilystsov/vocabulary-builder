@@ -428,3 +428,21 @@ async def get_saved_words(user_id: UUID4, db: Session = Depends(get_db)) -> list
     for word in saved_words:
         formatted_words.append(format_word_info(word))
     return formatted_words
+
+
+@app.get("/favorites")
+async def get_favorite_words(
+    request: Request,
+    language: LanguageModel,
+    current_user: UserBase = Depends(get_current_user),
+):
+    return templates.TemplateResponse(
+        request=request,
+        name="favorites.html",
+        context={
+            "_": _(language),
+            "language": language,
+            "username": current_user.username,
+            "user_id": current_user.user_id,
+        },
+    )
