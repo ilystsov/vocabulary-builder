@@ -1,13 +1,11 @@
-from uuid import UUID
-
 from pydantic import BaseModel
 
 
 class UserBase(BaseModel):
-    user_id: UUID
+    user_id: str
     username: str
 
 
 class SaveWord(BaseModel):
-    user_id: UUID
-    word_id: UUID
+    user_id: str
+    word_id: str

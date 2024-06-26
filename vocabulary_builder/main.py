@@ -214,7 +214,7 @@ def authenticate_user(
         return False
     if not verify_password(password, user.hashed_password):
         return False
-    return UserBase(username=username, user_id=user.id)
+    return UserBase(username=username, user_id=str(user.id))
 
 
 def create_access_token(data: dict, expires_delta: timedelta):
@@ -245,14 +245,15 @@ async def get_current_user(
     try:
         payload = jwt.decode(token.split(" ")[1], SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("username")
-        if username is None:
+        user_id: str = payload.get("user_id")
+        if username is None or user_id is None:
             raise CredentialsException
     except InvalidTokenError:
         raise CredentialsException
     user = get_user_by_username(db, username)
     if user is None:
         raise CredentialsException
-    return UserBase(username=username)
+    return UserBase(username=username, user_id=user_id)
 
 
 @app.get("/signup", response_class=HTMLResponse)
@@ -343,7 +344,10 @@ async def learn(
     language: LanguageModel,
     current_user: UserBase = Depends(get_current_user),
 ):
-    return {f"{current_user.username}'s new word": "issue"}
+    return {
+        f"{current_user.username}'s new word (user's id) "
+        f"{current_user.user_id}": "issue"
+    }
 
 
 @app.exception_handler(StarletteHTTPException)
