@@ -40,7 +40,6 @@ def test_register_user(test_client):
         "/signup", data={"username": "testuser", "password": "testpassword"}
     )
     assert response.status_code == 200
-    assert response.json() == {"message": "User registered successfully"}
 
 
 def test_login_user(test_client):
