@@ -21,6 +21,7 @@ pydocstyle = "*"
 black = "*"
 isort = "*"
 pre-commit = "*"
+pytest = "*"
 
 [scripts]
 flake8 = "flake8 ."
