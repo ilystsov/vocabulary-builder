@@ -16,7 +16,7 @@ from fastapi.templating import Jinja2Templates
 from jwt import InvalidTokenError
 from sqlalchemy.orm import Session
 from starlette.requests import Request
-from starlette.responses import HTMLResponse, JSONResponse
+from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 from vocabulary_builder.db.crud import (
     create_user,
@@ -279,7 +279,7 @@ async def register_user(
     if db_user:
         raise HTTPException(status_code=400, detail="Username already registered")
     create_user(db, username, get_hashed_password(password))
-    return {"message": "User registered successfully"}
+    return RedirectResponse(url="/login", status_code=303)
 
 
 @app.get("/login", response_class=HTMLResponse)
