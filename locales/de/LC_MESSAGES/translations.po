@@ -1,0 +1,141 @@
+# German translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-06-26 17:06+0300\n"
+"PO-Revision-Date: 2024-06-26 17:06+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: vocabulary_builder/templates/index.html:43
+msgid "Тесты"
+msgstr "Tests"
+
+#: vocabulary_builder/templates/index.html:44
+#: vocabulary_builder/templates/index.html:68
+msgid "Избранное"
+msgstr "Favoriten"
+
+#: vocabulary_builder/templates/index.html:47
+msgid "Вход"
+msgstr "Einloggen"
+
+#: vocabulary_builder/templates/index.html:48
+msgid "Регистрация"
+msgstr "Registrieren"
+
+#: vocabulary_builder/templates/index.html:58
+msgid "Добро пожаловать в Vocabulary Builder"
+msgstr "Willkommen beim Vocabulary Builder"
+
+#: vocabulary_builder/templates/index.html:59
+msgid ""
+"Изучайте новые английские слова и расширяйте свой словарный запас легко и"
+" эффективно!"
+msgstr ""
+"Lernen Sie neue englische Wörter und erweitern Sie Ihren Wortschatz einfach und effektiv!"
+
+#: vocabulary_builder/templates/index.html:64
+msgid "Случайное слово"
+msgstr "Zufälliges Wort"
+
+#: vocabulary_builder/templates/index.html:65
+msgid ""
+"Получите случайное английское слово с его переводом, примерами и "
+"транскрипцией одним нажатием кнопки."
+msgstr ""
+"Erhalten Sie per Knopfdruck ein zufälliges englisches Wort mit seiner Übersetzung, Beispielen und Transkription."
+
+#: vocabulary_builder/templates/index.html:69
+msgid "Добавляйте слова в избранное для быстрого доступа и лучшего запоминания."
+msgstr "Fügen Sie Wörter zu Favoriten hinzu, für schnellen Zugriff und besseres Merken."
+
+#: vocabulary_builder/templates/index.html:72
+msgid "Тестирование"
+msgstr "Tests"
+
+#: vocabulary_builder/templates/index.html:73
+msgid ""
+"Проверяйте свои знания с помощью интерактивных викторин и упражнений на "
+"заполнение пропусков."
+msgstr ""
+"Testen Sie Ihr Wissen mit interaktiven Quizzen und Lückentextübungen."
+
+#: vocabulary_builder/templates/index.html:78
+msgid "Получить новое слово"
+msgstr "Neues Wort bekommen"
+
+#: vocabulary_builder/templates/index.html:79
+msgid "Загрузка..."
+msgstr "Lädt..."
+
+#: vocabulary_builder/templates/index.html:91
+msgid "О нас"
+msgstr "Über uns"
+
+#: vocabulary_builder/templates/index.html:92
+msgid "Контакты"
+msgstr "Kontakt"
+
+#: vocabulary_builder/templates/index.html:93
+msgid "Политика конфиденциальности"
+msgstr "Datenschutzrichtlinie"
+
+#: vocabulary_builder/templates/index.html:105
+msgid "Необходима авторизация"
+msgstr "Authentifizierung erforderlich"
+
+#: vocabulary_builder/templates/index.html:108
+msgid ""
+"Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить "
+"доступ к этой функции."
+msgstr ""
+"Bitte loggen Sie sich ein oder registrieren Sie sich, um Zugang zu dieser Funktion zu erhalten."
+
+#: vocabulary_builder/templates/index.html:110
+msgid "Войти"
+msgstr "Anmelden"
+
+#: vocabulary_builder/templates/index.html:111
+msgid "Зарегистрироваться"
+msgstr "Registrieren"
+
+#: vocabulary_builder/templates/login.html:6
+msgid "Login"
+msgstr "Login"
+
+#: vocabulary_builder/templates/login.html:22
+msgid "Имя пользователя"
+msgstr "Benutzername"
+
+#: vocabulary_builder/templates/login.html:24
+msgid "Пароль"
+msgstr "Passwort"
+
+#: vocabulary_builder/templates/login.html:26
+msgid "Логин"
+msgstr "Login"
+
+#: vocabulary_builder/templates/signup.html:6
+#: vocabulary_builder/templates/signup.html:26
+msgid "Register"
+msgstr "Registrieren"
+
+#: vocabulary_builder/templates/signup.html:22
+msgid "Username"
+msgstr "Benutzername"
+
+#: vocabulary_builder/templates/signup.html:24
+msgid "Password"
+msgstr "Passwort"
