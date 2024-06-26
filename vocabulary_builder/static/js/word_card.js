@@ -118,7 +118,7 @@ function toggleStar() {
     star.classList.toggle('word-card__star--active');
 }
 
-function fetchAndDisplayWordCard() {
+function fetchAndDisplayWordCard(callback) {
     const language =
         new URLSearchParams(window.location.search).get('language') || 'ru';
     const newWordButton = document.getElementById('get-new-word-button');
@@ -137,6 +137,9 @@ function fetchAndDisplayWordCard() {
             wordCardContainer.innerHTML = ''; // Clear previous word card
             const wordCard = createWordCard(data, language);
             wordCardContainer.appendChild(wordCard);
+            if (callback) {
+                callback(data);
+            }
         })
         .catch((error) => console.error('Error fetching word data:', error))
         .finally(() => {

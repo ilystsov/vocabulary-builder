@@ -73,7 +73,10 @@ function checkRegistration() {
 function setupWelcomePageEventListeners() {
     const getNewWordButton = document.getElementById('get-new-word-button');
     getNewWordButton.addEventListener('click', () => {
-        fetchAndDisplayWordCard();
+        fetchAndDisplayWordCard(function (data) {
+            console.log('Received data:', data);
+            // Do smth with words' data
+        });
         const wordCardContainer = document.getElementById(
             'word-card-container',
         );

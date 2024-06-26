@@ -113,6 +113,7 @@ def fetch_random_word_data(db: Session):
         return None
 
     word_info = {
+        "word_id": random_word.id,
         "word": random_word.word,
         "part_of_speech": random_word.part_of_speech,
         "transcription": random_word.transcription,
