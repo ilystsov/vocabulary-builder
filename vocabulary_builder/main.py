@@ -28,7 +28,7 @@ from vocabulary_builder.exceptions import (
     CredentialsException,
     IncorrectUsernamePasswordException,
 )
-from vocabulary_builder.models import Token, UserBase
+from vocabulary_builder.models import UserBase
 
 
 load_dotenv()
@@ -37,7 +37,17 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+
+class OAuth2PasswordBearerWithCookie(OAuth2PasswordBearer):
+    async def __call__(self, request: Request) -> str:
+        authorization: str = request.cookies.get("access_token")
+        if not authorization:
+            raise HTTPException(status_code=403, detail="Not authenticated")
+        return authorization
+
+
+oauth2_scheme = OAuth2PasswordBearerWithCookie(tokenUrl="login")
+
 
 app = FastAPI()
 
@@ -233,7 +243,7 @@ async def get_current_user(
     :return: Current user.
     """
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token.split(" ")[1], SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
             raise CredentialsException
@@ -302,7 +312,7 @@ async def login_for_access_token(
     password: str = Form(...),
     language: str = Form("ru"),
     db: Session = Depends(get_db),
-) -> Token:
+) -> RedirectResponse:
     """
     Endpoint to log in and get an access token.
 
@@ -319,7 +329,13 @@ async def login_for_access_token(
         data={"sub": user.username},
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
-    return Token(access_token=access_token, token_type="bearer")
+    response = RedirectResponse(url=f"/learn?language={language}", status_code=303)
+    response.set_cookie(
+        key="access_token",
+        value=f"Bearer {access_token}",
+        httponly=True,
+    )
+    return response
 
 
 @app.get("/learn")
