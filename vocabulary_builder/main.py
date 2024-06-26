@@ -142,7 +142,9 @@ def fetch_random_word_data(db: Session):
 
 @app.get("/", response_class=HTMLResponse)
 def get_main_page_in_language(
-    request: Request, language: LanguageModel = "ru", db: Session = Depends(get_db)
+    request: Request,
+    language: LanguageModel = LanguageModel.ru,
+    db: Session = Depends(get_db),
 ):
     """
     Serves the main page in the specified language.
@@ -154,6 +156,7 @@ def get_main_page_in_language(
     """
     context = fetch_random_word_data(db)
     context.update({"_": _(language)})
+    context.update({"language": language.value})
     return templates.TemplateResponse(
         request=request,
         name="index.html",
