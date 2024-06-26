@@ -31,21 +31,22 @@
                         <div class="dropdown">
                             <button class="icon-button"><i class="fas fa-globe"></i></button>
                             <div class="dropdown-content">
-                                <a href="#" class="link">Русский</a>
-                                <a href="#" class="link">Français</a>
-                                <a href="#" class="link">Українська</a>
+                                <a href="/?language=ru" class="link">Русский</a>
+                                <a href="/?language=uk" class="link">Українська</a>
+                                <a href="/?language=fr" class="link">Français</a>
+                                <a href="/?language=de" class="link">Deutsch</a>
                             </div>
                         </div>
                         <button id="toggle-theme-button" class="icon-button"><i class="fas fa-adjust"></i></button>
                     </nav>
                     <nav class="flex-row justify-content-between align-items-center with-gap">
-                        <a href="#" class="link font-size-bigger">Тесты</a>
-                        <a href="#" class="link font-size-bigger">Избранное</a>
+                        <a href="#" class="link font-size-bigger">{{ _('Тесты') }}</a>
+                        <a href="#" class="link font-size-bigger">{{ _('Избранное') }}</a>
                     </nav>
                     <nav class="flex-row justify-content-between align-items-center with-gap margin-auto">
-                        <a href="#" class="link font-size-bigger">Вход</a>
-                        <a href="#" class="link font-size-bigger">Регистрация</a>
-                    </nav>
+                        <a href="#" class="link font-size-bigger">>{{ _('Вход') }}</a>
+                        <a href="#" class="link font-size-bigger">>{{ _('Регистрация') }}</a>
+                    </nav>>
                 </div>
             </header>
         </div>
@@ -54,28 +55,28 @@
             <main class="main-container">
                 <div class="simple-box main-content flex-column with-gap">
                     <section class="flex-column justify-content-start text-center">
-                        <h1 class="margin-top-0 margin-bottom-0">Добро пожаловать в Vocabulary Builder</h1>
-                        <p class="font-size-bigger">Изучайте новые английские слова и расширяйте свой словарный запас легко и эффективно!</p>
+                        <h1 class="margin-top-0 margin-bottom-0">{{ _('Добро пожаловать в Vocabulary Builder') }}</h1>
+                        <p class="font-size-bigger">{{ _('Изучайте новые английские слова и расширяйте свой словарный запас легко и эффективно!') }}</p>
                     </section>
 
                     <section class="flex-row justify-content-center flex-wrap with-gap2 text-center">
                         <div id="random-word-feature" class="simple-box text-card clickable shine-shift">
-                            <h2 class="margin-top-0 margin-bottom-0">Случайное слово</h2>
-                            <p>Получите случайное английское слово с его переводом, примерами и транскрипцией одним нажатием кнопки.</p>
+                            <h2 class="margin-top-0 margin-bottom-0">{{ _('Случайное слово') }}</h2>
+                            <p>{{ _('Получите случайное английское слово с его переводом, примерами и транскрипцией одним нажатием кнопки.') }}</p>
                         </div>
                         <div id="favourites-feature" class="simple-box text-card clickable shine-shift">
-                            <h2 class="margin-top-0 margin-bottom-0">Избранное</h2>
-                            <p>Добавляйте слова в избранное для быстрого доступа и лучшего запоминания.</p>
+                            <h2 class="margin-top-0 margin-bottom-0">{{ _('Избранное') }}</h2>
+                            <p>{{ _('Добавляйте слова в избранное для быстрого доступа и лучшего запоминания.') }}</p>
                         </div>
                         <div id="testing-feature" class="simple-box text-card clickable shine-shift">
-                            <h2 class="margin-top-0 margin-bottom-0">Тестирование</h2>
-                            <p>Проверяйте свои знания с помощью интерактивных викторин и упражнений на заполнение пропусков.</p>
+                            <h2 class="margin-top-0 margin-bottom-0">{{ _('Тестирование') }}</h2>
+                            <p>{{ _('Проверяйте свои знания с помощью интерактивных викторин и упражнений на заполнение пропусков.') }}</p>
                         </div>
                     </section>
 
                     <section class="flex-column justify-content-start align-items-center with-gap">
-                        <button id="get-new-word-button" class="simple-button font-size-bigger">Получить новое слово</button>
-                        <div id="word-card-loading-indicator" class="font-size-bigger font-weight-bold fadein hidden">Loading...</div>
+                        <button id="get-new-word-button" class="simple-button font-size-bigger">{{ _('Получить новое слово') }}</button>
+                        <div id="word-card-loading-indicator" class="font-size-bigger font-weight-bold fadein hidden">{{ _('Загрузка...') }}</div>
                         <div id="word-card-container" class="word-card-container hidden"></div>
                     </section>
                 </div>
@@ -87,9 +88,9 @@
                 <div class="footer-content flex-column justify-content-start align-items-center with-gap">
                     <p class="font-size-smaller font-color-addition text-center margin-top-0 margin-bottom-0">&copy; 2024 Vocabulary Builder. All rights reserved.</p>
                     <nav class="flex-row justify-content-evenly align-items-center flex-wrap with-gap2">
-                        <a href="#" class="link">О нас</a>
-                        <a href="#" class="link">Контакты</a>
-                        <a href="#" class="link">Политика конфиденциальности</a>
+                        <a href="#" class="link">{{ _('О нас') }}</a>
+                        <a href="#" class="link">{{ _('Контакты') }}</a>
+                        <a href="#" class="link">{{ _('Политика конфиденциальности') }}</a>
                     </nav>
                 </div>
             </footer>
@@ -101,13 +102,13 @@
         <div id="registration-modal" class="wrapper hidden">
             <div class="simple-box modal-container flex-column justify-content-center">
                 <div class="flex-row justify-content-between">
-                    <h2 class="margin-top-0 margin-bottom-0">Необходима авторизация</h2>
+                    <h2 class="margin-top-0 margin-bottom-0">{{ _('Необходима авторизация') }}</h2>
                     <button id="close-registration-modal-button" class="icon-button close-icon-button"><i class="fas fa-times"></i></button>
                 </div>
-                <p>Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить доступ к этой функции.</p>
+                <p>{{ _('Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить доступ к этой функции.') }}</p>
                 <div class="flex-row with-gap">
-                    <button class="simple-button">Войти</button>
-                    <button class="simple-button">Зарегистрироваться</button>
+                    <button class="simple-button">{{ _('Войти') }}</button>
+                    <button class="simple-button">{{ _('Зарегистрироваться') }}</button>
                 </div>
             </div>
         </div>
