@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import UUID4, BaseModel
 
 
 class UserBase(BaseModel):
@@ -6,6 +6,5 @@ class UserBase(BaseModel):
     username: str
 
 
-class SaveWord(BaseModel):
-    user_id: str
-    word_id: str
+class WordBase(BaseModel):
+    word_id: UUID4

@@ -17,3 +17,15 @@ class IncorrectUsernamePasswordException(HTTPException):
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
+
+
+class WordNotFound(Exception):
+    pass
+
+
+class UserNotFound(Exception):
+    pass
+
+
+class BadIdentifier(Exception):
+    pass

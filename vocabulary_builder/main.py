@@ -14,6 +14,7 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from jwt import InvalidTokenError
+from pydantic import UUID4
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.requests import Request
@@ -23,13 +24,16 @@ from vocabulary_builder.db.crud import (
     create_user,
     get_random_word,
     get_user_by_username,
+    save_word_for_user,
 )
 from vocabulary_builder.db.database import SessionLocal
 from vocabulary_builder.exceptions import (
     CredentialsException,
     IncorrectUsernamePasswordException,
+    UserNotFound,
+    WordNotFound,
 )
-from vocabulary_builder.models import UserBase
+from vocabulary_builder.models import UserBase, WordBase
 
 
 load_dotenv()
@@ -387,3 +391,12 @@ async def page_not_found(request: Request, language: str = "ru"):
         name="page_not_found.html",
         context={"_": _(language), "language": language},
     )
+
+
+@app.post("/user/{user_id}/words")
+async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
+    try:
+        save_word_for_user(db, word.word_id, user_id)
+    except (UserNotFound, WordNotFound) as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    return {"message": "Word saved successfully."}
