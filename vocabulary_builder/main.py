@@ -22,12 +22,14 @@ from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 from vocabulary_builder.db.crud import (
     create_user,
+    get_all_saved_words_for_user,
     get_random_word,
     get_user_by_username,
     remove_word_for_user,
     save_word_for_user,
 )
 from vocabulary_builder.db.database import SessionLocal
+from vocabulary_builder.db.models import WordModel
 from vocabulary_builder.exceptions import (
     CredentialsException,
     IncorrectUsernamePasswordException,
@@ -105,27 +107,16 @@ def _(language: str):
     return translations.gettext
 
 
-def fetch_random_word_data(db: Session):
-    """
-    Fetches a random word and formats it as a JSON response.
-
-    :param db: The database session.
-    :return: A dictionary containing the word and its translation information.
-    """
-    random_word = get_random_word(db)
-
-    if not random_word:
-        return None
-
+def format_word_info(word: WordModel):
     word_info = {
-        "word": random_word.word,
-        "part_of_speech": random_word.part_of_speech,
-        "transcription": random_word.transcription,
-        "audio": random_word.audio,
+        "word": word.word,
+        "part_of_speech": word.part_of_speech,
+        "transcription": word.transcription,
+        "audio": word.audio,
         "semantics": [],
     }
 
-    for semantic in random_word.semantics:
+    for semantic in word.semantics:
         semantic_info = {
             "translations": {},
             "examples": [example.example for example in semantic.examples],
@@ -140,7 +131,22 @@ def fetch_random_word_data(db: Session):
             semantic_info["translations"][translation.language] = translation_info
 
         word_info["semantics"].append(semantic_info)
+    return word_info
 
+
+def fetch_random_word_data(db: Session):
+    """
+    Fetches a random word and formats it as a JSON response.
+
+    :param db: The database session.
+    :return: A dictionary containing the word and its translation information.
+    """
+    random_word = get_random_word(db)
+
+    if not random_word:
+        return None
+
+    word_info = format_word_info(random_word)
     return word_info
 
 
@@ -394,7 +400,7 @@ async def page_not_found(request: Request, language: str = "ru"):
     )
 
 
-@app.post("/user/{user_id}/words")
+@app.post("/users/{user_id}/words")
 async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
     try:
         save_word_for_user(db, word.word_id, user_id)
@@ -403,10 +409,22 @@ async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db
     return {"message": "Word saved successfully."}
 
 
-@app.delete("/user/{user_id}/words")
+@app.delete("/users/{user_id}/words")
 async def remove_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
     try:
         remove_word_for_user(db, word.word_id, user_id)
     except (UserNotFound, WordNotFound) as e:
         raise HTTPException(status_code=404, detail=str(e))
     return {"message": "Word removed successfully."}
+
+
+@app.get("/users/{user_id}/words")
+async def get_saved_words(user_id: UUID4, db: Session = Depends(get_db)) -> list[dict]:
+    try:
+        saved_words = get_all_saved_words_for_user(db, user_id)
+    except UserNotFound as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    formatted_words = []
+    for word in saved_words:
+        formatted_words.append(format_word_info(word))
+    return formatted_words

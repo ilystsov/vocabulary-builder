@@ -80,3 +80,18 @@ def remove_word_for_user(db: Session, word_id: UUID4, user_id: UUID4) -> None:
         db.commit()
     else:
         raise WordNotFound("The word is not in the user's favorites.")
+
+
+def get_all_saved_words_for_user(db: Session, user_id: UUID4) -> list[WordModel]:
+    """
+    Fetches all saved words for a user from the database.
+
+    :param db: Database session.
+    :param user_id: ID of the user.
+    :return: List of words saved by the user.
+    """
+    user = db.get(UserModel, user_id)
+    if not user:
+        raise UserNotFound("There is no user with the specified ID.")
+
+    return user.favorite_words
