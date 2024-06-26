@@ -99,21 +99,18 @@ def _(language: str):
     return translations.gettext
 
 
-def fetch_random_word_data(db: Session, language: str):
+def fetch_random_word_data(db: Session):
     """
-    Fetches a random word and formats it as a JSON response for the specified language.
+    Fetches a random word and formats it as a JSON response.
 
     :param db: The database session.
-    :param language: The target language for the translation.
-    :return: A dictionary containing the word and its translation information for the
-        specified language.
+    :return: A dictionary containing the word and its translation information.
     """
-    random_word, results = get_random_word(db, language)
+    random_word = get_random_word(db)
 
     if not random_word:
-        return {}
+        return None
 
-    # Structure the data
     word_info = {
         "word": random_word.word,
         "part_of_speech": random_word.part_of_speech,
@@ -122,17 +119,19 @@ def fetch_random_word_data(db: Session, language: str):
         "semantics": [],
     }
 
-    for semantic, translation in results:
+    for semantic in random_word.semantics:
         semantic_info = {
-            "translation": {"word": translation.word, "examples": []},
-            "examples": [],
+            "translations": {},
+            "examples": [example.example for example in semantic.examples],
         }
-
-        for example in semantic.examples:
-            semantic_info["examples"].append(example.example)
-
-        for example_translation in translation.examples:
-            semantic_info["translation"]["examples"].append(example_translation.example)
+        for translation in semantic.translations:
+            translation_info = {
+                "word": translation.word,
+                "examples": [
+                    ex_translation.example for ex_translation in translation.examples
+                ],
+            }
+            semantic_info["translations"][translation.language] = translation_info
 
         word_info["semantics"].append(semantic_info)
 
@@ -151,7 +150,7 @@ def get_main_page_in_language(
     :param db: Database session dependency.
     :return: HTML response with the main page content in the specified language.
     """
-    context = fetch_random_word_data(db, language)
+    context = fetch_random_word_data(db)
     context.update({"_": _(language)})
     return templates.TemplateResponse(
         request=request,
@@ -170,7 +169,7 @@ def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
     :param db: Database session dependency.
     :return: JSON response with the new word data.
     """
-    word_data = fetch_random_word_data(db, language)
+    word_data = fetch_random_word_data(db)
     if word_data:
         return word_data
     return {"message": "No word found"}

@@ -6,6 +6,7 @@ from doit.tools import create_folder
 
 
 LOCALES_DIRECTORY = "vocabulary_builder/locales"
+LANGUAGES = ["fr", "uk", "de"]
 
 
 def task_pot():
@@ -20,31 +21,47 @@ def task_pot():
     }
 
 
+def task_init_po():
+    """Initialize .po files for new languages."""
+    for lang in LANGUAGES:
+        yield {
+            "name": lang,
+            "actions": [
+                f"pybabel init -D translations -d locales -l {lang} -i translations.pot"
+            ],
+            "file_dep": ["translations.pot"],
+        }
+
+
 def task_po():
     """Update translations."""
-    return {
-        "actions": [
-            "pybabel update -D translations -d locales -l fr -i translations.pot "
-        ],
-        "file_dep": ["translations.pot"],
-        "targets": ["locales/fr/LC_MESSAGES/translations.po"],
-    }
+    for lang in LANGUAGES:
+        yield {
+            "name": lang,
+            "actions": [
+                f"pybabel update -D translations -d locales -l {lang} "
+                "-i translations.pot"
+            ],
+            "file_dep": ["translations.pot"],
+            "targets": [f"locales/{lang}/LC_MESSAGES/translations.po"],
+        }
 
 
 def task_mo():
     """Compile translations."""
-    return {
-        "actions": [
-            (create_folder, [f"{LOCALES_DIRECTORY}/fr/LC_MESSAGES"]),
-            (
-                f"pybabel compile -D translations -l "
-                f"fr -i locales/fr/LC_MESSAGES/translations.po -d {LOCALES_DIRECTORY}"
-            ),
-        ],
-        "file_dep": ["locales/fr/LC_MESSAGES/translations.po"],
-        "targets": [f"{LOCALES_DIRECTORY}/fr/LC_MESSAGES/translations.mo"],
-        "clean": [clean_targets],
-    }
+    for lang in LANGUAGES:
+        yield {
+            "name": lang,
+            "actions": [
+                (create_folder, [f"{LOCALES_DIRECTORY}/{lang}/LC_MESSAGES"]),
+                f"pybabel compile -D translations -l {lang} "
+                f"-i locales/{lang}/LC_MESSAGES/translations.po "
+                f"-d {LOCALES_DIRECTORY}",
+            ],
+            "file_dep": [f"locales/{lang}/LC_MESSAGES/translations.po"],
+            "targets": [f"{LOCALES_DIRECTORY}/{lang}/LC_MESSAGES/translations.mo"],
+            "clean": [clean_targets],
+        }
 
 
 def task_i18n():
