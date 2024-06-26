@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-26 17:06+0300\n"
+"POT-Creation-Date: 2024-06-26 19:11+0300\n"
 "PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -44,7 +44,8 @@ msgid ""
 "Изучайте новые английские слова и расширяйте свой словарный запас легко и"
 " эффективно!"
 msgstr ""
-"Apprenez de nouveaux mots anglais et élargissez votre vocabulaire facilement et efficacement!"
+"Apprenez de nouveaux mots anglais et élargissez votre vocabulaire "
+"facilement et efficacement!"
 
 #: vocabulary_builder/templates/index.html:64
 msgid "Случайное слово"
@@ -55,11 +56,14 @@ msgid ""
 "Получите случайное английское слово с его переводом, примерами и "
 "транскрипцией одним нажатием кнопки."
 msgstr ""
-"Obtenez un mot anglais aléatoire avec sa traduction, des exemples et la transcription en un clic."
+"Obtenez un mot anglais aléatoire avec sa traduction, des exemples et la "
+"transcription en un clic."
 
 #: vocabulary_builder/templates/index.html:69
 msgid "Добавляйте слова в избранное для быстрого доступа и лучшего запоминания."
-msgstr "Ajoutez des mots aux favoris pour un accès rapide et une meilleure mémorisation."
+msgstr ""
+"Ajoutez des mots aux favoris pour un accès rapide et une meilleure "
+"mémorisation."
 
 #: vocabulary_builder/templates/index.html:72
 msgid "Тестирование"
@@ -70,7 +74,8 @@ msgid ""
 "Проверяйте свои знания с помощью интерактивных викторин и упражнений на "
 "заполнение пропусков."
 msgstr ""
-"Testez vos connaissances avec des quiz interactifs et des exercices à trous."
+"Testez vos connaissances avec des quiz interactifs et des exercices à "
+"trous."
 
 #: vocabulary_builder/templates/index.html:78
 msgid "Получить новое слово"
@@ -101,7 +106,8 @@ msgid ""
 "Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить "
 "доступ к этой функции."
 msgstr ""
-"Veuillez vous connecter ou vous inscrire pour accéder à cette fonctionnalité."
+"Veuillez vous connecter ou vous inscrire pour accéder à cette "
+"fonctionnalité."
 
 #: vocabulary_builder/templates/index.html:110
 msgid "Войти"
@@ -126,6 +132,24 @@ msgstr "Mot de passe"
 #: vocabulary_builder/templates/login.html:26
 msgid "Логин"
 msgstr "Connexion"
+
+#: vocabulary_builder/templates/page_not_found.html:6
+#: vocabulary_builder/templates/page_not_found.html:20
+mmsgid "Страница не найдена"
+ msgstr "Page non trouvée"
+
+ #: vocabulary_builder/templates/page_not_found.html:21
+ msgid ""
+ "Страница, которую вы ищете, не существует. Проверьте URL или вернитесь на"
+ " главную страницу."
+ msgstr ""
+ "La page que vous recherchez n'existe pas. Vérifiez l'URL ou revenez à la"
+ " page d'accueil."
+
+ #: vocabulary_builder/templates/page_not_found.html:22
+ msgid "Перейти на главную страницу"
+ msgstr "Aller à la page d'accueil"
+
 
 #: vocabulary_builder/templates/signup.html:6
 #: vocabulary_builder/templates/signup.html:26
