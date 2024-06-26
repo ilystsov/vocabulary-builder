@@ -23,6 +23,16 @@ function toggleTheme() {
     }
 }
 
+function getSpecialTranslation(key) {
+    const hiddenTranslations = document.getElementById('hidden-translations');
+    const translationElement = hiddenTranslations.querySelector(
+        `[data-key="${key}"]`,
+    );
+    return translationElement
+        ? translationElement.textContent || translationElement.innerText
+        : '';
+}
+
 // Registration modal
 
 function showRegistrationModal() {

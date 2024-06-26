@@ -63,7 +63,7 @@ function createWordCard(data, language) {
 
         const examplesLabel = document.createElement('div');
         examplesLabel.className = 'word-card__examples-label';
-        examplesLabel.textContent = 'Примеры:';
+        examplesLabel.textContent = getSpecialTranslation('examples');
         meaningBlock.appendChild(examplesLabel);
 
         const examplesList = document.createElement('ul');
