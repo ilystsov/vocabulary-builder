@@ -24,6 +24,7 @@ from vocabulary_builder.db.crud import (
     create_user,
     get_random_word,
     get_user_by_username,
+    remove_word_for_user,
     save_word_for_user,
 )
 from vocabulary_builder.db.database import SessionLocal
@@ -400,3 +401,12 @@ async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db
     except (UserNotFound, WordNotFound) as e:
         raise HTTPException(status_code=404, detail=str(e))
     return {"message": "Word saved successfully."}
+
+
+@app.delete("/user/{user_id}/words")
+async def remove_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
+    try:
+        remove_word_for_user(db, word.word_id, user_id)
+    except (UserNotFound, WordNotFound) as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    return {"message": "Word removed successfully."}

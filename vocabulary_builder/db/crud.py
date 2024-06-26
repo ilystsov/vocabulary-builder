@@ -1,4 +1,5 @@
 """CRUD operations for interacting with the database."""
+from pydantic import UUID4
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
@@ -40,7 +41,7 @@ def get_user_by_username(db: Session, username: str) -> UserModel:
     return db.scalars(stmt).first()
 
 
-def save_word_for_user(db: Session, word_id: str, user_id: str) -> None:
+def save_word_for_user(db: Session, word_id: UUID4, user_id: UUID4) -> None:
     """
     Saves a word for a user in the database.
 
@@ -57,3 +58,25 @@ def save_word_for_user(db: Session, word_id: str, user_id: str) -> None:
 
     user.favorite_words.append(word)
     db.commit()
+
+
+def remove_word_for_user(db: Session, word_id: UUID4, user_id: UUID4) -> None:
+    """
+    Removes a word for a user in the database.
+
+    :param db: Database session.
+    :param word_id: ID of the word to remove.
+    :param user_id: ID of the user removing the word.
+    """
+    user = db.get(UserModel, user_id)
+    if not user:
+        raise UserNotFound("There is no user with the specified ID.")
+    word = db.get(WordModel, word_id)
+    if not word:
+        raise WordNotFound("There is no word with the specified ID.")
+
+    if word in user.favorite_words:
+        user.favorite_words.remove(word)
+        db.commit()
+    else:
+        raise WordNotFound("The word is not in the user's favorites.")
