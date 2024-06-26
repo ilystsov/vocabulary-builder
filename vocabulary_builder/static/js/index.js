@@ -111,15 +111,23 @@ function setupLearnPageEventListeners() {
 // Event listeners
 
 document.addEventListener('DOMContentLoaded', function () {
-    const toggleThemeButton = document.getElementById('toggle-theme-button');
+    // save theme
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.remove('gamma1');
         document.body.classList.add('gamma2');
     }
+
+    // save language
+    const language =
+        new URLSearchParams(window.location.search).get('language') || 'ru';
+
     document.body.classList.remove('hidden');
 
+    // toggle theme
+    const toggleThemeButton = document.getElementById('toggle-theme-button');
     toggleThemeButton.addEventListener('click', toggleTheme);
 
+    // registration modal
     const closeRegistrationModalButton = document.getElementById(
         'close-registration-modal-button',
     );
