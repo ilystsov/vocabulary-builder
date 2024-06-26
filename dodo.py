@@ -62,3 +62,13 @@ def task_html():
         "targets": ["docs/_build/html/index.html"],
         "clean": [lambda: shutil.rmtree("docs/_build")],
     }
+
+
+def task_test():
+    """Run tests"""
+    return {
+        "actions": [
+            "python3.10 -m pytest tests",
+        ],
+        "verbosity": 2,
+    }
