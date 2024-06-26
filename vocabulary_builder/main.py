@@ -101,7 +101,7 @@ def fetch_random_word_data(db: Session, language: str):
     random_word, results = get_random_word(db, language)
 
     if not random_word:
-        return None
+        return {}
 
     # Structure the data
     word_info = {
