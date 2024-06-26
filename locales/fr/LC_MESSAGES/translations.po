@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-10 18:45+0300\n"
-"PO-Revision-Date: 2024-06-10 17:42+0300\n"
+"POT-Creation-Date: 2024-06-26 17:06+0300\n"
+"PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -18,48 +18,124 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
 
-#: vocabulary_builder/templates/index.html:6
-msgid "Макет Vocabulary Builder"
-msgstr "Maquette Vocabulary Builder"
-
-#: vocabulary_builder/templates/index.html:14
+#: vocabulary_builder/templates/index.html:43
 msgid "Тесты"
-msgstr "Essais"
+msgstr "Tests"
 
-#: vocabulary_builder/templates/index.html:15
+#: vocabulary_builder/templates/index.html:44
+#: vocabulary_builder/templates/index.html:68
 msgid "Избранное"
 msgstr "Favoris"
 
-#: vocabulary_builder/templates/index.html:18
-msgid "Вход/Регистрация"
-msgstr "Connexion/Inscription"
+#: vocabulary_builder/templates/index.html:47
+msgid "Вход"
+msgstr "Connexion"
 
-#: vocabulary_builder/templates/index.html:22
-msgid "Выберите язык:"
-msgstr "Choisissez votre langue:"
+#: vocabulary_builder/templates/index.html:48
+msgid "Регистрация"
+msgstr "Inscription"
 
-#: vocabulary_builder/templates/index.html:30
-msgid "Улучши свой английский."
-msgstr "Améliorez votre anglais."
+#: vocabulary_builder/templates/index.html:58
+msgid "Добро пожаловать в Vocabulary Builder"
+msgstr "Bienvenue dans Vocabulary Builder"
 
-#: vocabulary_builder/templates/index.html:31
-msgid "Хочу узнать новое слово!"
-msgstr "Je veux apprendre un nouveau mot!"
+#: vocabulary_builder/templates/index.html:59
+msgid ""
+"Изучайте новые английские слова и расширяйте свой словарный запас легко и"
+" эффективно!"
+msgstr ""
+"Apprenez de nouveaux mots anglais et élargissez votre vocabulaire facilement et efficacement!"
 
-#: vocabulary_builder/templates/index.html:33
-msgid "Слово для изучения:"
-msgstr "Mot à apprendre:"
+#: vocabulary_builder/templates/index.html:64
+msgid "Случайное слово"
+msgstr "Mot aléatoire"
 
-#: vocabulary_builder/templates/index.html:34
-msgid "Пример использования (англ.):"
-msgstr "Exemple d'utilisation (anglais):"
+#: vocabulary_builder/templates/index.html:65
+msgid ""
+"Получите случайное английское слово с его переводом, примерами и "
+"транскрипцией одним нажатием кнопки."
+msgstr ""
+"Obtenez un mot anglais aléatoire avec sa traduction, des exemples et la transcription en un clic."
 
-#: vocabulary_builder/templates/index.html:35
-msgid "Пример использования (рус.):"
-msgstr "Exemple d'utilisation (français):"
+#: vocabulary_builder/templates/index.html:69
+msgid "Добавляйте слова в избранное для быстрого доступа и лучшего запоминания."
+msgstr "Ajoutez des mots aux favoris pour un accès rapide et une meilleure mémorisation."
 
-#~ msgid "Русский"
-#~ msgstr ""
+#: vocabulary_builder/templates/index.html:72
+msgid "Тестирование"
+msgstr "Évaluation"
 
-#~ msgid "Français"
-#~ msgstr ""
+#: vocabulary_builder/templates/index.html:73
+msgid ""
+"Проверяйте свои знания с помощью интерактивных викторин и упражнений на "
+"заполнение пропусков."
+msgstr ""
+"Testez vos connaissances avec des quiz interactifs et des exercices à trous."
+
+#: vocabulary_builder/templates/index.html:78
+msgid "Получить новое слово"
+msgstr "Obtenir un nouveau mot"
+
+#: vocabulary_builder/templates/index.html:79
+msgid "Загрузка..."
+msgstr "Chargement..."
+
+#: vocabulary_builder/templates/index.html:91
+msgid "О нас"
+msgstr "À propos"
+
+#: vocabulary_builder/templates/index.html:92
+msgid "Контакты"
+msgstr "Contact"
+
+#: vocabulary_builder/templates/index.html:93
+msgid "Политика конфиденциальности"
+msgstr "Politique de confidentialité"
+
+#: vocabulary_builder/templates/index.html:105
+msgid "Необходима авторизация"
+msgstr "Authentification requise"
+
+#: vocabulary_builder/templates/index.html:108
+msgid ""
+"Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить "
+"доступ к этой функции."
+msgstr ""
+"Veuillez vous connecter ou vous inscrire pour accéder à cette fonctionnalité."
+
+#: vocabulary_builder/templates/index.html:110
+msgid "Войти"
+msgstr "Se connecter"
+
+#: vocabulary_builder/templates/index.html:111
+msgid "Зарегистрироваться"
+msgstr "S'inscrire"
+
+#: vocabulary_builder/templates/login.html:6
+msgid "Login"
+msgstr "Connexion"
+
+#: vocabulary_builder/templates/login.html:22
+msgid "Имя пользователя"
+msgstr "Nom d'utilisateur"
+
+#: vocabulary_builder/templates/login.html:24
+msgid "Пароль"
+msgstr "Mot de passe"
+
+#: vocabulary_builder/templates/login.html:26
+msgid "Логин"
+msgstr "Connexion"
+
+#: vocabulary_builder/templates/signup.html:6
+#: vocabulary_builder/templates/signup.html:26
+msgid "Register"
+msgstr "S'inscrire"
+
+#: vocabulary_builder/templates/signup.html:22
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: vocabulary_builder/templates/signup.html:24
+msgid "Password"
+msgstr "Mot de passe"
