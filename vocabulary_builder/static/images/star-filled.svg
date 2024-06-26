@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="149.99997"
+   height="150.00003"
+   viewBox="0 -0.03 11.261623 11.261627"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="star-filled.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.7471098"
+     inkscape:cx="142.87743"
+     inkscape:cy="119.2162"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .cls-1 {
+        fill: #bf873e;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path
+     class="cls-1"
+     d="m 7.6400619,3.2983313 a 0.56852328,0.56897654 0 0 0 0.165866,0.201301 0.59441641,0.59489033 0 0 0 0.240544,0.108538 l 2.7510521,0.556771 a 0.57546564,0.57592444 0 0 1 0.449189,0.428891 0.56289433,0.56334311 0 0 1 -0.209771,0.579117 l -2.1405001,1.625057 a 0.56477065,0.56522092 0 0 0 -0.186506,0.244116 0.55463855,0.55508075 0 0 0 -0.03002,0.303829 l 0.57753,3.2170647 a 0.56289433,0.56334311 0 0 1 -0.23923,0.565221 0.59404115,0.59451476 0 0 1 -0.624438,0.02742 L 5.9207959,9.7647633 a 0.59385352,0.59432698 0 0 0 -0.579969,0 l -2.47317,1.3908937 a 0.59216484,0.59263695 0 0 1 -0.62425,-0.02742 0.56289433,0.56334311 0 0 1 -0.23923,-0.565221 l 0.57753,-3.2165007 a 0.55463855,0.55508075 0 0 0 -0.03002,-0.30383 0.56477065,0.56522092 0 0 0 -0.186506,-0.244115 L 0.22468186,5.1735133 a 0.56289433,0.56334311 0 0 1 -0.209772,-0.579117 0.57565327,0.57611222 0 0 1 0.449002,-0.428892 L 3.2145889,3.6087333 a 0.58935037,0.58982024 0 0 0 0.240356,-0.108537 0.57115012,0.57160548 0 0 0 0.166053,-0.201302 l 1.485666,-3.00693726 a 0.58784931,0.58831799 0 0 1 1.048297,0 z"
+     id="rating-0"
+     style="fill:#ffcc00;fill-rule:evenodd;stroke-width:0.187706" />
+</svg>

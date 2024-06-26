@@ -18,10 +18,17 @@ from sqlalchemy.orm import Session
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse
 
-from src.db.crud import create_user, get_random_word, get_user_by_username
-from src.db.database import SessionLocal
-from src.exceptions import CredentialsException, IncorrectUsernamePasswordException
-from src.models import Token, UserBase
+from vocabulary_builder.db.crud import (
+    create_user,
+    get_random_word,
+    get_user_by_username,
+)
+from vocabulary_builder.db.database import SessionLocal
+from vocabulary_builder.exceptions import (
+    CredentialsException,
+    IncorrectUsernamePasswordException,
+)
+from vocabulary_builder.models import Token, UserBase
 
 
 load_dotenv()
@@ -37,7 +44,9 @@ app = FastAPI()
 
 class LanguageModel(str, Enum):
     ru = "ru"
+    uk = "uk"
     fr = "fr"
+    de = "de"
 
 
 def get_db():
@@ -59,7 +68,7 @@ app.mount(
     name="static",
 )
 
-templates = Jinja2Templates(directory="src/templates")
+templates = Jinja2Templates(directory="vocabulary_builder/templates")
 
 
 def _(language: str):
@@ -80,21 +89,44 @@ def _(language: str):
     return translations.gettext
 
 
-def fetch_random_word_data(db: Session):
+def fetch_random_word_data(db: Session, language: str):
     """
-    Fetches a random word and its translations from the database.
+    Fetches a random word and formats it as a JSON response for the specified language.
 
-    :param db: Database session.
-    :return: A dictionary with word data.
+    :param db: The database session.
+    :param language: The target language for the translation.
+    :return: A dictionary containing the word and its translation information for the
+        specified language.
     """
-    random_row = get_random_word(db)
-    data = {
-        "word": random_row.word,
-        "translated_word": random_row.translated_word,
-        "context": random_row.context,
-        "translated_context": random_row.translated_context,
+    random_word, results = get_random_word(db, language)
+
+    if not random_word:
+        return None
+
+    # Structure the data
+    word_info = {
+        "word": random_word.word,
+        "part_of_speech": random_word.part_of_speech,
+        "transcription": random_word.transcription,
+        "audio": random_word.audio,
+        "semantics": [],
     }
-    return data
+
+    for semantic, translation in results:
+        semantic_info = {
+            "translation": {"word": translation.word, "examples": []},
+            "examples": [],
+        }
+
+        for example in semantic.examples:
+            semantic_info["examples"].append(example.example)
+
+        for example_translation in translation.examples:
+            semantic_info["translation"]["examples"].append(example_translation.example)
+
+        word_info["semantics"].append(semantic_info)
+
+    return word_info
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -109,7 +141,7 @@ def get_main_page_in_language(
     :param db: Database session dependency.
     :return: HTML response with the main page content in the specified language.
     """
-    context = fetch_random_word_data(db)
+    context = fetch_random_word_data(db, language)
     context.update({"_": _(language)})
     return templates.TemplateResponse(
         request=request,
@@ -128,8 +160,10 @@ def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
     :param db: Database session dependency.
     :return: JSON response with the new word data.
     """
-    data = fetch_random_word_data(db)
-    return data
+    word_data = fetch_random_word_data(db, language)
+    if word_data:
+        return word_data
+    return {"message": "No word found"}
 
 
 def get_hashed_password(password: str) -> str:

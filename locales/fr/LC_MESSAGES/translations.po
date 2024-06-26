@@ -18,43 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
 
-#: src/templates/index.html:6
+#: vocabulary_builder/templates/index.html:6
 msgid "Макет Vocabulary Builder"
 msgstr "Maquette Vocabulary Builder"
 
-#: src/templates/index.html:14
+#: vocabulary_builder/templates/index.html:14
 msgid "Тесты"
 msgstr "Essais"
 
-#: src/templates/index.html:15
+#: vocabulary_builder/templates/index.html:15
 msgid "Избранное"
 msgstr "Favoris"
 
-#: src/templates/index.html:18
+#: vocabulary_builder/templates/index.html:18
 msgid "Вход/Регистрация"
 msgstr "Connexion/Inscription"
 
-#: src/templates/index.html:22
+#: vocabulary_builder/templates/index.html:22
 msgid "Выберите язык:"
 msgstr "Choisissez votre langue:"
 
-#: src/templates/index.html:30
+#: vocabulary_builder/templates/index.html:30
 msgid "Улучши свой английский."
 msgstr "Améliorez votre anglais."
 
-#: src/templates/index.html:31
+#: vocabulary_builder/templates/index.html:31
 msgid "Хочу узнать новое слово!"
 msgstr "Je veux apprendre un nouveau mot!"
 
-#: src/templates/index.html:33
+#: vocabulary_builder/templates/index.html:33
 msgid "Слово для изучения:"
 msgstr "Mot à apprendre:"
 
-#: src/templates/index.html:34
+#: vocabulary_builder/templates/index.html:34
 msgid "Пример использования (англ.):"
 msgstr "Exemple d'utilisation (anglais):"
 
-#: src/templates/index.html:35
+#: vocabulary_builder/templates/index.html:35
 msgid "Пример использования (рус.):"
 msgstr "Exemple d'utilisation (français):"
 

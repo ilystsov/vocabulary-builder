@@ -1,0 +1,294 @@
+[
+    {
+        "word": "issue",
+        "part_of_speech": "noun",
+        "transcription": "ˈɪʃuː",
+        "audio": "binary_audio_data_here",
+        "semantics": [
+            {
+                "translations": {
+                    "ru": {
+                        "word": "вопрос",
+                        "examples": [
+                            "Это важный вопрос.",
+                            "Обсудим этот вопрос."
+                        ]
+                    },
+                    "uk": {
+                        "word": "питання",
+                        "examples": [
+                            "Це важливе питання.",
+                            "Обговоримо це питання."
+                        ]
+                    },
+                    "fr": {
+                        "word": "question",
+                        "examples": [
+                            "C'est une question importante.",
+                            "Discutons cette question."
+                        ]
+                    },
+                    "de": {
+                        "word": "Frage",
+                        "examples": [
+                            "Das ist eine wichtige Frage.",
+                            "Lass uns diese Frage besprechen."
+                        ]
+                    }
+                },
+                "examples": [
+                    "This is an important issue.",
+                    "Let's discuss this issue."
+                ]
+            },
+            {
+                "translations": {
+                    "ru": {
+                        "word": "выпуск",
+                        "examples": [
+                            "Это последний выпуск.",
+                            "Мы получили новый выпуск."
+                        ]
+                    },
+                    "uk": {
+                        "word": "випуск",
+                        "examples": [
+                            "Це останній випуск.",
+                            "Ми отримали новий випуск."
+                        ]
+                    },
+                    "fr": {
+                        "word": "édition",
+                        "examples": [
+                            "C'est la dernière édition.",
+                            "Nous avons reçu la nouvelle édition."
+                        ]
+                    },
+                    "de": {
+                        "word": "Ausgabe",
+                        "examples": [
+                            "Das ist die letzte Ausgabe.",
+                            "Wir haben die neue Ausgabe erhalten."
+                        ]
+                    }
+                },
+                "examples": [
+                    "This is the latest issue.",
+                    "We received the new issue."
+                ]
+            },
+            {
+                "translations": {
+                    "ru": {
+                        "word": "проблема",
+                        "examples": [
+                            "У нас есть проблема.",
+                            "Эта проблема требует решения."
+                        ]
+                    },
+                    "uk": {
+                        "word": "проблема",
+                        "examples": [
+                            "У нас є проблема.",
+                            "Ця проблема потребує вирішення."
+                        ]
+                    },
+                    "fr": {
+                        "word": "problème",
+                        "examples": [
+                            "Nous avons un problème.",
+                            "Ce problème nécessite une solution."
+                        ]
+                    },
+                    "de": {
+                        "word": "Problem",
+                        "examples": [
+                            "Wir haben ein Problem.",
+                            "Dieses Problem erfordert eine Lösung."
+                        ]
+                    }
+                },
+                "examples": [
+                    "We have an issue.",
+                    "This issue needs a solution."
+                ]
+            }
+        ]
+    },
+    {
+        "word": "issue",
+        "part_of_speech": "verb",
+        "transcription": "ˈɪʃuː",
+        "audio": "binary_audio_data_here",
+        "semantics": [
+            {
+                "translations": {
+                    "ru": {
+                        "word": "издавать",
+                        "examples": [
+                            "Компания издает новые правила.",
+                            "Банк издает новые монеты."
+                        ]
+                    },
+                    "uk": {
+                        "word": "видавати",
+                        "examples": [
+                            "Компанія видає нові правила.",
+                            "Банк видає нові монети."
+                        ]
+                    },
+                    "fr": {
+                        "word": "émettre",
+                        "examples": [
+                            "La compagnie émet de nouvelles règles.",
+                            "La banque émet de nouvelles pièces."
+                        ]
+                    },
+                    "de": {
+                        "word": "ausgeben",
+                        "examples": [
+                            "Die Firma gibt neue Regeln heraus.",
+                            "Die Bank gibt neue Münzen aus."
+                        ]
+                    }
+                },
+                "examples": [
+                    "The company issues new rules.",
+                    "The bank issues new coins."
+                ]
+            }
+        ]
+    },
+    {
+        "word": "conduct",
+        "part_of_speech": "noun",
+        "transcription": "ˈkɒndʌkt",
+        "audio": "binary_audio_data_here",
+        "semantics": [
+            {
+                "translations": {
+                    "ru": {
+                        "word": "поведение",
+                        "examples": [
+                            "Его поведение было безупречным.",
+                            "Плохое поведение недопустимо."
+                        ]
+                    },
+                    "uk": {
+                        "word": "поведінка",
+                        "examples": [
+                            "Його поведінка була бездоганною.",
+                            "Погана поведінка неприпустима."
+                        ]
+                    },
+                    "fr": {
+                        "word": "conduite",
+                        "examples": [
+                            "Sa conduite était irréprochable.",
+                            "Une mauvaise conduite est inacceptable."
+                        ]
+                    },
+                    "de": {
+                        "word": "Verhalten",
+                        "examples": [
+                            "Sein Verhalten war tadellos.",
+                            "Schlechtes Verhalten ist inakzeptabel."
+                        ]
+                    }
+                },
+                "examples": [
+                    "His conduct was impeccable.",
+                    "Bad conduct is unacceptable."
+                ]
+            }
+        ]
+    },
+    {
+        "word": "conduct",
+        "part_of_speech": "verb",
+        "transcription": "kənˈdʌkt",
+        "audio": "binary_audio_data_here",
+        "semantics": [
+            {
+                "translations": {
+                    "ru": {
+                        "word": "проводить",
+                        "examples": [
+                            "Мы проводим эксперимент.",
+                            "Они проводят исследование."
+                        ]
+                    },
+                    "uk": {
+                        "word": "проводити",
+                        "examples": [
+                            "Ми проводимо експеримент.",
+                            "Вони проводять дослідження."
+                        ]
+                    },
+                    "fr": {
+                        "word": "mener",
+                        "examples": [
+                            "Nous menons une expérience.",
+                            "Ils mènent une recherche."
+                        ]
+                    },
+                    "de": {
+                        "word": "durchführen",
+                        "examples": [
+                            "Wir führen ein Experiment durch.",
+                            "Sie führen eine Studie durch."
+                        ]
+                    }
+                },
+                "examples": [
+                    "We conduct an experiment.",
+                    "They conduct a study."
+                ]
+            }
+        ]
+    },
+    {
+        "word": "engage",
+        "part_of_speech": "verb",
+        "transcription": "ɪnˈɡeɪdʒ",
+        "audio": "binary_audio_data_here",
+        "semantics": [
+            {
+                "translations": {
+                    "ru": {
+                        "word": "вовлекать",
+                        "examples": [
+                            "Мы вовлекаем студентов в проект.",
+                            "Он вовлекает новых сотрудников."
+                        ]
+                    },
+                    "uk": {
+                        "word": "залучати",
+                        "examples": [
+                            "Ми залучаємо студентів до проєкту.",
+                            "Він залучає нових співробітників."
+                        ]
+                    },
+                    "fr": {
+                        "word": "engager",
+                        "examples": [
+                            "Nous engageons des étudiants dans le projet.",
+                            "Il engage de nouveaux employés."
+                        ]
+                    },
+                    "de": {
+                        "word": "einbeziehen",
+                        "examples": [
+                            "Wir beziehen Studenten in das Projekt ein.",
+                            "Er bezieht neue Mitarbeiter ein."
+                        ]
+                    }
+                },
+                "examples": [
+                    "We engage students in the project.",
+                    "He engages new employees."
+                ]
+            }
+        ]
+    }
+]
