@@ -117,6 +117,10 @@ msgstr "Se connecter"
 msgid "Зарегистрироваться"
 msgstr "S'inscrire"
 
+#: vocabulary_builder/templates/index.html:119
+msgid "Примеры:"
+msgstr "Exemples:"
+
 #: vocabulary_builder/templates/login.html:6
 msgid "Login"
 msgstr "Connexion"
