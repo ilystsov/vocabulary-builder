@@ -3,43 +3,21 @@
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from vocabulary_builder.db.models import (
-    SemanticModel,
-    TranslationModel,
-    UserModel,
-    WordModel,
-)
+from vocabulary_builder.db.models import UserModel, WordModel
 
 
-def get_random_word(db: Session, language: str):
+def get_random_word(db: Session):
     """
-    Fetches a random word from the database with translation information for the
-    specified language.
+    Fetches a random word from the database.
 
     :param db: The database session.
-    :param language: The target language for the translation.
-    :return: A tuple containing the random word and its associated semantics and
-        translations.
+    :return: The random word record from the database.
     """
     # Select a random word
     stmt = select(WordModel).order_by(func.random()).limit(1)
     random_word = db.scalars(stmt).first()
 
-    if not random_word:
-        return None, None
-
-    # Fetch translations for the specified language
-    stmt = (
-        select(SemanticModel, TranslationModel)
-        .join(TranslationModel, SemanticModel.id == TranslationModel.semantic_id)
-        .where(
-            SemanticModel.word_id == random_word.id,
-            TranslationModel.language == language,
-        )
-    )
-    results = db.execute(stmt).all()
-
-    return random_word, results
+    return random_word
 
 
 def create_user(db: Session, username: str, hashed_password: str) -> UserModel:
