@@ -39,6 +39,22 @@ body.gamma2 {
     cursor: pointer !important;
 }
 
+.opacity-hover:hover {
+    transition: opacity 0.3s ease;
+}
+
+.opacity-hover:hover {
+    opacity: 0.8;
+}
+
+.block-interaction {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -101,6 +117,10 @@ body.gamma2 {
 
 .font-size-bigger {
     font-size: 1.2em !important;
+}
+
+.font-size-large {
+    font-size: 1.8em !important;
 }
 
 .font-size-smaller {
@@ -216,6 +236,34 @@ h2 {
 }
 
 .gamma2 .simple-box {
+    color: var(--gamma2-color);
+    background-color: var(--gamma2-bg);
+    box-shadow: 0 2px 10px var(--gamma2-shadow-color);
+}
+
+/* Img box */
+
+.img-box {
+    border-radius: 8px;
+    height: auto;
+    overflow: hidden;
+}
+
+.img-box img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.gamma1 .img-box {
+    border: 1px solid var(--blacky-color);
+    color: var(--gamma1-color);
+    background-color: var(--gamma1-bg);
+    box-shadow: 0 2px 10px var(--gamma1-shadow-color);
+}
+
+.gamma2 .img-box {
+    border: 1px solid var(--grey-color);
     color: var(--gamma2-color);
     background-color: var(--gamma2-bg);
     box-shadow: 0 2px 10px var(--gamma2-shadow-color);
