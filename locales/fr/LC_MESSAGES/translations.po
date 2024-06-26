@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-26 19:11+0300\n"
+"POT-Creation-Date: 2024-06-26 23:30+0300\n"
 "PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -18,28 +18,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
 
-#: vocabulary_builder/templates/index.html:43
+#: vocabulary_builder/templates/index.html:42
+#: vocabulary_builder/templates/page_not_found.html:42
 msgid "Тесты"
 msgstr "Tests"
 
-#: vocabulary_builder/templates/index.html:44
-#: vocabulary_builder/templates/index.html:68
+#: vocabulary_builder/templates/index.html:43
+#: vocabulary_builder/templates/index.html:67
+#: vocabulary_builder/templates/page_not_found.html:43
 msgid "Избранное"
 msgstr "Favoris"
 
-#: vocabulary_builder/templates/index.html:47
+#: vocabulary_builder/templates/index.html:46
+#: vocabulary_builder/templates/page_not_found.html:46
 msgid "Вход"
 msgstr "Connexion"
 
-#: vocabulary_builder/templates/index.html:48
+#: vocabulary_builder/templates/index.html:47
+#: vocabulary_builder/templates/page_not_found.html:47
 msgid "Регистрация"
 msgstr "Inscription"
 
-#: vocabulary_builder/templates/index.html:58
+#: vocabulary_builder/templates/index.html:57
 msgid "Добро пожаловать в Vocabulary Builder"
 msgstr "Bienvenue dans Vocabulary Builder"
 
-#: vocabulary_builder/templates/index.html:59
+#: vocabulary_builder/templates/index.html:58
 msgid ""
 "Изучайте новые английские слова и расширяйте свой словарный запас легко и"
 " эффективно!"
@@ -47,11 +51,11 @@ msgstr ""
 "Apprenez de nouveaux mots anglais et élargissez votre vocabulaire "
 "facilement et efficacement!"
 
-#: vocabulary_builder/templates/index.html:64
+#: vocabulary_builder/templates/index.html:63
 msgid "Случайное слово"
 msgstr "Mot aléatoire"
 
-#: vocabulary_builder/templates/index.html:65
+#: vocabulary_builder/templates/index.html:64
 msgid ""
 "Получите случайное английское слово с его переводом, примерами и "
 "транскрипцией одним нажатием кнопки."
@@ -59,17 +63,17 @@ msgstr ""
 "Obtenez un mot anglais aléatoire avec sa traduction, des exemples et la "
 "transcription en un clic."
 
-#: vocabulary_builder/templates/index.html:69
+#: vocabulary_builder/templates/index.html:68
 msgid "Добавляйте слова в избранное для быстрого доступа и лучшего запоминания."
 msgstr ""
 "Ajoutez des mots aux favoris pour un accès rapide et une meilleure "
 "mémorisation."
 
-#: vocabulary_builder/templates/index.html:72
+#: vocabulary_builder/templates/index.html:71
 msgid "Тестирование"
 msgstr "Évaluation"
 
-#: vocabulary_builder/templates/index.html:73
+#: vocabulary_builder/templates/index.html:72
 msgid ""
 "Проверяйте свои знания с помощью интерактивных викторин и упражнений на "
 "заполнение пропусков."
@@ -77,31 +81,36 @@ msgstr ""
 "Testez vos connaissances avec des quiz interactifs et des exercices à "
 "trous."
 
-#: vocabulary_builder/templates/index.html:78
+#: vocabulary_builder/templates/index.html:77
 msgid "Получить новое слово"
 msgstr "Obtenir un nouveau mot"
 
-#: vocabulary_builder/templates/index.html:79
+#: vocabulary_builder/templates/index.html:78
 msgid "Загрузка..."
 msgstr "Chargement..."
 
-#: vocabulary_builder/templates/index.html:91
+#: vocabulary_builder/templates/index.html:90
+#: vocabulary_builder/templates/page_not_found.html:71
 msgid "О нас"
 msgstr "À propos"
 
-#: vocabulary_builder/templates/index.html:92
+#: vocabulary_builder/templates/index.html:91
+#: vocabulary_builder/templates/page_not_found.html:72
 msgid "Контакты"
 msgstr "Contact"
 
-#: vocabulary_builder/templates/index.html:93
+#: vocabulary_builder/templates/index.html:92
+#: vocabulary_builder/templates/page_not_found.html:73
 msgid "Политика конфиденциальности"
 msgstr "Politique de confidentialité"
 
-#: vocabulary_builder/templates/index.html:105
+#: vocabulary_builder/templates/index.html:104
+#: vocabulary_builder/templates/page_not_found.html:85
 msgid "Необходима авторизация"
 msgstr "Authentification requise"
 
-#: vocabulary_builder/templates/index.html:108
+#: vocabulary_builder/templates/index.html:107
+#: vocabulary_builder/templates/page_not_found.html:88
 msgid ""
 "Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить "
 "доступ к этой функции."
@@ -109,13 +118,20 @@ msgstr ""
 "Veuillez vous connecter ou vous inscrire pour accéder à cette "
 "fonctionnalité."
 
-#: vocabulary_builder/templates/index.html:110
+#: vocabulary_builder/templates/index.html:109
+#: vocabulary_builder/templates/page_not_found.html:90
 msgid "Войти"
 msgstr "Se connecter"
 
-#: vocabulary_builder/templates/index.html:111
+#: vocabulary_builder/templates/index.html:110
+#: vocabulary_builder/templates/page_not_found.html:91
 msgid "Зарегистрироваться"
 msgstr "S'inscrire"
+
+#: vocabulary_builder/templates/index.html:118
+#: vocabulary_builder/templates/page_not_found.html:99
+msgid "Примеры:"
+msgstr "Exemples:"
 
 #: vocabulary_builder/templates/login.html:6
 msgid "Login"
@@ -133,23 +149,17 @@ msgstr "Mot de passe"
 msgid "Логин"
 msgstr "Connexion"
 
-#: vocabulary_builder/templates/page_not_found.html:6
-#: vocabulary_builder/templates/page_not_found.html:20
-mmsgid "Страница не найдена"
- msgstr "Page non trouvée"
+#: vocabulary_builder/templates/page_not_found.html:57
+msgid "Ой, страница не найдена!"
+msgstr "Oups, page non trouvée !"
 
- #: vocabulary_builder/templates/page_not_found.html:21
- msgid ""
- "Страница, которую вы ищете, не существует. Проверьте URL или вернитесь на"
- " главную страницу."
- msgstr ""
- "La page que vous recherchez n'existe pas. Vérifiez l'URL ou revenez à la"
- " page d'accueil."
+#: vocabulary_builder/templates/page_not_found.html:58
+msgid "Похоже, страница, на которую вы пытаетесь перейти, не существует."
+msgstr "Il semble que la page que vous essayez d'atteindre n'existe pas."
 
- #: vocabulary_builder/templates/page_not_found.html:22
- msgid "Перейти на главную страницу"
- msgstr "Aller à la page d'accueil"
-
+#: vocabulary_builder/templates/page_not_found.html:60
+msgid "На главную"
+msgstr "Accueil"
 
 #: vocabulary_builder/templates/signup.html:6
 #: vocabulary_builder/templates/signup.html:26
@@ -163,3 +173,18 @@ msgstr "Nom d'utilisateur"
 #: vocabulary_builder/templates/signup.html:24
 msgid "Password"
 msgstr "Mot de passe"
+
+#~ msgid "Страница не найдена"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Страница, которую вы ищете, не "
+#~ "существует. Проверьте URL или вернитесь "
+#~ "на главную страницу."
+#~ msgstr ""
+#~ "La page que vous recherchez n'existe "
+#~ "pas. Vérifiez l'URL ou revenez à "
+#~ "la page d'accueil."
+
+#~ msgid "Перейти на главную страницу"
+#~ msgstr "Aller à la page d'accueil"

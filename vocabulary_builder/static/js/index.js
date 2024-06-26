@@ -23,6 +23,16 @@ function toggleTheme() {
     }
 }
 
+function getSpecialTranslation(key) {
+    const hiddenTranslations = document.getElementById('hidden-translations');
+    const translationElement = hiddenTranslations.querySelector(
+        `[data-key="${key}"]`,
+    );
+    return translationElement
+        ? translationElement.textContent || translationElement.innerText
+        : '';
+}
+
 // Registration modal
 
 function showRegistrationModal() {
@@ -63,7 +73,10 @@ function checkRegistration() {
 function setupWelcomePageEventListeners() {
     const getNewWordButton = document.getElementById('get-new-word-button');
     getNewWordButton.addEventListener('click', () => {
-        fetchAndDisplayWordCard();
+        fetchAndDisplayWordCard(function (data) {
+            console.log('Received data:', data);
+            // Do smth with words' data
+        });
         const wordCardContainer = document.getElementById(
             'word-card-container',
         );
@@ -98,18 +111,39 @@ function setupLearnPageEventListeners() {
     getNewWordButton.addEventListener('click', fetchAndDisplayWordCard);
 }
 
+function getLanguageFromUrl() {
+    const currentPath = window.location.pathname;
+    const urlParams = new URLSearchParams(window.location.search);
+    let language = urlParams.get('language');
+    if (!language && currentPath === '/') {
+        language = 'ru';
+    }
+    return language;
+}
+
 // Event listeners
 
 document.addEventListener('DOMContentLoaded', function () {
-    const toggleThemeButton = document.getElementById('toggle-theme-button');
+    // check theme
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.remove('gamma1');
         document.body.classList.add('gamma2');
     }
+
+    // check language
+    const language = getLanguageFromUrl();
+    if (language) {
+        localStorage.setItem('language', language);
+    }
+    console.log(language);
+
     document.body.classList.remove('hidden');
 
+    // toggle theme
+    const toggleThemeButton = document.getElementById('toggle-theme-button');
     toggleThemeButton.addEventListener('click', toggleTheme);
 
+    // registration modal
     const closeRegistrationModalButton = document.getElementById(
         'close-registration-modal-button',
     );

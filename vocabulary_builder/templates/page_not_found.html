@@ -3,14 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ _('Страница не найдена') }}</title>
-    <link href="{{ url_for('static', path='/css/styles.css') }}" rel="stylesheet">
+    <title>Vocabulary Builder</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', path='/images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', path='/images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', path='/images/favicon/site.webmanifest') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/word_card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body>
-<div class="error-page">
-    <h1>{{ _('Страница не найдена') }}</h1>
-    <p>{{ _('Страница, которую вы ищете, не существует. Проверьте URL или вернитесь на главную страницу.') }}</p>
-    <a href="/?language={{ language }}">{{ _('Перейти на главную страницу') }}</a>
-</div>
+<body class="welcome-page gamma1 hidden">
+    <div class="page-container">
+        <div class="gamma1">
+            <header class="header">
+                <div class="header-content flex-row flex-wrap justify-content-between align-items-center with-gap">
+                    <a aria-label="Vocabulary Builder Home" class="flex-link" href="/">
+                        <div class="flex-row justify-content-between align-items-center with-gap">
+                            <div class="logo"></div>
+                            <h1 class="site-title text-center margin-top-0 margin-bottom-0">Vocabulary Builder</h1>
+                        </div>
+                    </a>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <div class="dropdown">
+                            <button class="icon-button"><i class="fas fa-globe"></i></button>
+                            <div class="dropdown-content">
+                                <a href="/page_not_found?language=ru" class="link">Русский</a>
+                                <a href="/page_not_found?language=uk" class="link">Українська</a>
+                                <a href="/page_not_found?language=fr" class="link">Français</a>
+                                <a href="/page_not_found?language=de" class="link">Deutsch</a>
+                            </div>
+                        </div>
+                        <button id="toggle-theme-button" class="icon-button"><i class="fas fa-adjust"></i></button>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <a href="#" class="link font-size-bigger">{{ _('Тесты') }}</a>
+                        <a href="#" class="link font-size-bigger">{{ _('Избранное') }}</a>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap margin-auto">
+                        <a href="/login?language={{ language }}" class="link font-size-bigger">{{ _('Вход') }}</a>
+                        <a href="/signup?language={{ language }}" class="link font-size-bigger">{{ _('Регистрация') }}</a>
+                    </nav>
+                </div>
+            </header>
+        </div>
+
+        <div class="gamma1">
+            <main class="main-container">
+                <div class="simple-box main-content flex-column align-items-center with-gap">
+                    <section class="flex-column justify-content-start text-center">
+                        <h1 class="margin-top-0 margin-bottom-0">{{ _('Ой, страница не найдена!') }}</h1>
+                        <p class="font-size-bigger">{{ _('Похоже, страница, на которую вы пытаетесь перейти, не существует.') }}</p>
+                    </section>
+                    <a href="/?language={{ language }}" class="link font-size-large">{{ _('На главную') }}</a>
+                    <div class="img-box block-interaction"><img src="{{ url_for('static', path='/images/abyss.png') }}"></div>
+                </div>
+            </main>
+        </div>
+
+        <div class="gamma2">
+            <footer class="footer">
+                <div class="footer-content flex-column justify-content-start align-items-center with-gap">
+                    <p class="font-size-smaller font-color-addition text-center margin-top-0 margin-bottom-0">&copy; 2024 Vocabulary Builder. All rights reserved.</p>
+                    <nav class="flex-row justify-content-evenly align-items-center flex-wrap with-gap2">
+                        <a href="#" class="link">{{ _('О нас') }}</a>
+                        <a href="#" class="link">{{ _('Контакты') }}</a>
+                        <a href="#" class="link">{{ _('Политика конфиденциальности') }}</a>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="gamma1">
+        <div id="registration-modal" class="wrapper hidden">
+            <div class="simple-box modal-container flex-column justify-content-center">
+                <div class="flex-row justify-content-between">
+                    <h2 class="margin-top-0 margin-bottom-0">{{ _('Необходима авторизация') }}</h2>
+                    <button id="close-registration-modal-button" class="icon-button close-icon-button"><i class="fas fa-times"></i></button>
+                </div>
+                <p>{{ _('Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить доступ к этой функции.') }}</p>
+                <div class="flex-row with-gap">
+                    <button class="simple-button">{{ _('Войти') }}</button>
+                    <button class="simple-button">{{ _('Зарегистрироваться') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden block with translations -->
+    <div id="hidden-translations" class="hidden">
+        <div data-key="examples">{{ _('Примеры:') }}</div>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/index.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/word_card.js') }}"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ language }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/word_card.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
-    <!-- <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="welcome-page gamma1 hidden">
@@ -44,8 +43,8 @@
                         <a href="#" class="link font-size-bigger">{{ _('Избранное') }}</a>
                     </nav>
                     <nav class="flex-row justify-content-between align-items-center with-gap margin-auto">
-                        <a href="#" class="link font-size-bigger">{{ _('Вход') }}</a>
-                        <a href="#" class="link font-size-bigger">{{ _('Регистрация') }}</a>
+                        <a href="/login?language={{ language }}" class="link font-size-bigger">{{ _('Вход') }}</a>
+                        <a href="/signup?language={{ language }}" class="link font-size-bigger">{{ _('Регистрация') }}</a>
                     </nav>
                 </div>
             </header>
@@ -112,6 +111,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Hidden block with translations -->
+    <div id="hidden-translations" class="hidden">
+        <div data-key="examples">{{ _('Примеры:') }}</div>
     </div>
 
     <script src="{{ url_for('static', path='/js/index.js') }}"></script>
