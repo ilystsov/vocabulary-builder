@@ -121,8 +121,10 @@ function toggleStar() {
 function fetchAndDisplayWordCard() {
     const language =
         new URLSearchParams(window.location.search).get('language') || 'ru';
-    const loadingIndicator = document.getElementById('loading-indicator');
-    const newWordButton = document.getElementById('new-word-button');
+    const newWordButton = document.getElementById('get-new-word-button');
+    const loadingIndicator = document.getElementById(
+        'word-card-loading-indicator',
+    );
     const wordCardContainer = document.getElementById('word-card-container');
 
     newWordButton.disabled = true; // Disable the button

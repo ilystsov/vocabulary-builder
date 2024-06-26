@@ -1,52 +1,6 @@
-function toggleTheme() {
-    return;
-}
+// import { fetchAndDisplayWordCard } from './word_card.js';
 
-// Welcome functions
-function scrollToWordSectionWelcome() {
-    const wordSectionWelcome = document.getElementById('word-section-welcome');
-    wordSectionWelcome.scrollIntoView({ behavior: 'smooth' });
-}
-
-function welcomeNewWordFeature() {
-    scrollToWordSectionWelcome();
-
-    const button = document.getElementById('new-word-button');
-    highlightButton(button);
-}
-
-function welcomeFavouriteFeature() {
-    if (!checkRegistration()) {
-        return;
-    }
-}
-
-function welcomeTestingFeature() {
-    if (!checkRegistration()) {
-        return;
-    }
-}
-
-function fetchAndDisplayWordCardWelcome() {
-    fetchAndDisplayWordCard();
-    const wordCardContainer = document.getElementById('word-card-container');
-    wordCardContainer.classList.remove('hidden');
-}
-
-// Modal
-function showModal() {
-    const modal = document.getElementById('registration-modal');
-    modal.classList.remove('hidden');
-    document.body.classList.add('modal-active');
-}
-
-function closeModal() {
-    const modal = document.getElementById('registration-modal');
-    modal.classList.add('hidden');
-    document.body.classList.remove('modal-active');
-}
-
-// ==============
+// Universal
 
 function highlightButton(button) {
     button.classList.add('highlight');
@@ -56,37 +10,117 @@ function highlightButton(button) {
     }, 300);
 }
 
+// Common
+
+function toggleTheme() {
+    document.body.classList.toggle('gamma1');
+    document.body.classList.toggle('gamma2');
+
+    if (document.body.classList.contains('gamma2')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Registration modal
+
+function showRegistrationModal() {
+    const modal = document.getElementById('registration-modal');
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+}
+
+function closeRegistrationModal() {
+    const modal = document.getElementById('registration-modal');
+    modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+}
+
+// Registration and log in
+
 function checkRegistration() {
     // Replace this with actual registration check logic
-    const isRegistered = false; // Example: false indicates the user is not registered
+    const isRegistered = false;
 
     if (!isRegistered) {
-        return showModal();
+        return showRegistrationModal();
     } else {
         return true;
     }
 }
 
-function redirectToSignUp() {
-    window.location.href = '/signup';
+// function redirectToSignUp() {
+//     window.location.href = '/signup';
+// }
+
+// function redirectToLogIn() {
+//     window.location.href = '/login';
+// }
+
+// Specific event listeners
+
+function setupWelcomePageEventListeners() {
+    const getNewWordButton = document.getElementById('get-new-word-button');
+    getNewWordButton.addEventListener('click', () => {
+        fetchAndDisplayWordCard();
+        const wordCardContainer = document.getElementById(
+            'word-card-container',
+        );
+        wordCardContainer.classList.remove('hidden');
+    });
+
+    const randomWordFeature = document.getElementById('random-word-feature');
+    randomWordFeature.addEventListener('click', () => {
+        getNewWordButton.scrollIntoView({ behavior: 'smooth' });
+        highlightButton(getNewWordButton);
+    });
+
+    const favouritesFeature = document.getElementById('favourites-feature');
+    favouritesFeature.addEventListener('click', () => {
+        if (!checkRegistration()) {
+            return;
+        }
+        // goto favourites
+    });
+
+    const testingFeature = document.getElementById('testing-feature');
+    testingFeature.addEventListener('click', () => {
+        if (!checkRegistration()) {
+            return;
+        }
+        // goto testing
+    });
 }
 
-function redirectToLogIn() {
-    window.location.href = '/login';
+function setupLearnPageEventListeners() {
+    const getNewWordButton = document.getElementById('get-new-word-button');
+    getNewWordButton.addEventListener('click', fetchAndDisplayWordCard);
 }
+
+// Event listeners
 
 document.addEventListener('DOMContentLoaded', function () {
-    // for welcome page
-    if (document.body.classList.contains('welcome-page')) {
-        document
-            .getElementById('new-word-button')
-            .addEventListener('click', fetchAndDisplayWordCardWelcome);
-        return;
+    const toggleThemeButton = document.getElementById('toggle-theme-button');
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.remove('gamma1');
+        document.body.classList.add('gamma2');
     }
+    document.body.classList.remove('hidden');
 
-    // for all pages
-    fetchAndDisplayWordCard();
-    document
-        .getElementById('new-word-button')
-        .addEventListener('click', fetchAndDisplayWordCard);
+    toggleThemeButton.addEventListener('click', toggleTheme);
+
+    const closeRegistrationModalButton = document.getElementById(
+        'close-registration-modal-button',
+    );
+    closeRegistrationModalButton.addEventListener(
+        'click',
+        closeRegistrationModal,
+    );
+
+    if (document.body.classList.contains('welcome-page')) {
+        setupWelcomePageEventListeners();
+    } else {
+        setupLearnPageEventListeners();
+    }
 });

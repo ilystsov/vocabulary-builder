@@ -5,7 +5,16 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
+}
+
+body.gamma1 {
+    background-color: var(--gamma1-body-bg);
+    color: var(--gamma1-color);
+}
+
+body.gamma2 {
+    background-color: var(--gamma2-body-bg);
+    color: var(--gamma2-color);
 }
 
 .page-container {
@@ -16,8 +25,431 @@ body {
     min-width: 400px;
 }
 
-.flex-link {
-    text-decoration: none;
-    color: inherit;
+/* Universal classes */
+
+.hidden {
+    display: none !important;
+}
+
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.clickable {
+    cursor: pointer !important;
+}
+
+.flex-row {
     display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.justify-content-start {
+    justify-content: flex-start !important;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+}
+
+.justify-content-evenly {
+    justify-content: space-evenly !important;
+}
+
+.justify-content-around {
+    justify-content: space-around !important;
+}
+
+.align-items-start {
+    align-items: flex-start !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.flex-wrap {
+    flex-wrap: wrap !important;
+}
+
+.flex-last-child:last-child {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center;
+}
+
+.with-gap {
+    gap: var(--gap) !important;
+}
+
+.with-gap2 {
+    gap: var(--gap2) !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.font-size-bigger {
+    font-size: 1.2em !important;
+}
+
+.font-size-smaller {
+    font-size: 0.9em !important;
+}
+
+.font-weight-bold {
+    font-weight: bold !important;
+}
+
+.margin-top-0 {
+    margin-top: 0 !important;
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0 !important;
+}
+
+/* Headlongs */
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.5em;
+    }
+}
+
+/* Icon button */
+
+.icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: var(--icon-button-font-size);
+    text-decoration: none;
+    transition: color 0.1s;
+}
+
+.gamma1 .icon-button {
+    color: var(--gamma1-color);
+    background-color: var(--gamma1-bg);
+}
+
+.gamma1 .icon-button:hover {
+    color: var(--gamma1-hover-color);
+}
+
+.gamma2 .icon-button {
+    color: var(--gamma2-color);
+    background-color: var(--gamma2-bg);
+}
+
+.gamma2 .icon-button:hover {
+    color: var(--gamma2-hover-color);
+}
+
+.close-icon-button:hover {
+    color: var(--alarm-color) !important;
+}
+
+/* Button */
+.simple-button {
+    background-color: var(--button-bg);
+    color: var(--button-font-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.simple-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.simple-button.highlight {
+    background-color: var(--button-highlight-bg);
+}
+
+.simple-button:disabled {
+    background-color: var(--button-disabled-bg);
+    cursor: not-allowed;
+}
+
+/* Box */
+
+.simple-box {
+    padding: var(--box-padding);
+    border-radius: 8px;
+}
+
+.gamma1 .simple-box {
+    color: var(--gamma1-color);
+    background-color: var(--gamma1-bg);
+    box-shadow: 0 2px 10px var(--gamma1-shadow-color);
+}
+
+.gamma2 .simple-box {
+    color: var(--gamma2-color);
+    background-color: var(--gamma2-bg);
+    box-shadow: 0 2px 10px var(--gamma2-shadow-color);
+}
+
+/* Addition */
+
+.gamma1 .font-color-addition {
+    color: var(--gamma1-addition-color) !important;
+    background-color: var(--gamma1-bg);
+}
+
+.gamma2 .font-color-addition {
+    color: var(--gamma2-addition-color) !important;
+    background-color: var(--gamma2-bg);
+}
+
+/* Link */
+
+.link {
+    text-decoration: none;
+    transition: color 0.1s ease;
+}
+
+.link:hover {
+    text-decoration: none;
+    transition: color 0.1s ease;
+}
+
+.gamma1 .link {
+    color: var(--gamma1-color);
+    background-color: var(--gamma1-bg);
+}
+
+.gamma1 .link:hover {
+    color: var(--gamma1-hover-color);
+}
+
+.gamma2 .link {
+    color: var(--gamma2-color);
+    background-color: var(--gamma2-bg);
+}
+
+.gamma2 .link:hover {
+    color: var(--gamma2-hover-color);
+}
+
+.flex-link {
+    display: flex;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Wrapper */
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    position: fixed;
+    z-index: 42;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--wrapper-bg);
+    overflow: auto;
+}
+
+/* Dropdown menu */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.gamma1 .dropdown {
+    background-color: var(--gamma1-bg);
+}
+
+.gamma2 .dropdown {
+    background-color: var(--gamma2-bg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.gamma1 .dropdown-content {
+    background-color: var(--gamma1-bg);
+    box-shadow: 0px 8px 16px var(--gamma1-shadow-color);
+}
+
+.gamma2 .dropdown-content {
+    background-color: var(--gamma2-bg);
+    box-shadow: 0px 8px 16px var(--gamma2-shadow-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content .link {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.gamma1 .dropdown-content .link:hover {
+    color: var(--gamma1-dropdown-link-hover-color);
+    background-color: var(--gamma1-hover-color-2);
+}
+
+.gamma2 .dropdown-content .link:hover {
+    color: var(--gamma2-dropdown-link-hover-color);
+    background-color: var(--gamma2-hover-color-2);
+}
+
+/* Effects */
+
+.shine-shift {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.shine-shift:hover {
+    transform: translateY(2px);
+}
+
+.gamma1 .shine-shift:hover {
+    box-shadow: 0 0 10px 2px var(--gamma1-shine-shadow-color);
+}
+
+.gamma2 .shine-shift:hover {
+    box-shadow: 0 0 10px 2px var(--gamma2-shine-shadow-color);
+}
+
+.fadein {
+    animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Variables */
+
+:root {
+    /* Colors */
+    --golden-color: rgb(255, 215, 0);
+    --alarm-color: rgb(240, 60, 60);
+    --blue-color: rgb(0, 140, 240);
+    --blue-color-alpha: rgb(0, 140, 240, 0.9);
+    --dark-blue-color: rgb(0, 70, 170);
+    --white-color: rgb(255, 255, 255);
+    --white-color-alpha: rgba(255, 255, 255, 0.1);
+    --white-color-alpha2: rgba(255, 255, 255, 0.2);
+    --darky-white-color: rgb(250, 250, 250);
+    --dark-white-color: rgb(240, 240, 240);
+    --grey-color: rgb(200, 200, 200);
+    --dark-grey-color: rgb(100, 100, 100);
+    --blacky-color: rgb(50, 50, 50);
+    --black-color: rgb(0, 0, 0);
+    --black-color-alpha: rgba(0, 0, 0, 0.1);
+    --black-color-alpha2: rgba(0, 0, 0, 0.2);
+
+    /* Gammas main colors */
+    --gamma1-color: var(--blacky-color);
+    --gamma1-bg: var(--white-color);
+    --gamma1-hover-color: var(--dark-blue-color);
+    --gamma1-hover-color-2: var(--grey-color);
+    --gamma2-color: var(--dark-white-color);
+    --gamma2-bg: var(--blacky-color);
+    --gamma2-hover-color: var(--blue-color);
+    --gamma2-hover-color-2: var(--dark-grey-color);
+
+    /* Common page sizes */
+    --page-min-width: 400px;
+    --page-max-width: 1600px;
+    --gap: 15px;
+    --gap2: 20px;
+
+    /* Body */
+    --gamma1-body-bg: var(--dark-white-color);
+    --gamma2-body-bg: var(--dark-grey-color);
+
+    /* Box */
+    --box-padding: 20px;
+
+    /* Box-shadow */
+    --gamma1-shadow-color: var(--black-color-alpha);
+    --gamma1-shine-shadow-color: var(--blue-color-alpha);
+
+    --gamma2-shadow-color: var(--white-color-alpha);
+    --gamma2-shine-shadow-color: var(--blue-color-alpha);
+
+    /* Button */
+    --button-bg: var(--blue-color);
+    --button-hover-bg: var(--dark-blue-color);
+    --button-highlight-bg: var(--golden-color);
+    --button-disabled-bg: var(--grey-color);
+    --button-font-color: var(--white-color);
+
+    /* Icon button */
+    --icon-button-font-size: 1.5em;
+
+    /* Addition */
+    --gamma1-addition-color: var(--dark-grey-color);
+    --gamma2-addition-color: var(--grey-color);
+
+    /* Header */
+    --logo-width: 55px;
+    --logo-height: 55px;
+    --site-title-font-size: 1.8em;
+
+    /* Main */
+    --main-content-margin: 20px;
+    --gamma1-text-card-bg: var(--darky-white-color);
+    --gamma2-text-card-bg: var(--dark-grey-color);
+
+    /* Modal */
+    --wrapper-bg: rgba(0, 0, 0, 0.4);
 }
