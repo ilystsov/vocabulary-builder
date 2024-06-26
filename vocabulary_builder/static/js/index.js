@@ -111,18 +111,31 @@ function setupLearnPageEventListeners() {
     getNewWordButton.addEventListener('click', fetchAndDisplayWordCard);
 }
 
+function getLanguageFromUrl() {
+    const currentPath = window.location.pathname;
+    const urlParams = new URLSearchParams(window.location.search);
+    let language = urlParams.get('language');
+    if (!language && currentPath === '/') {
+        language = 'ru';
+    }
+    return language;
+}
+
 // Event listeners
 
 document.addEventListener('DOMContentLoaded', function () {
-    // save theme
+    // check theme
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.remove('gamma1');
         document.body.classList.add('gamma2');
     }
 
-    // save language
-    const language =
-        new URLSearchParams(window.location.search).get('language') || 'ru';
+    // check language
+    const language = getLanguageFromUrl();
+    if (language) {
+        localStorage.setItem('language', language);
+    }
+    console.log(language);
 
     document.body.classList.remove('hidden');
 
