@@ -15,6 +15,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from jwt import InvalidTokenError
 from sqlalchemy.orm import Session
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
 
@@ -343,3 +344,42 @@ async def learn(
     current_user: UserBase = Depends(get_current_user),
 ):
     return {f"{current_user.username}'s new word": "issue"}
+
+
+@app.exception_handler(StarletteHTTPException)
+async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
+    if exc.status_code in {404, 422}:
+        return RedirectResponse(url="/error")
+    return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+
+
+@app.get("/error", response_class=HTMLResponse)
+def error_page(request: Request):
+    return """
+    <html>
+        <head>
+            <script>
+                var userLanguage = localStorage.getItem('language') || 'ru';
+                window.location.href = '/page_not_found?language=' + userLanguage;
+            </script>
+        </head>
+        <body>
+        </body>
+    </html>
+    """
+
+
+@app.get("/page_not_found")
+async def page_not_found(request: Request, language: str = "ru"):
+    """
+    Serves the error page with a custom image based on the status code and language.
+
+    :param request: HTTP request.
+    :param language: Language code.
+    :return: HTML response with the error page.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="page_not_found.html",
+        context={"_": _(language), "language": language},
+    )
