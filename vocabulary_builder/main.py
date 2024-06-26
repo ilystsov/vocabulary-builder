@@ -214,7 +214,7 @@ def authenticate_user(
         return False
     if not verify_password(password, user.hashed_password):
         return False
-    return UserBase(username=username)
+    return UserBase(username=username, user_id=user.id)
 
 
 def create_access_token(data: dict, expires_delta: timedelta):
@@ -244,7 +244,7 @@ async def get_current_user(
     """
     try:
         payload = jwt.decode(token.split(" ")[1], SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
+        username: str = payload.get("username")
         if username is None:
             raise CredentialsException
     except InvalidTokenError:
@@ -326,7 +326,7 @@ async def login_for_access_token(
     if not user:
         raise IncorrectUsernamePasswordException
     access_token = create_access_token(
-        data={"sub": user.username},
+        data={"username": user.username, "user_id": user.user_id},
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
     response = RedirectResponse(url=f"/learn?language={language}", status_code=303)
