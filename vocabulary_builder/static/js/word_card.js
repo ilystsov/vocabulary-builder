@@ -1,4 +1,4 @@
-function createWordCard(data) {
+function createWordCard(data, language) {
     const wordCard = document.createElement('div');
     wordCard.className = 'word-card shine-shift';
 
@@ -58,7 +58,7 @@ function createWordCard(data) {
 
         const meaning = document.createElement('div');
         meaning.className = 'word-card__meaning';
-        meaning.textContent = semantic.translation.word;
+        meaning.textContent = semantic.translations[language].word;
         meaningBlock.appendChild(meaning);
 
         const examplesLabel = document.createElement('div');
@@ -80,7 +80,7 @@ function createWordCard(data) {
             const exampleTranslation = document.createElement('p');
             exampleTranslation.className = 'word-card__example-translation';
             exampleTranslation.textContent =
-                semantic.translation.examples[exampleIndex];
+                semantic.translations[language].examples[exampleIndex];
             exampleItem.appendChild(exampleTranslation);
 
             examplesList.appendChild(exampleItem);
@@ -131,15 +131,12 @@ function fetchAndDisplayWordCard() {
     loadingIndicator.classList.remove('hidden'); // Show loading indicator
     wordCardContainer.classList.add('hidden'); // Hide word card container
 
-    console.log('start fetching');
     fetch(`/new_word?language=${language}`)
         .then((response) => response.json())
         .then((data) => {
-            console.log('here');
             wordCardContainer.innerHTML = ''; // Clear previous word card
-            const wordCard = createWordCard(data);
+            const wordCard = createWordCard(data, language);
             wordCardContainer.appendChild(wordCard);
-            console.log('end fetching');
         })
         .catch((error) => console.error('Error fetching word data:', error))
         .finally(() => {
