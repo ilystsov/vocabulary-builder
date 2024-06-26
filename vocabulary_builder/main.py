@@ -14,6 +14,7 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from jwt import InvalidTokenError
+from pydantic import UUID4
 from sqlalchemy.orm import Session
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.requests import Request
@@ -21,15 +22,21 @@ from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 from vocabulary_builder.db.crud import (
     create_user,
+    get_all_saved_words_for_user,
     get_random_word,
     get_user_by_username,
+    remove_word_for_user,
+    save_word_for_user,
 )
 from vocabulary_builder.db.database import SessionLocal
+from vocabulary_builder.db.models import WordModel
 from vocabulary_builder.exceptions import (
     CredentialsException,
     IncorrectUsernamePasswordException,
+    UserNotFound,
+    WordNotFound,
 )
-from vocabulary_builder.models import UserBase
+from vocabulary_builder.models import UserBase, WordBase
 
 
 load_dotenv()
@@ -100,28 +107,17 @@ def _(language: str):
     return translations.gettext
 
 
-def fetch_random_word_data(db: Session):
-    """
-    Fetches a random word and formats it as a JSON response.
-
-    :param db: The database session.
-    :return: A dictionary containing the word and its translation information.
-    """
-    random_word = get_random_word(db)
-
-    if not random_word:
-        return None
-
+def format_word_info(word: WordModel):
     word_info = {
-        "word_id": random_word.id,
-        "word": random_word.word,
-        "part_of_speech": random_word.part_of_speech,
-        "transcription": random_word.transcription,
-        "audio": random_word.audio,
+        "word_id": word.id,
+        "word": word.word,
+        "part_of_speech": word.part_of_speech,
+        "transcription": word.transcription,
+        "audio": word.audio,
         "semantics": [],
     }
 
-    for semantic in random_word.semantics:
+    for semantic in word.semantics:
         semantic_info = {
             "translations": {},
             "examples": [example.example for example in semantic.examples],
@@ -136,7 +132,22 @@ def fetch_random_word_data(db: Session):
             semantic_info["translations"][translation.language] = translation_info
 
         word_info["semantics"].append(semantic_info)
+    return word_info
 
+
+def fetch_random_word_data(db: Session):
+    """
+    Fetches a random word and formats it as a JSON response.
+
+    :param db: The database session.
+    :return: A dictionary containing the word and its translation information.
+    """
+    random_word = get_random_word(db)
+
+    if not random_word:
+        return None
+
+    word_info = format_word_info(random_word)
     return word_info
 
 
@@ -218,7 +229,7 @@ def authenticate_user(
         return False
     if not verify_password(password, user.hashed_password):
         return False
-    return UserBase(username=username)
+    return UserBase(username=username, user_id=str(user.id))
 
 
 def create_access_token(data: dict, expires_delta: timedelta):
@@ -248,15 +259,16 @@ async def get_current_user(
     """
     try:
         payload = jwt.decode(token.split(" ")[1], SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
+        username: str = payload.get("username")
+        user_id: str = payload.get("user_id")
+        if username is None or user_id is None:
             raise CredentialsException
     except InvalidTokenError:
         raise CredentialsException
     user = get_user_by_username(db, username)
     if user is None:
         raise CredentialsException
-    return UserBase(username=username)
+    return UserBase(username=username, user_id=user_id)
 
 
 @app.get("/signup", response_class=HTMLResponse)
@@ -330,7 +342,7 @@ async def login_for_access_token(
     if not user:
         raise IncorrectUsernamePasswordException
     access_token = create_access_token(
-        data={"sub": user.username},
+        data={"username": user.username, "user_id": user.user_id},
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
     response = RedirectResponse(url=f"/learn?language={language}", status_code=303)
@@ -347,7 +359,10 @@ async def learn(
     language: LanguageModel,
     current_user: UserBase = Depends(get_current_user),
 ):
-    return {f"{current_user.username}'s new word": "issue"}
+    return {
+        f"{current_user.username}'s new word (user's id) "
+        f"{current_user.user_id}": "issue"
+    }
 
 
 @app.exception_handler(StarletteHTTPException)
@@ -386,4 +401,52 @@ async def page_not_found(request: Request, language: str = "ru"):
         request=request,
         name="page_not_found.html",
         context={"_": _(language), "language": language},
+    )
+
+
+@app.post("/users/{user_id}/words")
+async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
+    try:
+        save_word_for_user(db, word.word_id, user_id)
+    except (UserNotFound, WordNotFound) as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    return {"message": "Word saved successfully."}
+
+
+@app.delete("/users/{user_id}/words")
+async def remove_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
+    try:
+        remove_word_for_user(db, word.word_id, user_id)
+    except (UserNotFound, WordNotFound) as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    return {"message": "Word removed successfully."}
+
+
+@app.get("/users/{user_id}/words")
+async def get_saved_words(user_id: UUID4, db: Session = Depends(get_db)) -> list[dict]:
+    try:
+        saved_words = get_all_saved_words_for_user(db, user_id)
+    except UserNotFound as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    formatted_words = []
+    for word in saved_words:
+        formatted_words.append(format_word_info(word))
+    return formatted_words
+
+
+@app.get("/favorites")
+async def get_favorite_words(
+    request: Request,
+    language: LanguageModel,
+    current_user: UserBase = Depends(get_current_user),
+):
+    return templates.TemplateResponse(
+        request=request,
+        name="favorites.html",
+        context={
+            "_": _(language),
+            "language": language,
+            "username": current_user.username,
+            "user_id": current_user.user_id,
+        },
     )

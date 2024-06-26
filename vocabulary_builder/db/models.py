@@ -5,10 +5,18 @@ Database models.
 import uuid
 from uuid import UUID
 
-from sqlalchemy import ForeignKey, LargeBinary
+from sqlalchemy import Column, ForeignKey, LargeBinary, Table
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from vocabulary_builder.db.database import BaseModel
+
+
+user_favorite_words = Table(
+    "user_favorite_words",
+    BaseModel.metadata,
+    Column("user_id", ForeignKey("users.id"), primary_key=True),
+    Column("word_id", ForeignKey("words.id"), primary_key=True),
+)
 
 
 class WordModel(BaseModel):
@@ -121,3 +129,6 @@ class UserModel(BaseModel):
     id: Mapped[UUID] = mapped_column(default=uuid.uuid4, primary_key=True)
     username: Mapped[str] = mapped_column(nullable=False, unique=True)
     hashed_password: Mapped[str] = mapped_column(nullable=False)
+    favorite_words: Mapped[list["WordModel"]] = relationship(
+        secondary=user_favorite_words,
+    )
