@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-26 19:11+0300\n"
+"POT-Creation-Date: 2024-06-26 20:35+0300\n"
 "PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -138,22 +138,21 @@ msgid "Логин"
 msgstr "Connexion"
 
 #: vocabulary_builder/templates/page_not_found.html:6
-#: vocabulary_builder/templates/page_not_found.html:20
-mmsgid "Страница не найдена"
- msgstr "Page non trouvée"
+#: vocabulary_builder/templates/page_not_found.html:11
+msgid "Страница не найдена"
+msgstr ""
 
- #: vocabulary_builder/templates/page_not_found.html:21
- msgid ""
- "Страница, которую вы ищете, не существует. Проверьте URL или вернитесь на"
- " главную страницу."
- msgstr ""
- "La page que vous recherchez n'existe pas. Vérifiez l'URL ou revenez à la"
- " page d'accueil."
+#: vocabulary_builder/templates/page_not_found.html:12
+msgid ""
+"Страница, которую вы ищете, не существует. Проверьте URL или вернитесь на"
+" главную страницу."
+msgstr ""
+"La page que vous recherchez n'existe pas. Vérifiez l'URL ou revenez à la "
+"page d'accueil."
 
- #: vocabulary_builder/templates/page_not_found.html:22
- msgid "Перейти на главную страницу"
- msgstr "Aller à la page d'accueil"
-
+#: vocabulary_builder/templates/page_not_found.html:13
+msgid "Перейти на главную страницу"
+msgstr "Aller à la page d'accueil"
 
 #: vocabulary_builder/templates/signup.html:6
 #: vocabulary_builder/templates/signup.html:26
