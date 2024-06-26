@@ -4,104 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocabulary Builder</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', path='/images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', path='/images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', path='/images/favicon/site.webmanifest') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/word_card.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body class="welcome-page">
+<body class="welcome-page gamma1 hidden">
     <div class="page-container">
-        <header class="header">
-            <div class="header-content">
-                <a aria-label="Vocabulary Builder Home" class="flex-link" href="/">
-                    <div class="logo-container">
-                        <div class="logo"></div>
-                        <h1 class="site-title">Vocabulary Builder</h1>
-                    </div>
-                </a>
-                <nav class="nav-icons">
-                    <div class="dropdown">
-                        <button class="nav-icon"><i class="fas fa-globe"></i></button>
-                        <div class="dropdown-content">
-                            <a href="#">Русский</a>
-                            <a href="#">Français</a>
-                            <a href="#">Українська</a>
+        <div class="gamma1">
+            <header class="header">
+                <div class="header-content flex-row flex-wrap justify-content-between align-items-center with-gap">
+                    <a aria-label="Vocabulary Builder Home" class="flex-link" href="/">
+                        <div class="flex-row justify-content-between align-items-center with-gap">
+                            <div class="logo"></div>
+                            <h1 class="site-title text-center margin-top-0 margin-bottom-0">Vocabulary Builder</h1>
                         </div>
-                    </div>
-                    <button class="nav-icon" onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
-                </nav>
-                <nav class="nav-links">
-                    <a href="#" class="nav-link">Тесты</a>
-                    <a href="#" class="nav-link">Избранное</a>
-                </nav>
-                <div class="auth-links">
-                    <a href="#" class="auth-link" onclick="redirectToLogIn()">Вход</a>
-                    <a href="#" class="auth-link" onclick="redirectToSignUp()">Регистрация</a>
+                    </a>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <div class="dropdown">
+                            <button class="icon-button"><i class="fas fa-globe"></i></button>
+                            <div class="dropdown-content">
+                                <a href="#" class="link">Русский</a>
+                                <a href="#" class="link">Français</a>
+                                <a href="#" class="link">Українська</a>
+                            </div>
+                        </div>
+                        <button id="toggle-theme-button" class="icon-button"><i class="fas fa-adjust"></i></button>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <a href="#" class="link font-size-bigger">Тесты</a>
+                        <a href="#" class="link font-size-bigger">Избранное</a>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap margin-auto">
+                        <a href="#" class="link font-size-bigger">Вход</a>
+                        <a href="#" class="link font-size-bigger">Регистрация</a>
+                    </nav>
                 </div>
-            </div>
-        </header>
+            </header>
+        </div>
 
-        <main class="main-container">
-            <div class="main-content">
-                <section class="welcome-section">
-                    <h1 class="h1-adaptive">Добро пожаловать в Vocabulary Builder</h1>
-                    <p>Изучайте новые английские слова и расширяйте свой словарный запас легко и эффективно!</p>
-                </section>
+        <div class="gamma1">
+            <main class="main-container">
+                <div class="simple-box main-content flex-column with-gap">
+                    <section class="flex-column justify-content-start text-center">
+                        <h1 class="margin-top-0 margin-bottom-0">Добро пожаловать в Vocabulary Builder</h1>
+                        <p class="font-size-bigger">Изучайте новые английские слова и расширяйте свой словарный запас легко и эффективно!</p>
+                    </section>
 
-                <section class="features-section">
-                    <a href="javascript:void(0)" onclick="welcomeNewWordFeature()" class="flex-link">
-                        <div class="feature shine-shift">
-                            <h2 class="h2-adaptive">Случайное слово</h2>
+                    <section class="flex-row justify-content-center flex-wrap with-gap2 text-center">
+                        <div id="random-word-feature" class="simple-box text-card clickable shine-shift">
+                            <h2 class="margin-top-0 margin-bottom-0">Случайное слово</h2>
                             <p>Получите случайное английское слово с его переводом, примерами и транскрипцией одним нажатием кнопки.</p>
                         </div>
-                    </a>
-                    <a href="javascript:void(0)" onclick="welcomeFavouriteFeature()" class="flex-link">
-                        <div class="feature shine-shift">
-                            <h2 class="h2-adaptive">Избранное</h2>
+                        <div id="favourites-feature" class="simple-box text-card clickable shine-shift">
+                            <h2 class="margin-top-0 margin-bottom-0">Избранное</h2>
                             <p>Добавляйте слова в избранное для быстрого доступа и лучшего запоминания.</p>
                         </div>
-                    </a>
-                    <a href="javascript:void(0)" onclick="welcomeTestingFeature()" class="flex-link">
-                        <div class="feature shine-shift">
-                            <h2 class="h2-adaptive">Тестирование</h2>
+                        <div id="testing-feature" class="simple-box text-card clickable shine-shift">
+                            <h2 class="margin-top-0 margin-bottom-0">Тестирование</h2>
                             <p>Проверяйте свои знания с помощью интерактивных викторин и упражнений на заполнение пропусков.</p>
                         </div>
-                    </a>
-                </section>
+                    </section>
 
-                <section id="word-section-welcome" class="word-section">
-                    <button id="new-word-button" class="simple-button new-word-button">Получить новое слово</button>
-                    <div id="loading-indicator" class="loading-indicator hidden">Loading...</div>
-                    <div id="word-card-container" class="word-card-container hidden"></div>
-                </section>
-            </div>
-        </main>
+                    <section class="flex-column justify-content-start align-items-center with-gap">
+                        <button id="get-new-word-button" class="simple-button font-size-bigger">Получить новое слово</button>
+                        <div id="word-card-loading-indicator" class="font-size-bigger font-weight-bold fadein hidden">Loading...</div>
+                        <div id="word-card-container" class="word-card-container hidden"></div>
+                    </section>
+                </div>
+            </main>
+        </div>
 
-        <footer class="footer">
-            <div class="footer-content">
-                <p class="footer-copyright">&copy; 2024 Vocabulary Builder. All rights reserved.</p>
-                <nav class="footer-nav">
-                    <a href="#" class="footer-link">О нас</a>
-                    <a href="#" class="footer-link">Контакты</a>
-                    <a href="#" class="footer-link">Политика конфиденциальности</a>
-                </nav>
-            </div>
-        </footer>
+        <div class="gamma2">
+            <footer class="footer">
+                <div class="footer-content flex-column justify-content-start align-items-center with-gap">
+                    <p class="font-size-smaller font-color-addition text-center margin-top-0 margin-bottom-0">&copy; 2024 Vocabulary Builder. All rights reserved.</p>
+                    <nav class="flex-row justify-content-evenly align-items-center flex-wrap with-gap2">
+                        <a href="#" class="link">О нас</a>
+                        <a href="#" class="link">Контакты</a>
+                        <a href="#" class="link">Политика конфиденциальности</a>
+                    </nav>
+                </div>
+            </footer>
+        </div>
     </div>
 
     <!-- Registration Modal -->
-    <div id="registration-modal" class="modal hidden">
-        <div class="modal-container">
-            <div class="modal__header">
-                <h2 class="h2-adaptive">Необходима авторизация</h2>
-                <button class="close-button" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal__content">
+    <div class="gamma1">
+        <div id="registration-modal" class="wrapper hidden">
+            <div class="simple-box modal-container flex-column justify-content-center">
+                <div class="flex-row justify-content-between">
+                    <h2 class="margin-top-0 margin-bottom-0">Необходима авторизация</h2>
+                    <button id="close-registration-modal-button" class="icon-button close-icon-button"><i class="fas fa-times"></i></button>
+                </div>
                 <p>Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить доступ к этой функции.</p>
-                <button class="simple-button login-button" onclick="redirectToLogin()">Войти</button>
-                <button class="simple-button register-button" onclick="redirectToRegister()">Зарегистрироваться</button>
+                <div class="flex-row with-gap">
+                    <button class="simple-button">Войти</button>
+                    <button class="simple-button">Зарегистрироваться</button>
+                </div>
             </div>
         </div>
     </div>
