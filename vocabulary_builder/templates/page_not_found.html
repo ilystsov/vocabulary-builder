@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Страница не найдена') }}</title>
+    <link href="{{ url_for('static', path='/css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="error-page">
+    <h1>{{ _('Страница не найдена') }}</h1>
+    <p>{{ _('Страница, которую вы ищете, не существует. Проверьте URL или вернитесь на главную страницу.') }}</p>
+    <a href="/?language={{ language }}">{{ _('Перейти на главную страницу') }}</a>
+</div>
+</body>
+</html>
