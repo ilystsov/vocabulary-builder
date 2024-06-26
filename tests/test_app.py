@@ -37,7 +37,7 @@ def test_client():
 
 def test_register_user(test_client):
     response = test_client.post(
-        "/register", data={"username": "testuser", "password": "testpassword"}
+        "/signup", data={"username": "testuser", "password": "testpassword"}
     )
     assert response.status_code == 200
     assert response.json() == {"message": "User registered successfully"}
@@ -45,7 +45,7 @@ def test_register_user(test_client):
 
 def test_login_user(test_client):
     test_client.post(
-        "/register", data={"username": "testuser", "password": "testpassword"}
+        "/signup", data={"username": "testuser", "password": "testpassword"}
     )
     response = test_client.post(
         "/login", data={"username": "testuser", "password": "testpassword"}
@@ -68,7 +68,7 @@ def test_get_new_word(test_client):
 
 def test_learn_endpoint(test_client):
     test_client.post(
-        "/register", data={"username": "testuser", "password": "testpassword"}
+        "/signup", data={"username": "testuser", "password": "testpassword"}
     )
     login_response = test_client.post(
         "/login", data={"username": "testuser", "password": "testpassword"}

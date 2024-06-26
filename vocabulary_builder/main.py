@@ -245,7 +245,7 @@ async def get_current_user(
     return UserBase(username=username)
 
 
-@app.get("/register", response_class=HTMLResponse)
+@app.get("/signup", response_class=HTMLResponse)
 def register_page(request: Request, language: str = "ru"):
     """
     Serves the registration page.
@@ -255,11 +255,11 @@ def register_page(request: Request, language: str = "ru"):
     :return: HTML response with the registration page.
     """
     return templates.TemplateResponse(
-        "register.html", {"request": request, "language": language, "_": _(language)}
+        "signup.html", {"request": request, "language": language, "_": _(language)}
     )
 
 
-@app.post("/register")
+@app.post("/signup")
 async def register_user(
     username: str = Form(...),
     password: str = Form(...),
