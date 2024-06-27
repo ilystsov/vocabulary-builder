@@ -552,3 +552,18 @@ def startup_event():
 
 
 app.add_event_handler("startup", startup_event)
+
+
+@app.get("/logout")
+async def logout(request: Request, language: LanguageModel = LanguageModel.ru):
+    """
+    Endpoint to log out and remove the access token cookie.
+
+    :param request: HTTP request.
+    :param response: HTTP response.
+    :param language: Language parameter (default is 'ru').
+    :return: Redirect to the home page or login page.
+    """
+    response = RedirectResponse(url=f"/?language={language.value}", status_code=303)
+    response.delete_cookie(key="access_token")
+    return response
