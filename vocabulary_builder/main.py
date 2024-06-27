@@ -340,8 +340,9 @@ def login_page(request: Request, language: LanguageModel = LanguageModel.ru):
     :return: HTML response with the login page.
     """
     return templates.TemplateResponse(
+        request,
         "login.html",
-        {"request": request, "language": language.value, "_": _(language.value)},
+        {"language": language.value, "_": _(language.value)},
     )
 
 

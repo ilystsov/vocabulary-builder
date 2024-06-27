@@ -84,5 +84,8 @@ def test_learn_endpoint(test_client):
         "/login", data={"username": "testuser", "password": "testpassword"}
     )
     cookies = login_response.cookies
-    response = test_client.get("/learn?language=ru", cookies=cookies)
+    for cookie in cookies:
+        test_client.cookies.set(cookie.name, cookie.value)
+
+    response = test_client.get("/learn?language=ru")
     assert response.status_code == 200
