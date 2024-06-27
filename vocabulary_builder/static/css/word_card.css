@@ -1,14 +1,5 @@
 .word-card {
-    display: flex;
     font-family: 'Arial', sans-serif;
-    min-width: 160px;
-    max-width: 400px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
 }
 
 .word-card__header {
@@ -19,14 +10,28 @@
 
 .word-card__divider--header {
     height: 3px;
-    background-color: rgb(0, 140, 240);
     margin: 15px 0;
+}
+
+.gamma1 .word-card__divider--header {
+    background-color: var(--blue-color);
+}
+
+.gamma2 .word-card__divider--header {
+    background-color: var(--blue-color);
 }
 
 .word-card__divider--meaning {
     height: 2px;
-    background-color: #e0e0e0;
     margin: 15px 0;
+}
+
+.gamma1 .word-card__divider--meaning {
+    background-color: var(--gw-color);
+}
+
+.gamma2 .word-card__divider--meaning {
+    background-color: var(--grey-color);
 }
 
 .word-card__word-container {
@@ -37,17 +42,23 @@
 .word-card__word {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
 }
 
 .word-card__star {
     width: 24px;
     height: 24px;
-    background-image: url('../images/star-empty.svg');
     background-size: cover;
     cursor: pointer;
     margin-left: 10px;
     transition: background-image 0.1s;
+}
+
+.gamma1 .word-card__star {
+    background-image: url('../images/star-empty.svg');
+}
+
+.gamma2 .word-card__star {
+    background-image: url('../images/star-empty-white.svg');
 }
 
 .word-card__star--active {
@@ -56,8 +67,15 @@
 
 .word-card__part-of-speech {
     font-size: 14px;
-    color: #777;
     margin-top: 5px;
+}
+
+.gamma1 .word-card__part-of-speech {
+    color: var(--gamma1-addition-color);
+}
+
+.gamma2 .word-card__part-of-speech {
+    color: var(--gamma2-addition-color);
 }
 
 .word-card__transcription-audio {
@@ -69,29 +87,20 @@
 .word-card__transcription {
     font-size: 16px;
     font-style: italic;
-    color: #666;
     margin-right: 10px;
 }
 
+.gamma1 .word-card__transcription {
+    color: var(--gamma1-addition2-color);
+}
+
+.gamma2 .word-card__transcription {
+    color: var(--gamma2-addition2-color);
+}
+
 .word-card__audio-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: rgb(0, 140, 240);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.1s;
+    font-size: 20px !important;
 }
-
-.word-card__audio-button:hover {
-    color: rgb(0, 71, 171);
-}
-
-/* .word-card__audio-button:active {
-    color: #ff0000;
-} */
 
 .word-card__meanings-list {
     padding-left: 20px;
@@ -101,18 +110,23 @@
 
 .word-card__meaning {
     font-size: 18px;
-    color: #555;
     margin-bottom: 10px;
 }
 
 .word-card__examples-label {
     font-size: 16px;
     font-weight: bold;
-    color: #333;
-    background-color: rgb(255, 215, 0);
     border-radius: 5px;
     padding: 3px 5px;
     margin-bottom: 10px;
+}
+
+.gamma1 .word-card__examples-label {
+    background-color: var(--golden-color);
+}
+
+.gamma2 .word-card__examples-label {
+    background-color: rgb(161, 147, 0);
 }
 
 .word-card__examples-list {
@@ -130,6 +144,13 @@
 }
 
 .word-card__example-translation {
-    color: #999;
     margin: 5px 0;
+}
+
+.gamma1 .word-card__example-translation {
+    color: var(--gamma1-addition-color);
+}
+
+.gamma2 .word-card__example-translation {
+    color: var(--gamma2-addition-color);
 }

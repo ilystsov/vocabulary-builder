@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-26 23:30+0300\n"
+"POT-Creation-Date: 2024-06-27 10:45+0300\n"
 "PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
@@ -151,7 +151,6 @@ msgid "Логин"
 msgstr "Логін"
 
 #: vocabulary_builder/templates/page_not_found.html:57
-#, fuzzy
 msgid "Ой, страница не найдена!"
 msgstr "Сторінку не знайдено!"
 
@@ -175,15 +174,3 @@ msgstr "Ім'я користувача"
 #: vocabulary_builder/templates/signup.html:24
 msgid "Password"
 msgstr "Пароль"
-
-#~ msgid ""
-#~ "Страница, которую вы ищете, не "
-#~ "существует. Проверьте URL или вернитесь "
-#~ "на главную страницу."
-#~ msgstr ""
-#~ "Сторінка, яку ви шукаєте, не існує. "
-#~ "Перевірте URL або поверніться на головну"
-#~ " сторінку."
-
-#~ msgid "Перейти на главную страницу"
-#~ msgstr "Перейти на головну сторінку"
