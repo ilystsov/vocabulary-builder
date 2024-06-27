@@ -5,7 +5,6 @@ import os
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path
-from urllib.parse import parse_qs, urlencode, urlparse
 
 import bcrypt
 import jwt
@@ -523,34 +522,6 @@ async def get_favorite_words(
             "user_id": current_user.user_id,
         },
     )
-
-
-def replace_query_param(url, param: str, value: str) -> str:
-    """
-    Replace or add a query parameter in the given URL.
-
-    :param url: The URL where the parameter needs to be replaced.
-    :param param: The query parameter key to replace or add.
-    :param value: The new value for the query parameter.
-    :return: The modified URL with the replaced or added query parameter.
-    """
-    if not isinstance(url, str):
-        url = str(url)
-
-    url_parts = urlparse(url)
-    query_params = parse_qs(url_parts.query)
-    query_params[param] = value
-    new_query_string = urlencode(query_params, doseq=True)
-    new_url = url_parts._replace(query=new_query_string).geturl()
-    return new_url
-
-
-def startup_event():
-    """Register the 'replace_query_param' function."""
-    templates.env.filters["replace_query_param"] = replace_query_param
-
-
-app.add_event_handler("startup", startup_event)
 
 
 @app.get("/logout")

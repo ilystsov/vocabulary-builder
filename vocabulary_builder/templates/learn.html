@@ -30,10 +30,10 @@
                         <div class="dropdown">
                             <button class="icon-button"><i class="fas fa-globe"></i></button>
                             <div class="dropdown-content">
-                                <a href="{{ request.url | replace_query_param('language', 'ru') }}" class="link">Русский</a>
-                                <a href="{{ request.url | replace_query_param('language', 'uk') }}" class="link">Українська</a>
-                                <a href="{{ request.url | replace_query_param('language', 'fr') }}" class="link">Français</a>
-                                <a href="{{ request.url | replace_query_param('language', 'de') }}" class="link">Deutsch</a>
+                                <a href="/learn?language=ru" class="link">Русский</a>
+                                <a href="/learn?language=uk" class="link">Українська</a>
+                                <a href="/learn?language=fr" class="link">Français</a>
+                                <a href="/learn?language=de" class="link">Deutsch</a>
                             </div>
                         </div>
                         <button id="toggle-theme-button" class="icon-button"><i class="fas fa-adjust"></i></button>
