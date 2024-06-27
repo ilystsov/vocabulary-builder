@@ -71,6 +71,15 @@ function checkRegistration() {
 // Specific event listeners
 
 function setupWelcomePageEventListeners() {
+    // registration modal
+    const closeRegistrationModalButton = document.getElementById(
+        'close-registration-modal-button',
+    );
+    closeRegistrationModalButton.addEventListener(
+        'click',
+        closeRegistrationModal,
+    );
+
     const getNewWordButton = document.getElementById('get-new-word-button');
     getNewWordButton.addEventListener('click', () => {
         fetchAndDisplayWordCard(function (data) {
@@ -142,15 +151,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // toggle theme
     const toggleThemeButton = document.getElementById('toggle-theme-button');
     toggleThemeButton.addEventListener('click', toggleTheme);
-
-    // registration modal
-    const closeRegistrationModalButton = document.getElementById(
-        'close-registration-modal-button',
-    );
-    closeRegistrationModalButton.addEventListener(
-        'click',
-        closeRegistrationModal,
-    );
 
     if (document.body.classList.contains('welcome-page')) {
         setupWelcomePageEventListeners();
