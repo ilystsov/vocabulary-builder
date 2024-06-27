@@ -98,3 +98,12 @@ def task_lint():
         "file_dep": glob.glob("vocabulary_builder/**/*.py")
         + glob.glob("tests/**/*.py"),
     }
+
+
+def task_wheel():
+    """Create binary distribution (wheel)."""
+    return {
+        "actions": ["python -m build -w"],
+        "targets": ["dist/*.whl"],
+        "clean": [lambda: shutil.rmtree("dist")],
+    }
