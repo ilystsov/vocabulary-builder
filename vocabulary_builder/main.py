@@ -135,7 +135,7 @@ def format_word_info(word: WordModel):
     return word_info
 
 
-def fetch_random_word_data(db: Session):
+def fetch_random_word_data(db: Session) -> dict:
     """
     Fetches a random word and formats it as a JSON response.
 
@@ -145,7 +145,7 @@ def fetch_random_word_data(db: Session):
     random_word = get_random_word(db)
 
     if not random_word:
-        return None
+        return {}
 
     word_info = format_word_info(random_word)
     return word_info
