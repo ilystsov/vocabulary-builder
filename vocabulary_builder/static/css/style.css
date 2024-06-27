@@ -111,6 +111,10 @@ body.gamma2 {
     gap: var(--gap2) !important;
 }
 
+.with-gap-small {
+    gap: var(--gap-small) !important;
+}
+
 .text-center {
     text-align: center !important;
 }
@@ -389,6 +393,35 @@ h2 {
     background-color: var(--gamma2-hover-color-2);
 }
 
+/* Form */
+
+form label {
+    font-weight: bold;
+}
+
+form input[type='text'],
+form input[type='password'] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 8px;
+}
+
+form input[type='text']::placeholder,
+form input[type='password']::placeholder {
+    font-size: 1em;
+}
+
+.gamma1 form input {
+    border: 2px solid var(--dark-grey-color);
+    background-color: var(--dark-white-color);
+}
+
+.gamma2 form input {
+    border: 2px solid var(--gw-color);
+    background-color: var(--grey-color);
+}
+
 /* Effects */
 
 .shine-shift {
@@ -462,6 +495,7 @@ h2 {
     --page-max-width: 1600px;
     --gap: 15px;
     --gap2: 20px;
+    --gap-small: 10px;
 
     /* Body */
     --gamma1-body-bg: var(--dark-white-color);

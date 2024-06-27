@@ -4,27 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ _('Register') }}</title>
-    <link href="{{ url_for('static', path='/css/styles.css') }}" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', path='/images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', path='/images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', path='/images/favicon/site.webmanifest') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/word_card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body>
-<header>
-    <div class="logo">Vocabulary Builder</div>
-    <nav>
-        <ul>
-            <li><a href="/?language=ru">Русский</a></li>
-            <li><a href="/?language=fr">Français</a></li>
-        </ul>
-    </nav>
-</header>
-<div class="register-form">
-    <form action="/signup" method="post">
-        <input type="hidden" name="language" value="{{ language }}">
-        <label for="username">{{ _('Username') }}</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">{{ _('Password') }}</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">{{ _('Register') }}</button>
-    </form>
-</div>
+<body class="gamma1 hidden">
+    <div class="page-container">
+        <div class="gamma1">
+            <header class="header">
+                <div class="header-content flex-row flex-wrap justify-content-between align-items-center with-gap">
+                    <a aria-label="Vocabulary Builder Home" class="flex-link" href="/">
+                        <div class="flex-row justify-content-between align-items-center with-gap">
+                            <div class="logo"></div>
+                            <h1 class="site-title text-center margin-top-0 margin-bottom-0">Vocabulary Builder</h1>
+                        </div>
+                    </a>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <div class="dropdown">
+                            <button class="icon-button"><i class="fas fa-globe"></i></button>
+                            <div class="dropdown-content">
+                                <a href="{{ request.url | replace_query_param('language', 'ru') }}" class="link">Русский</a>
+                                <a href="{{ request.url | replace_query_param('language', 'uk') }}" class="link">Українська</a>
+                                <a href="{{ request.url | replace_query_param('language', 'fr') }}" class="link">Français</a>
+                                <a href="{{ request.url | replace_query_param('language', 'de') }}" class="link">Deutsch</a>
+                            </div>
+                        </div>
+                        <button id="toggle-theme-button" class="icon-button"><i class="fas fa-adjust"></i></button>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <a href="#" class="link font-size-bigger">{{ _('Тесты') }}</a>
+                        <a href="#" class="link font-size-bigger">{{ _('Избранное') }}</a>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap margin-auto">
+                        <a href="/login?language={{ language }}" class="link font-size-bigger">{{ _('Вход') }}</a>
+                        <a href="/signup?language={{ language }}" class="link font-size-bigger">{{ _('Регистрация') }}</a>
+                    </nav>
+                </div>
+            </header>
+        </div>
+
+        <div class="gamma1">
+            <main class="main-container">
+                <div class="simple-box main-content flex-column with-gap">
+                    <div class="register-form flex-column with-gap align-items-center">
+                        <h2 class="margin-bottom-0 font-size-large">{{ _('Регистрация') }}</h2>
+                        <form class="simple-box flex-column with-gap" action="/signup?language={{ language }}" method="post">
+                            <input type="hidden" name="language" value="{{ language }}">
+                            <div class="flex-column with-gap-small">
+                                <label for="username">{{ _('Имя пользователя') }}</label>
+                                <input type="text" id="username" name="username" required>
+                            </div>
+                            <div class="flex-column with-gap-small">
+                                <label for="password">{{ _('Пароль') }}</label>
+                                <input type="password" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="simple-button">{{ _('Зарегистрироваться') }}</button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div class="gamma2">
+            <footer class="footer">
+                <div class="footer-content flex-column justify-content-start align-items-center with-gap">
+                    <p class="font-size-smaller font-color-addition text-center margin-top-0 margin-bottom-0">&copy; 2024 Vocabulary Builder. All rights reserved.</p>
+                    <nav class="flex-row justify-content-evenly align-items-center flex-wrap with-gap2">
+                        <a href="#" class="link">{{ _('О нас') }}</a>
+                        <a href="#" class="link">{{ _('Контакты') }}</a>
+                        <a href="#" class="link">{{ _('Политика конфиденциальности') }}</a>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Hidden block with translations -->
+    <div id="hidden-translations" class="hidden">
+        <div data-key="examples">{{ _('Примеры:') }}</div>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/index.js') }}"></script>
 </body>
 </html>

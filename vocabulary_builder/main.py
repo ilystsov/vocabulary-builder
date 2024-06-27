@@ -5,6 +5,7 @@ import os
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path
+from urllib.parse import parse_qs, urlencode, urlparse
 
 import bcrypt
 import jwt
@@ -288,7 +289,11 @@ async def get_current_user(
 
 
 @app.get("/signup", response_class=HTMLResponse)
-def register_page(request: Request, language: str = "ru"):
+def register_page(
+    request: Request,
+    language: LanguageModel = LanguageModel.ru,
+    db: Session = Depends(get_db),
+):
     """
     Serve the registration page.
 
@@ -297,7 +302,9 @@ def register_page(request: Request, language: str = "ru"):
     :return: HTML response with the registration page.
     """
     return templates.TemplateResponse(
-        "signup.html", {"request": request, "language": language, "_": _(language)}
+        request=request,
+        name="signup.html",
+        context={"_": _(language), "language": language.value},
     )
 
 
@@ -321,7 +328,7 @@ async def register_user(
     if db_user:
         raise HTTPException(status_code=400, detail="Username already registered")
     create_user(db, username, get_hashed_password(password))
-    return RedirectResponse(url="/login", status_code=303)
+    return RedirectResponse(url=f"/login?language={language}", status_code=303)
 
 
 @app.get("/login", response_class=HTMLResponse)
@@ -517,3 +524,22 @@ async def get_favorite_words(
             "user_id": current_user.user_id,
         },
     )
+
+
+def replace_query_param(url, param: str, value: str) -> str:
+    if not isinstance(url, str):
+        url = str(url)
+
+    url_parts = urlparse(url)
+    query_params = parse_qs(url_parts.query)
+    query_params[param] = value
+    new_query_string = urlencode(query_params, doseq=True)
+    new_url = url_parts._replace(query=new_query_string).geturl()
+    return new_url
+
+
+def startup_event():
+    templates.env.filters["replace_query_param"] = replace_query_param
+
+
+app.add_event_handler("startup", startup_event)
