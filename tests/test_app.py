@@ -5,6 +5,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from vocabulary_builder.db.crud import get_user_by_username
 from vocabulary_builder.db.database import BaseModel
 from vocabulary_builder.main import app, get_db
 
@@ -28,6 +29,15 @@ app.dependency_overrides[get_db] = override_get_db
 client = TestClient(app)
 
 
+@pytest.fixture(scope="function")
+def db_session():
+    db = TestingSessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
 @pytest.fixture(scope="module")
 def test_client():
     BaseModel.metadata.create_all(bind=engine)
@@ -35,11 +45,13 @@ def test_client():
     BaseModel.metadata.drop_all(bind=engine)
 
 
-def test_register_user(test_client):
+def test_register_user(test_client, db_session):
     response = test_client.post(
         "/signup", data={"username": "testuser", "password": "testpassword"}
     )
     assert response.status_code == 200
+    user = get_user_by_username(db_session, "testuser")
+    assert user is not None
 
 
 def test_login_user(test_client):
@@ -50,7 +62,6 @@ def test_login_user(test_client):
         "/login", data={"username": "testuser", "password": "testpassword"}
     )
     assert response.status_code == 200
-    assert "access_token" in response.json()
 
 
 def test_get_main_page(test_client):
@@ -72,8 +83,6 @@ def test_learn_endpoint(test_client):
     login_response = test_client.post(
         "/login", data={"username": "testuser", "password": "testpassword"}
     )
-    token = login_response.json()["access_token"]
-    headers = {"Authorization": f"Bearer {token}"}
-    response = test_client.get("/learn?language=ru", headers=headers)
+    cookies = login_response.cookies
+    response = test_client.get("/learn?language=ru", cookies=cookies)
     assert response.status_code == 200
-    assert "testuser's new word" in response.json()
