@@ -89,3 +89,12 @@ def task_test():
         ],
         "verbosity": 2,
     }
+
+
+def task_lint():
+    """Check code style with flake8 and pydocstyle"""
+    return {
+        "actions": ["flake8 vocabulary_builder", "pydocstyle vocabulary_builder"],
+        "file_dep": glob.glob("vocabulary_builder/**/*.py")
+        + glob.glob("tests/**/*.py"),
+    }
