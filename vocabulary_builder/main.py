@@ -526,6 +526,14 @@ async def get_favorite_words(
 
 
 def replace_query_param(url, param: str, value: str) -> str:
+    """
+    Replace or add a query parameter in the given URL.
+
+    :param url: The URL where the parameter needs to be replaced.
+    :param param: The query parameter key to replace or add.
+    :param value: The new value for the query parameter.
+    :return: The modified URL with the replaced or added query parameter.
+    """
     if not isinstance(url, str):
         url = str(url)
 
@@ -538,6 +546,7 @@ def replace_query_param(url, param: str, value: str) -> str:
 
 
 def startup_event():
+    """Register the 'replace_query_param' function."""
     templates.env.filters["replace_query_param"] = replace_query_param
 
 
