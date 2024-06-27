@@ -1,7 +1,7 @@
 Vocabulary Builder Handlers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: vocabulary_builder.vocabulary_builder
+.. automodule:: vocabulary_builder.main
    :members:
    :private-members:
 

@@ -71,7 +71,7 @@ def task_i18n():
     }
 
 
-def task_html():
+def task_docs():
     """Generate HTML docs"""
     return {
         "actions": ["sphinx-build -b html docs docs/_build/html"],
