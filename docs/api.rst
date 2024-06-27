@@ -5,6 +5,20 @@ Vocabulary Builder Handlers
    :members:
    :private-members:
 
+Vocabulary Builder Exceptions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: vocabulary_builder.exceptions
+   :members:
+   :private-members:
+
+Vocabulary Builder Contracts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automodule:: vocabulary_builder.models
+   :members:
+   :private-members:
+
 Database CRUD Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
