@@ -16,15 +16,28 @@ from vocabulary_builder.db.models import (
 
 
 def create_audio_placeholder():
+    """Create a placeholder for audio data."""
     return b"Audio Placeholder"
 
 
 def load_json(file_path):
+    """
+    Load JSON data from a file.
+
+    :param file_path: Path to the JSON file.
+    :return: Parsed JSON data.
+    """
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
 
 def populate_database(data, session: Session):
+    """
+    Populate the database with word data.
+
+    :param data: List of word data dictionaries.
+    :param session: SQLAlchemy session object.
+    """
     total_words = len(data)
     successful_words = 0
 
@@ -85,6 +98,7 @@ def populate_database(data, session: Session):
 
 
 def main():
+    """Populate the database."""
     if len(sys.argv) != 2:
         print("Usage: db_populate.py <path_to_json_file>")
         sys.exit(1)
