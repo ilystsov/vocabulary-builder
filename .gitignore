@@ -6,3 +6,6 @@ tmp.py
 *.mo
 *.pot
 node_modules
+dist
+build
+*.egg-info
