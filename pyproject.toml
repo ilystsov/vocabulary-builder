@@ -1,2 +1,56 @@
+[project]
+name = "vocabulary-builder"
+version = "0.1.0"
+description = "Vocabulary Builder is a web application designed to improve your English language skills."
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+authors = [
+    {name = "Kirill Suglobov", email = "ksuglobov@outlook.com"},
+    {name = "Ilya Lystsov", email = "lystsov.ilya@gmail.com"}
+]
+
+dependencies = [
+    "fastapi",
+    "python-dotenv",
+    "sqlalchemy",
+    "alembic",
+    "bcrypt",
+    "pydantic",
+    "pyjwt"
+]
+
+[project.optional-dependencies]
+dev = [
+    "babel",
+    "doit",
+    "sphinx",
+    "flake8",
+    "pydocstyle",
+    "black",
+    "isort",
+    "pre-commit",
+    "pytest",
+    "build"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["vocabulary_builder"]
+
+[tool.setuptools.package-data]
+vocabulary_builder = [
+    "locales/*/*/*.mo",
+    "docs/_build/html/**",
+    "db/alembic.ini",
+    "db/migration/README",
+    "db/migration/script.py.mako",
+    "static/**",
+    "templates/*"
+]
+
 [tool.black]
 line-length = 88
