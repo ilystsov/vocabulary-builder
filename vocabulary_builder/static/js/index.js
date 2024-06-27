@@ -140,9 +140,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // check language
-    const language = getLanguageFromUrl();
+    let language = getLanguageFromUrl();
     if (language) {
         localStorage.setItem('language', language);
+    } else {
+        language = localStorage.getItem('language') || 'ru';
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('language', language);
+        const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+
+        window.location.replace(newUrl);
     }
     console.log(language);
 

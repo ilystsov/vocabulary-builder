@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ _('Register') }}</title>
+    <title>Vocabulary Builder</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', path='/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', path='/images/favicon/favicon-16x16.png') }}">
@@ -43,8 +43,12 @@
                         <a href="#" class="link font-size-bigger">{{ _('Избранное') }}</a>
                     </nav>
                     <nav class="flex-row justify-content-between align-items-center with-gap margin-auto">
-                        <a href="/login?language={{ language }}" class="link font-size-bigger">{{ _('Вход') }}</a>
-                        <a href="/signup?language={{ language }}" class="link font-size-bigger">{{ _('Регистрация') }}</a>
+                        <div class="dropdown">
+                            <a href="/learn?language={{ language }}" class="link font-size-bigger">{{ username }}</a>
+                            <div class="dropdown-content">
+                                <a href="/logout?language={{ language }}" class="link">Выход</a>
+                            </div>
+                        </div>
                     </nav>
                 </div>
             </header>
@@ -53,21 +57,11 @@
         <div class="gamma1">
             <main class="main-container">
                 <div class="simple-box main-content flex-column with-gap">
-                    <div class="register-form flex-column with-gap align-items-center">
-                        <h2 class="margin-bottom-0 font-size-large">{{ _('Регистрация') }}</h2>
-                        <form class="simple-box flex-column with-gap" action="/signup?language={{ language }}" method="post">
-                            <input type="hidden" name="language" value="{{ language }}">
-                            <div class="flex-column with-gap-small">
-                                <label for="username">{{ _('Имя пользователя') }}</label>
-                                <input type="text" id="username" name="username" required>
-                            </div>
-                            <div class="flex-column with-gap-small">
-                                <label for="password">{{ _('Пароль') }}</label>
-                                <input type="password" id="password" name="password" required>
-                            </div>
-                            <button type="submit" class="simple-button">{{ _('Зарегистрироваться') }}</button>
-                        </form>
-                    </div>
+                    <section class="flex-column justify-content-start align-items-center with-gap">
+                        <button id="get-new-word-button" class="simple-button font-size-bigger">{{ _('Получить новое слово') }}</button>
+                        <div id="word-card-loading-indicator" class="font-size-bigger font-weight-bold fadein hidden">{{ _('Загрузка...') }}</div>
+                        <div id="word-card-container" class="word-card-container hidden"></div>
+                    </section>
                 </div>
             </main>
         </div>
@@ -92,5 +86,6 @@
     </div>
 
     <script src="{{ url_for('static', path='/js/index.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/word_card.js') }}"></script>
 </body>
 </html>

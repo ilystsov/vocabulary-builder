@@ -184,7 +184,7 @@ def get_main_page_in_language(
     :return: HTML response with the main page content in the specified language.
     """
     context = fetch_random_word_data(db)
-    context.update({"_": _(language)})
+    context.update({"_": _(language.value)})
     context.update({"language": language.value})
     return templates.TemplateResponse(
         request=request,
@@ -194,7 +194,7 @@ def get_main_page_in_language(
 
 
 @app.get("/new_word", response_class=JSONResponse)
-def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
+def get_new_word(db: Session = Depends(get_db)):
     """
     Fetch a new random word and return it as a JSON response.
 
@@ -304,7 +304,7 @@ def register_page(
     return templates.TemplateResponse(
         request=request,
         name="signup.html",
-        context={"_": _(language), "language": language.value},
+        context={"_": _(language.value), "language": language.value},
     )
 
 
@@ -332,7 +332,7 @@ async def register_user(
 
 
 @app.get("/login", response_class=HTMLResponse)
-def login_page(request: Request, language: str = "ru"):
+def login_page(request: Request, language: LanguageModel = LanguageModel.ru):
     """
     Serve the login page.
 
@@ -341,7 +341,8 @@ def login_page(request: Request, language: str = "ru"):
     :return: HTML response with the login page.
     """
     return templates.TemplateResponse(
-        "login.html", {"request": request, "language": language, "_": _(language)}
+        "login.html",
+        {"request": request, "language": language.value, "_": _(language.value)},
     )
 
 
@@ -378,21 +379,29 @@ async def login_for_access_token(
 
 
 @app.get("/learn")
-async def learn(
-    language: LanguageModel,
+def get_learn_page_in_language(
+    request: Request,
+    language: LanguageModel = LanguageModel.ru,
     current_user: UserBase = Depends(get_current_user),
+    db: Session = Depends(get_db),
 ):
     """
     Endpoint to learn a new word for the current user.
 
+    :param request: HTTP request.
     :param language: Language code.
     :param current_user: Current user dependency.
-    :return: JSON response with the new word data.
+    :return: HTML response with the main page content in the specified language.
     """
-    return {
-        f"{current_user.username}'s new word (user's id) "
-        f"{current_user.user_id}": "issue"
-    }
+    return templates.TemplateResponse(
+        request=request,
+        name="learn.html",
+        context={
+            "_": _(language.value),
+            "language": language.value,
+            "username": current_user.username,
+        },
+    )
 
 
 @app.exception_handler(StarletteHTTPException)
@@ -432,7 +441,7 @@ def error_page(request: Request):
 
 
 @app.get("/page_not_found")
-async def page_not_found(request: Request, language: str = "ru"):
+async def page_not_found(request: Request, language: LanguageModel = LanguageModel.ru):
     """
     Serve the error page with a custom image based on the status code and language.
 
@@ -443,7 +452,7 @@ async def page_not_found(request: Request, language: str = "ru"):
     return templates.TemplateResponse(
         request=request,
         name="page_not_found.html",
-        context={"_": _(language), "language": language},
+        context={"_": _(language.value), "language": language.value},
     )
 
 
@@ -503,7 +512,7 @@ async def get_saved_words(user_id: UUID4, db: Session = Depends(get_db)) -> list
 @app.get("/favorites")
 async def get_favorite_words(
     request: Request,
-    language: LanguageModel,
+    language: LanguageModel = LanguageModel.ru,
     current_user: UserBase = Depends(get_current_user),
 ):
     """
@@ -518,8 +527,8 @@ async def get_favorite_words(
         request=request,
         name="favorites.html",
         context={
-            "_": _(language),
-            "language": language,
+            "_": _(language.value),
+            "language": language.value,
             "username": current_user.username,
             "user_id": current_user.user_id,
         },
