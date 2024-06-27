@@ -9,7 +9,7 @@ from vocabulary_builder.exceptions import UserNotFound, WordNotFound
 
 def get_random_word(db: Session):
     """
-    Fetches a random word from the database.
+    Fetch a random word from the database.
 
     :param db: The database session.
     :return: The random word record from the database.
@@ -23,7 +23,7 @@ def get_random_word(db: Session):
 
 def create_user(db: Session, username: str, hashed_password: str) -> UserModel:
     """
-    Creates a new user in the database.
+    Create a new user in the database.
 
     :param db: The database session.
     :param username: The username of the new user.
@@ -37,13 +37,20 @@ def create_user(db: Session, username: str, hashed_password: str) -> UserModel:
 
 
 def get_user_by_username(db: Session, username: str) -> UserModel:
+    """
+    Retrieve a user by username.
+
+    :param db: SQLAlchemy session object.
+    :param username: Username to search for.
+    :return: UserModel object or None if not found.
+    """
     stmt = select(UserModel).where(UserModel.username == username)
     return db.scalars(stmt).first()
 
 
 def save_word_for_user(db: Session, word_id: UUID4, user_id: UUID4) -> None:
     """
-    Saves a word for a user in the database.
+    Save a word for a user in the database.
 
     :param db: Database session.
     :param word_id: ID of the word to save.
@@ -62,7 +69,7 @@ def save_word_for_user(db: Session, word_id: UUID4, user_id: UUID4) -> None:
 
 def remove_word_for_user(db: Session, word_id: UUID4, user_id: UUID4) -> None:
     """
-    Removes a word for a user in the database.
+    Remove a word for a user in the database.
 
     :param db: Database session.
     :param word_id: ID of the word to remove.
@@ -84,7 +91,7 @@ def remove_word_for_user(db: Session, word_id: UUID4, user_id: UUID4) -> None:
 
 def get_all_saved_words_for_user(db: Session, user_id: UUID4) -> list[WordModel]:
     """
-    Fetches all saved words for a user from the database.
+    Fetch all saved words for a user from the database.
 
     :param db: Database session.
     :param user_id: ID of the user.
