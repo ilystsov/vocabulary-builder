@@ -108,6 +108,12 @@ def _(language: str):
 
 
 def format_word_info(word: WordModel):
+    """
+    Formats word information into a dictionary.
+
+    :param word: Word model instance.
+    :return: Dictionary containing formatted word information.
+    """
     word_info = {
         "word_id": word.id,
         "word": word.word,
@@ -359,6 +365,13 @@ async def learn(
     language: LanguageModel,
     current_user: UserBase = Depends(get_current_user),
 ):
+    """
+    Endpoint to learn a new word for the current user.
+
+    :param language: Language code.
+    :param current_user: Current user dependency.
+    :return: JSON response with the new word data.
+    """
     return {
         f"{current_user.username}'s new word (user's id) "
         f"{current_user.user_id}": "issue"
@@ -367,6 +380,13 @@ async def learn(
 
 @app.exception_handler(StarletteHTTPException)
 async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
+    """
+    Custom handler for HTTP exceptions.
+
+    :param request: HTTP request.
+    :param exc: Starlette HTTP exception.
+    :return: JSON response or redirect to error page.
+    """
     if exc.status_code in {404, 422}:
         return RedirectResponse(url="/error")
     return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
@@ -374,6 +394,12 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
 
 @app.get("/error", response_class=HTMLResponse)
 def error_page(request: Request):
+    """
+    Serves the error page.
+
+    :param request: HTTP request.
+    :return: HTML response with the error page.
+    """
     return """
     <html>
         <head>
@@ -406,6 +432,14 @@ async def page_not_found(request: Request, language: str = "ru"):
 
 @app.post("/users/{user_id}/words")
 async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
+    """
+    Saves a word for the user.
+
+    :param user_id: User ID.
+    :param word: Word data.
+    :param db: Database session dependency.
+    :return: JSON response with a success message.
+    """
     try:
         save_word_for_user(db, word.word_id, user_id)
     except (UserNotFound, WordNotFound) as e:
@@ -415,6 +449,14 @@ async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db
 
 @app.delete("/users/{user_id}/words")
 async def remove_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
+    """
+    Removes a word for the user.
+
+    :param user_id: User ID.
+    :param word: Word data.
+    :param db: Database session dependency.
+    :return: JSON response with a success message.
+    """
     try:
         remove_word_for_user(db, word.word_id, user_id)
     except (UserNotFound, WordNotFound) as e:
@@ -424,6 +466,13 @@ async def remove_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_
 
 @app.get("/users/{user_id}/words")
 async def get_saved_words(user_id: UUID4, db: Session = Depends(get_db)) -> list[dict]:
+    """
+    Retrieves saved words for the user.
+
+    :param user_id: User ID.
+    :param db: Database session dependency.
+    :return: List of dictionaries containing saved words information.
+    """
     try:
         saved_words = get_all_saved_words_for_user(db, user_id)
     except UserNotFound as e:
@@ -440,6 +489,14 @@ async def get_favorite_words(
     language: LanguageModel,
     current_user: UserBase = Depends(get_current_user),
 ):
+    """
+    Retrieves favorite words for the current user.
+
+    :param request: HTTP request.
+    :param language: Language code.
+    :param current_user: Current user dependency.
+    :return: HTML response with the favorite words.
+    """
     return templates.TemplateResponse(
         request=request,
         name="favorites.html",
