@@ -2,7 +2,10 @@ from fastapi import HTTPException, status
 
 
 class CredentialsException(HTTPException):
+    """Exception raised for invalid credentials."""
+
     def __init__(self):
+        """Initialize the CredentialsException."""
         super().__init__(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
@@ -11,7 +14,10 @@ class CredentialsException(HTTPException):
 
 
 class IncorrectUsernamePasswordException(HTTPException):
+    """Exception raised for incorrect username or password."""
+
     def __init__(self):
+        """Initialize the IncorrectUsernamePasswordException."""
         super().__init__(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
@@ -20,12 +26,12 @@ class IncorrectUsernamePasswordException(HTTPException):
 
 
 class WordNotFound(Exception):
-    pass
+    """Exception raised when a word is not found."""
 
 
 class UserNotFound(Exception):
-    pass
+    """Exception raised when a user is not found."""
 
 
 class BadIdentifier(Exception):
-    pass
+    """Exception raised for a bad identifier."""
