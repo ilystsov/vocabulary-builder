@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body class="welcome-page gamma1 hidden">
+<body class="gamma1 hidden">
     <div class="page-container">
         <div class="gamma1">
             <header class="header">
@@ -30,10 +30,10 @@
                         <div class="dropdown">
                             <button class="icon-button"><i class="fas fa-globe"></i></button>
                             <div class="dropdown-content">
-                                <a href="/page_not_found?language=ru" class="link">Русский</a>
-                                <a href="/page_not_found?language=uk" class="link">Українська</a>
-                                <a href="/page_not_found?language=fr" class="link">Français</a>
-                                <a href="/page_not_found?language=de" class="link">Deutsch</a>
+                                <a href="{{ request.url | replace_query_param('language', 'ru') }}" class="link">Русский</a>
+                                <a href="{{ request.url | replace_query_param('language', 'uk') }}" class="link">Українська</a>
+                                <a href="{{ request.url | replace_query_param('language', 'fr') }}" class="link">Français</a>
+                                <a href="{{ request.url | replace_query_param('language', 'de') }}" class="link">Deutsch</a>
                             </div>
                         </div>
                         <button id="toggle-theme-button" class="icon-button"><i class="fas fa-adjust"></i></button>
@@ -77,29 +77,11 @@
         </div>
     </div>
 
-    <!-- Registration Modal -->
-    <div class="gamma1">
-        <div id="registration-modal" class="wrapper hidden">
-            <div class="simple-box modal-container flex-column justify-content-center">
-                <div class="flex-row justify-content-between">
-                    <h2 class="margin-top-0 margin-bottom-0">{{ _('Необходима авторизация') }}</h2>
-                    <button id="close-registration-modal-button" class="icon-button close-icon-button"><i class="fas fa-times"></i></button>
-                </div>
-                <p>{{ _('Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить доступ к этой функции.') }}</p>
-                <div class="flex-row with-gap">
-                    <button class="simple-button">{{ _('Войти') }}</button>
-                    <button class="simple-button">{{ _('Зарегистрироваться') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Hidden block with translations -->
     <div id="hidden-translations" class="hidden">
         <div data-key="examples">{{ _('Примеры:') }}</div>
     </div>
 
     <script src="{{ url_for('static', path='/js/index.js') }}"></script>
-    <script src="{{ url_for('static', path='/js/word_card.js') }}"></script>
 </body>
 </html>
