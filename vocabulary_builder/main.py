@@ -426,18 +426,8 @@ def error_page(request: Request):
     :param request: HTTP request.
     :return: HTML response with the error page.
     """
-    return """
-    <html>
-        <head>
-            <script>
-                var userLanguage = localStorage.getItem('language') || 'ru';
-                window.location.href = '/page_not_found?language=' + userLanguage;
-            </script>
-        </head>
-        <body>
-        </body>
-    </html>
-    """
+    response = RedirectResponse(url="/page_not_found", status_code=303)
+    return response
 
 
 @app.get("/page_not_found")
