@@ -13,32 +13,33 @@ from vocabulary_builder.db.models import (
 
 
 def delete_word(word: str, session: Session):
+    """
+    Delete all records related to a specific word from the database.
+
+    :param word: Word to delete.
+    :param session: SQLAlchemy session object.
+    """
     try:
-        # Найти все записи WordModel для указанного слова
         words = session.query(WordModel).filter_by(word=word).all()
 
         for word_record in words:
-            # Найти все связанные записи SemanticModel
             semantics = (
                 session.query(SemanticModel).filter_by(word_id=word_record.id).all()
             )
 
             for semantic in semantics:
-                # Найти и удалить все связанные записи ExampleModel
                 examples = (
                     session.query(ExampleModel).filter_by(semantic_id=semantic.id).all()
                 )
                 for example in examples:
                     session.delete(example)
 
-                # Найти и удалить все связанные записи TranslationModel
                 translations = (
                     session.query(TranslationModel)
                     .filter_by(semantic_id=semantic.id)
                     .all()
                 )
                 for translation in translations:
-                    # Найти и удалить все связанные записи ExampleTranslationModel
                     example_translations = (
                         session.query(ExampleTranslationModel)
                         .filter_by(translation_id=translation.id)
@@ -62,8 +63,12 @@ def delete_word(word: str, session: Session):
 
 
 def delete_all_words(session: Session):
+    """
+    Delete all words and related records from the database.
+
+    :param session: SQLAlchemy session object.
+    """
     try:
-        # Удалить все записи из таблиц, начиная с наиболее вложенных
         session.query(ExampleTranslationModel).delete()
         session.query(ExampleModel).delete()
         session.query(TranslationModel).delete()
@@ -77,6 +82,7 @@ def delete_all_words(session: Session):
 
 
 def main():
+    """Delete words from the database."""
     if len(sys.argv) != 2:
         print("Usage: db_cleanup.py <word|--all>")
         sys.exit(1)
