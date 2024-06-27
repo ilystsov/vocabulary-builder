@@ -47,7 +47,16 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
 class OAuth2PasswordBearerWithCookie(OAuth2PasswordBearer):
+    """Custom OAuth2 password bearer class that supports cookies."""
+
     async def __call__(self, request: Request) -> str:
+        """
+        Retrieve the access token from the request cookies.
+
+        :param request: HTTP request.
+        :return: Access token.
+        :raises HTTPException: If the access token is not found in cookies.
+        """
         authorization: str = request.cookies.get("access_token")
         if not authorization:
             raise HTTPException(status_code=403, detail="Not authenticated")
@@ -61,6 +70,8 @@ app = FastAPI()
 
 
 class LanguageModel(str, Enum):
+    """Enumeration of supported languages."""
+
     ru = "ru"
     uk = "uk"
     fr = "fr"
@@ -69,7 +80,7 @@ class LanguageModel(str, Enum):
 
 def get_db():
     """
-    Provides a database session for dependency injection.
+    Provide a database session for dependency injection.
 
     :yields: Database session.
     """
@@ -91,7 +102,7 @@ templates = Jinja2Templates(directory="vocabulary_builder/templates")
 
 def _(language: str):
     """
-    Retrieves the gettext translation function for the specified language.
+    Retrieve the gettext translation function for the specified language.
 
     :param language: Language code (e.g., 'ru', 'fr').
     :return: The translation function for the specified language.
@@ -109,7 +120,7 @@ def _(language: str):
 
 def format_word_info(word: WordModel):
     """
-    Formats word information into a dictionary.
+    Format word information into a dictionary.
 
     :param word: Word model instance.
     :return: Dictionary containing formatted word information.
@@ -143,7 +154,7 @@ def format_word_info(word: WordModel):
 
 def fetch_random_word_data(db: Session) -> dict:
     """
-    Fetches a random word and formats it as a JSON response.
+    Fetch a random word and formats it as a JSON response.
 
     :param db: The database session.
     :return: A dictionary containing the word and its translation information.
@@ -164,7 +175,7 @@ def get_main_page_in_language(
     db: Session = Depends(get_db),
 ):
     """
-    Serves the main page in the specified language.
+    Serve the main page in the specified language.
 
     :param request: HTTP request.
     :param language: Language code (e.g., 'ru', 'fr').
@@ -184,8 +195,7 @@ def get_main_page_in_language(
 @app.get("/new_word", response_class=JSONResponse)
 def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
     """
-    Fetches a new random word and returns it as a JSON response
-    according to the specified language.
+    Fetch a new random word and return it as a JSON response.
 
     :param language: Language code.
     :param db: Database session dependency.
@@ -199,7 +209,7 @@ def get_new_word(language: LanguageModel, db: Session = Depends(get_db)):
 
 def get_hashed_password(password: str) -> str:
     """
-    Hashes a plain text password using bcrypt.
+    Hash a plain text password using bcrypt.
 
     :param password: Plain text password.
     :return: Hashed password.
@@ -210,7 +220,7 @@ def get_hashed_password(password: str) -> str:
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
-    Verifies a plain text password against a hashed password.
+    Verify a plain text password against a hashed password.
 
     :param plain_password: Plain text password.
     :param hashed_password: Hashed password.
@@ -223,7 +233,7 @@ def authenticate_user(
     username: str, password: str, db: Session = Depends(get_db)
 ) -> UserBase | bool:
     """
-    Authenticates a user by username and password.
+    Authenticate a user by username and password.
 
     :param username: Username.
     :param password: Password.
@@ -240,7 +250,7 @@ def authenticate_user(
 
 def create_access_token(data: dict, expires_delta: timedelta):
     """
-    Creates a JWT access token.
+    Create a JWT access token.
 
     :param data: Data to encode in the token.
     :param expires_delta: Token expiration time.
@@ -257,7 +267,7 @@ async def get_current_user(
     db: Session = Depends(get_db),
 ) -> UserBase:
     """
-    Gets the current user based on the JWT token.
+    Get the current user based on the JWT token.
 
     :param token: JWT token.
     :param db: Database session dependency.
@@ -280,7 +290,7 @@ async def get_current_user(
 @app.get("/signup", response_class=HTMLResponse)
 def register_page(request: Request, language: str = "ru"):
     """
-    Serves the registration page.
+    Serve the registration page.
 
     :param request: HTTP request.
     :param language: Language code.
@@ -317,7 +327,7 @@ async def register_user(
 @app.get("/login", response_class=HTMLResponse)
 def login_page(request: Request, language: str = "ru"):
     """
-    Serves the login page.
+    Serve the login page.
 
     :param request: HTTP request.
     :param language: Language code.
@@ -381,7 +391,7 @@ async def learn(
 @app.exception_handler(StarletteHTTPException)
 async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
     """
-    Custom handler for HTTP exceptions.
+    Redirect to the error page if the status code is 404 or 422.
 
     :param request: HTTP request.
     :param exc: Starlette HTTP exception.
@@ -395,7 +405,7 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
 @app.get("/error", response_class=HTMLResponse)
 def error_page(request: Request):
     """
-    Serves the error page.
+    Serve the error page.
 
     :param request: HTTP request.
     :return: HTML response with the error page.
@@ -417,7 +427,7 @@ def error_page(request: Request):
 @app.get("/page_not_found")
 async def page_not_found(request: Request, language: str = "ru"):
     """
-    Serves the error page with a custom image based on the status code and language.
+    Serve the error page with a custom image based on the status code and language.
 
     :param request: HTTP request.
     :param language: Language code.
@@ -433,7 +443,7 @@ async def page_not_found(request: Request, language: str = "ru"):
 @app.post("/users/{user_id}/words")
 async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
     """
-    Saves a word for the user.
+    Save a word for the user.
 
     :param user_id: User ID.
     :param word: Word data.
@@ -450,7 +460,7 @@ async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db
 @app.delete("/users/{user_id}/words")
 async def remove_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
     """
-    Removes a word for the user.
+    Remove a word for the user.
 
     :param user_id: User ID.
     :param word: Word data.
@@ -467,7 +477,7 @@ async def remove_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_
 @app.get("/users/{user_id}/words")
 async def get_saved_words(user_id: UUID4, db: Session = Depends(get_db)) -> list[dict]:
     """
-    Retrieves saved words for the user.
+    Retrieve saved words for the user.
 
     :param user_id: User ID.
     :param db: Database session dependency.
@@ -490,7 +500,7 @@ async def get_favorite_words(
     current_user: UserBase = Depends(get_current_user),
 ):
     """
-    Retrieves favorite words for the current user.
+    Retrieve favorite words for the current user.
 
     :param request: HTTP request.
     :param language: Language code.

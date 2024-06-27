@@ -1,6 +1,4 @@
-"""
-Database models.
-"""
+"""Database models."""
 
 import uuid
 from uuid import UUID
@@ -21,8 +19,7 @@ user_favorite_words = Table(
 
 class WordModel(BaseModel):
     """
-    Represents an English word with its part of speech, transcription, and
-    pronunciation audio.
+    Represents an English word with its characteristics.
 
     :param id: Primary key.
     :param word: The English word.
@@ -77,8 +74,7 @@ class ExampleModel(BaseModel):
 
 class TranslationModel(BaseModel):
     """
-    Represents a translation of an English word's semantic meaning into another
-    language.
+    Represents a translation of an English word's into another language.
 
     :param id: Primary key.
     :param semantic_id: Foreign key to the associated semantic meaning.
@@ -100,8 +96,7 @@ class TranslationModel(BaseModel):
 
 class ExampleTranslationModel(BaseModel):
     """
-    Represents a translation of a usage example of an English word into another
-    language.
+    Represents a translation of a usage example of an English word.
 
     :param id: Primary key.
     :param translation_id: Foreign key to the associated translation.
