@@ -11,6 +11,7 @@ alembic = "*"
 bcrypt = "*"
 pydantic = "*"
 pyjwt = "*"
+pytest = "*"
 
 [dev-packages]
 babel = "*"
