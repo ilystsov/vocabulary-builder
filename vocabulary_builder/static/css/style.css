@@ -23,6 +23,7 @@ body.gamma2 {
     width: 100%;
     max-width: 100vw;
     min-width: 400px;
+    overflow: hidden;
 }
 
 /* Universal classes */
@@ -358,8 +359,9 @@ h2 {
 .dropdown-content {
     display: none;
     position: absolute;
-    min-width: 160px;
     z-index: 1;
+    overflow: hidden;
+    right: 0;
 }
 
 .gamma1 .dropdown-content {
