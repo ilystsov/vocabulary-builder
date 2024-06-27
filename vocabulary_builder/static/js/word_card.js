@@ -1,6 +1,6 @@
 function createWordCard(data, language) {
     const wordCard = document.createElement('div');
-    wordCard.className = 'word-card shine-shift';
+    wordCard.className = 'word-card simple-box clickable shine-shift';
 
     const header = document.createElement('div');
     header.className = 'word-card__header';
@@ -32,7 +32,7 @@ function createWordCard(data, language) {
     transcriptionAudio.appendChild(transcription);
 
     const audioButton = document.createElement('button');
-    audioButton.className = 'word-card__audio-button';
+    audioButton.classList.add('icon-button', 'word-card__audio-button');
     audioButton.setAttribute('onclick', 'playAudio()');
     const audioIcon = document.createElement('i');
     audioIcon.className = 'fas fa-volume-up';
