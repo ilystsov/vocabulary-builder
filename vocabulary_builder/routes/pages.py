@@ -44,7 +44,6 @@ def get_main_page_in_language(
 def register_page(
     request: Request,
     language: LanguageModel = LanguageModel.ru,
-    db: Session = Depends(get_db),
 ):
     """
     Serve the registration page.
@@ -80,7 +79,6 @@ def get_learn_page_in_language(
     request: Request,
     language: LanguageModel = LanguageModel.ru,
     current_user: UserBase = Depends(get_current_user),
-    db: Session = Depends(get_db),
 ):
     """
     Endpoint to learn a new word for the current user.

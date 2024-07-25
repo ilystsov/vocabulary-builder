@@ -3,7 +3,6 @@ from datetime import timedelta
 from fastapi import APIRouter, Depends, Form, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
-from starlette.requests import Request
 
 from vocabulary_builder.db.crud import create_user, get_user_by_username
 from vocabulary_builder.dependencies import get_db
@@ -76,7 +75,7 @@ async def login_for_access_token(
 
 
 @router.get("/logout")
-async def logout(request: Request, language: LanguageModel = LanguageModel.ru):
+async def logout(language: LanguageModel = LanguageModel.ru):
     """
     Endpoint to log out and remove the access token cookie.
 
