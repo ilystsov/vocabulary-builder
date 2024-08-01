@@ -69,7 +69,6 @@ async def login_for_access_token(
     response.set_cookie(
         key="access_token",
         value=f"Bearer {access_token}",
-        httponly=True,
     )
     return response
 
