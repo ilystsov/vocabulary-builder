@@ -1,3 +1,121 @@
+// Функция для декодирования JWT токена
+function decodeJWT(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+        atob(base64)
+            .split('')
+            .map(function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join(''),
+    );
+
+    return JSON.parse(jsonPayload);
+}
+
+// Функция для получения куки по имени
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
+// Функция для переключения звезды
+function toggleStar(event) {
+    const star = event.target;
+    const wordId = star.getAttribute('data-word-id');
+    console.log('Star clicked:', star);
+    console.log('Word ID:', wordId);
+
+    if (star.style.backgroundImage.includes('star-filled.svg')) {
+        console.log('Removing active style');
+        star.style.backgroundImage = "url('/static/images/star-empty.svg')";
+    } else {
+        console.log('Adding active style');
+        star.style.backgroundImage = "url('/static/images/star-filled.svg')";
+    }
+    console.log('Style after toggle:', star.style.backgroundImage);
+
+    saveWord(wordId);
+}
+
+// Функция для сохранения слова
+function saveWord(wordId) {
+    const accessToken = getCookie('access_token');
+    if (!accessToken) {
+        console.error('Access token is not found in cookies.');
+        return;
+    }
+
+    // Декодируем токен, убирая "Bearer " перед токеном
+    const decodedToken = decodeJWT(accessToken.split(' ')[1]);
+    const userId = decodedToken.user_id;
+
+    if (!userId) {
+        console.error('User ID is not found in the token.');
+        return;
+    }
+
+    const url = `/users/${userId}/words`;
+    const data = { word_id: wordId };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log('Word saved:', data);
+        })
+        .catch((error) => {
+            console.error('Error saving word:', error);
+        });
+}
+
+// Функция для получения и отображения карточки слова
+function fetchAndDisplayWordCard(callback) {
+    const language =
+        new URLSearchParams(window.location.search).get('language') || 'ru';
+    const newWordButton = document.getElementById('get-new-word-button');
+    const loadingIndicator = document.getElementById(
+        'word-card-loading-indicator',
+    );
+    const wordCardContainer = document.getElementById('word-card-container');
+
+    newWordButton.disabled = true; // Disable the button
+    loadingIndicator.classList.remove('hidden'); // Show loading indicator
+    wordCardContainer.classList.add('hidden'); // Hide word card container
+
+    fetch(`/new_word?language=${language}`)
+        .then((response) => response.json())
+        .then((data) => {
+            wordCardContainer.innerHTML = ''; // Clear previous word card
+            const wordCard = createWordCard(data, language);
+            wordCardContainer.appendChild(wordCard);
+            if (callback) {
+                callback(data);
+            }
+        })
+        .catch((error) => console.error('Error fetching word data:', error))
+        .finally(() => {
+            wordCardContainer.classList.remove('hidden'); // Show word card container
+            loadingIndicator.classList.add('hidden'); // Hide loading indicator
+            newWordButton.disabled = false; // Enable the button
+        });
+}
+
+// Функция для создания карточки слова
 function createWordCard(data, language) {
     const wordCard = document.createElement('div');
     wordCard.className = 'word-card simple-box clickable shine-shift';
@@ -14,7 +132,8 @@ function createWordCard(data, language) {
 
     const starDiv = document.createElement('div');
     starDiv.className = 'word-card__star';
-    starDiv.setAttribute('onclick', 'toggleStar()');
+    starDiv.setAttribute('data-word-id', data.word_id);
+    starDiv.addEventListener('click', toggleStar);
     wordContainer.appendChild(starDiv);
 
     header.appendChild(wordContainer);
@@ -105,46 +224,4 @@ function createWordCard(data, language) {
 
 function playAudio() {
     console.log('Play audio');
-}
-
-function toggleStar() {
-    console.log('Toggle star');
-
-    if (!checkRegistration()) {
-        return;
-    }
-
-    const star = document.querySelector('.word-card__star');
-    star.classList.toggle('word-card__star--active');
-}
-
-function fetchAndDisplayWordCard(callback) {
-    const language =
-        new URLSearchParams(window.location.search).get('language') || 'ru';
-    const newWordButton = document.getElementById('get-new-word-button');
-    const loadingIndicator = document.getElementById(
-        'word-card-loading-indicator',
-    );
-    const wordCardContainer = document.getElementById('word-card-container');
-
-    newWordButton.disabled = true; // Disable the button
-    loadingIndicator.classList.remove('hidden'); // Show loading indicator
-    wordCardContainer.classList.add('hidden'); // Hide word card container
-
-    fetch(`/new_word?language=${language}`)
-        .then((response) => response.json())
-        .then((data) => {
-            wordCardContainer.innerHTML = ''; // Clear previous word card
-            const wordCard = createWordCard(data, language);
-            wordCardContainer.appendChild(wordCard);
-            if (callback) {
-                callback(data);
-            }
-        })
-        .catch((error) => console.error('Error fetching word data:', error))
-        .finally(() => {
-            wordCardContainer.classList.remove('hidden'); // Show word card container
-            loadingIndicator.classList.add('hidden'); // Hide loading indicator
-            newWordButton.disabled = false; // Enable the button
-        });
 }
