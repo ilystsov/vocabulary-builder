@@ -29,16 +29,23 @@ function toggleStar(event) {
     console.log('Star clicked:', star);
     console.log('Word ID:', wordId);
 
-    if (star.style.backgroundImage.includes('star-filled.svg')) {
-        console.log('Removing active style');
-        star.style.backgroundImage = "url('/static/images/star-empty.svg')";
-    } else {
-        console.log('Adding active style');
-        star.style.backgroundImage = "url('/static/images/star-filled.svg')";
-    }
-    console.log('Style after toggle:', star.style.backgroundImage);
+    if (window.location.pathname === '/learn') {
+        if (star.style.backgroundImage.includes('star-filled.svg')) {
+            console.log('Removing active style');
+            star.style.backgroundImage = "url('/static/images/star-empty.svg')";
+        } else {
+            console.log('Adding active style');
+            star.style.backgroundImage =
+                "url('/static/images/star-filled.svg')";
+        }
+        console.log('Style after toggle:', star.style.backgroundImage);
 
-    saveWord(wordId);
+        saveWord(wordId);
+    } else {
+        if (!checkRegistration()) {
+            return;
+        }
+    }
 }
 
 // Функция для сохранения слова
