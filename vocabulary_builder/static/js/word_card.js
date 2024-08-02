@@ -30,14 +30,14 @@ function toggleStar(event) {
         if (star.style.backgroundImage.includes('star-filled.svg')) {
             console.log('Removing active style');
             star.style.backgroundImage = "url('/static/images/star-empty.svg')";
+            removeWord(wordId);
         } else {
             console.log('Adding active style');
             star.style.backgroundImage =
                 "url('/static/images/star-filled.svg')";
+            saveWord(wordId);
         }
         console.log('Style after toggle:', star.style.backgroundImage);
-
-        saveWord(wordId);
     } else {
         if (!checkRegistration()) {
             return;
@@ -83,6 +83,47 @@ function saveWord(wordId) {
         })
         .catch((error) => {
             console.error('Error saving word:', error);
+        });
+}
+
+function removeWord(wordId) {
+    const accessToken = getCookie('access_token');
+    if (!accessToken) {
+        console.error('Access token is not found in cookies.');
+        return;
+    }
+
+    // Decode the token by removing "Bearer" before the token
+    const decodedToken = decodeJWT(accessToken.split(' ')[1]);
+    const userId = decodedToken.user_id;
+
+    if (!userId) {
+        console.error('User ID is not found in the token.');
+        return;
+    }
+
+    const url = `/users/${userId}/words`;
+    const data = { word_id: wordId };
+
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log('Word removed:', data);
+        })
+        .catch((error) => {
+            console.error('Error removing word:', error);
         });
 }
 
