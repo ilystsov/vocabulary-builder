@@ -1,4 +1,3 @@
-// Функция для декодирования JWT токена
 function decodeJWT(token) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -14,7 +13,6 @@ function decodeJWT(token) {
     return JSON.parse(jsonPayload);
 }
 
-// Функция для получения куки по имени
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -22,7 +20,6 @@ function getCookie(name) {
     return null;
 }
 
-// Функция для переключения звезды
 function toggleStar(event) {
     const star = event.target;
     const wordId = star.getAttribute('data-word-id');
@@ -48,7 +45,6 @@ function toggleStar(event) {
     }
 }
 
-// Функция для сохранения слова
 function saveWord(wordId) {
     const accessToken = getCookie('access_token');
     if (!accessToken) {
@@ -56,7 +52,7 @@ function saveWord(wordId) {
         return;
     }
 
-    // Декодируем токен, убирая "Bearer " перед токеном
+    // Decode the token by removing "Bearer" before the token
     const decodedToken = decodeJWT(accessToken.split(' ')[1]);
     const userId = decodedToken.user_id;
 
@@ -90,7 +86,6 @@ function saveWord(wordId) {
         });
 }
 
-// Функция для получения и отображения карточки слова
 function fetchAndDisplayWordCard(callback) {
     const language =
         new URLSearchParams(window.location.search).get('language') || 'ru';
@@ -122,7 +117,6 @@ function fetchAndDisplayWordCard(callback) {
         });
 }
 
-// Функция для создания карточки слова
 function createWordCard(data, language) {
     const wordCard = document.createElement('div');
     wordCard.className = 'word-card simple-box clickable shine-shift';
