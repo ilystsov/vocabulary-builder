@@ -127,6 +127,48 @@ function removeWord(wordId) {
         });
 }
 
+function getSavedWords(callback) {
+    const accessToken = getCookie('access_token');
+    if (!accessToken) {
+        console.error('Access token is not found in cookies.');
+        callback([]);
+        return;
+    }
+
+    // Decode the token by removing "Bearer" before the token
+    const decodedToken = decodeJWT(accessToken.split(' ')[1]);
+    const userId = decodedToken.user_id;
+
+    if (!userId) {
+        console.error('User ID is not found in the token.');
+        callback([]);
+        return;
+    }
+
+    const url = `/users/${userId}/words`;
+
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+        },
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            callback(data);
+        })
+        .catch((error) => {
+            console.error('Error fetching saved words:', error);
+            callback([]);
+        });
+}
+
 function fetchAndDisplayWordCard(callback) {
     const language =
         new URLSearchParams(window.location.search).get('language') || 'ru';
@@ -140,25 +182,27 @@ function fetchAndDisplayWordCard(callback) {
     loadingIndicator.classList.remove('hidden'); // Show loading indicator
     wordCardContainer.classList.add('hidden'); // Hide word card container
 
-    fetch(`/new_word?language=${language}`)
-        .then((response) => response.json())
-        .then((data) => {
-            wordCardContainer.innerHTML = ''; // Clear previous word card
-            const wordCard = createWordCard(data, language);
-            wordCardContainer.appendChild(wordCard);
-            if (callback) {
-                callback(data);
-            }
-        })
-        .catch((error) => console.error('Error fetching word data:', error))
-        .finally(() => {
-            wordCardContainer.classList.remove('hidden'); // Show word card container
-            loadingIndicator.classList.add('hidden'); // Hide loading indicator
-            newWordButton.disabled = false; // Enable the button
-        });
+    getSavedWords((savedWords) => {
+        fetch(`/new_word?language=${language}`)
+            .then((response) => response.json())
+            .then((data) => {
+                wordCardContainer.innerHTML = ''; // Clear previous word card
+                const wordCard = createWordCard(data, language, savedWords);
+                wordCardContainer.appendChild(wordCard);
+                if (callback) {
+                    callback(data);
+                }
+            })
+            .catch((error) => console.error('Error fetching word data:', error))
+            .finally(() => {
+                wordCardContainer.classList.remove('hidden'); // Show word card container
+                loadingIndicator.classList.add('hidden'); // Hide loading indicator
+                newWordButton.disabled = false; // Enable the button
+            });
+    });
 }
 
-function createWordCard(data, language) {
+function createWordCard(data, language, savedWords) {
     const wordCard = document.createElement('div');
     wordCard.className = 'word-card simple-box clickable shine-shift';
 
@@ -175,6 +219,17 @@ function createWordCard(data, language) {
     const starDiv = document.createElement('div');
     starDiv.className = 'word-card__star';
     starDiv.setAttribute('data-word-id', data.word_id);
+
+    // Check if the word is in the saved words list
+    const isWordSaved = savedWords.some(
+        (word) => word.word_id === data.word_id,
+    );
+    if (isWordSaved) {
+        starDiv.style.backgroundImage = "url('/static/images/star-filled.svg')";
+    } else {
+        starDiv.style.backgroundImage = "url('/static/images/star-empty.svg')";
+    }
+
     starDiv.addEventListener('click', toggleStar);
     wordContainer.appendChild(starDiv);
 
