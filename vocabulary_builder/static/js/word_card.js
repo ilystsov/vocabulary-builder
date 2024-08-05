@@ -26,7 +26,7 @@ function toggleStar(event) {
     console.log('Star clicked:', star);
     console.log('Word ID:', wordId);
 
-    if (window.location.pathname === '/learn') {
+    if (window.location.pathname !== '/') {
         if (star.style.backgroundImage.includes('star-filled.svg')) {
             console.log('Removing active style');
             star.style.backgroundImage = "url('/static/images/star-empty.svg')";
@@ -221,9 +221,12 @@ function createWordCard(data, language, savedWords) {
     starDiv.setAttribute('data-word-id', data.word_id);
 
     // Check if the word is in the saved words list
-    const isWordSaved = savedWords.some(
-        (word) => word.word_id === data.word_id,
-    );
+    isWordSaved = false;
+    if (savedWords === 'favorites') {
+        isWordSaved = true;
+    } else {
+        isWordSaved = savedWords.some((word) => word.word_id === data.word_id);
+    }
     if (isWordSaved) {
         starDiv.style.backgroundImage = "url('/static/images/star-filled.svg')";
     } else {
