@@ -202,7 +202,7 @@ function fetchAndDisplayWordCard(callback) {
     });
 }
 
-function createWordCard(data, language, savedWords) {
+function createWordCard(data, language, savedWords = null) {
     const wordCard = document.createElement('div');
     wordCard.className = 'word-card simple-box clickable shine-shift';
 
@@ -221,10 +221,8 @@ function createWordCard(data, language, savedWords) {
     starDiv.setAttribute('data-word-id', data.word_id);
 
     // Check if the word is in the saved words list
-    isWordSaved = false;
-    if (savedWords === 'favorites') {
-        isWordSaved = true;
-    } else {
+    isWordSaved = true;
+    if (savedWords) {
         isWordSaved = savedWords.some((word) => word.word_id === data.word_id);
     }
     if (isWordSaved) {
