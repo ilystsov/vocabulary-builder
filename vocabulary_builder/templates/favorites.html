@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites - Vocabulary Builder</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', path='/images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', path='/images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', path='/images/favicon/site.webmanifest') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/word_card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/favorites.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="gamma1 hidden">
+    <div class="page-container">
+        <div class="gamma1">
+            <header class="header">
+                <div class="header-content flex-row flex-wrap justify-content-between align-items-center with-gap">
+                    <a aria-label="Vocabulary Builder Home" class="flex-link" href="/?language={{ language }}">
+                        <div class="flex-row justify-content-between align-items-center with-gap">
+                            <div class="logo"></div>
+                            <h1 class="site-title text-center margin-top-0 margin-bottom-0">Vocabulary Builder</h1>
+                        </div>
+                    </a>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <div class="dropdown">
+                            <button class="icon-button"><i class="fas fa-globe"></i></button>
+                            <div class="dropdown-content">
+                                <a href="/favorites?language=ru" class="link">Русский</a>
+                                <a href="/favorites?language=uk" class="link">Українська</a>
+                                <a href="/favorites?language=fr" class="link">Français</a>
+                                <a href="/favorites?language=de" class="link">Deutsch</a>
+                            </div>
+                        </div>
+                        <button id="toggle-theme-button" class="icon-button"><i class="fas fa-adjust"></i></button>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <a href="#" class="link font-size-bigger">{{ _('Тесты') }}</a>
+                        <a href="#" class="link font-size-bigger">{{ _('Избранное') }}</a>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap margin-auto">
+                        <div class="dropdown">
+                            <a href="/favorites?language={{ language }}" class="link font-size-bigger">{{ username }}</a>
+                            <div class="dropdown-content">
+                                <a href="/logout?language={{ language }}" class="link">{{ _('Выход') }}</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+        </div>
+        <div class="gamma1">
+            <main class="main-container">
+                <div class="simple-box main-content flex-column with-gap">
+                    <section id="favorites-card-container" class="flex-row flex-wrap justify-content-start align-items-start with-gap">
+                        <!-- Favorite words will be dynamically added here -->
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <div class="gamma2">
+            <footer class="footer">
+                <div class="footer-content flex-column justify-content-start align-items-center with-gap">
+                    <p class="font-size-smaller font-color-addition text-center margin-top-0 margin-bottom-0">&copy; 2024 Vocabulary Builder. All rights reserved.</p>
+                    <nav class="flex-row justify-content-evenly align-items-center flex-wrap with-gap2">
+                        <a href="#" class="link">{{ _('О нас') }}</a>
+                        <a href="#" class="link">{{ _('Контакты') }}</a>
+                        <a href="#" class="link">{{ _('Политика конфиденциальности') }}</a>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <div id="hidden-translations" class="hidden">
+        <div data-key="examples">{{ _('Примеры:') }}</div>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/index.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/word_card.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/favorites.js') }}"></script>
+</body>
+</html>
