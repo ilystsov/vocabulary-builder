@@ -39,6 +39,7 @@ function toggleStar(event) {
         }
         console.log('Style after toggle:', star.style.backgroundImage);
     } else {
+        star.style.backgroundImage = "url('/static/images/star-empty.svg')";
         if (!checkRegistration()) {
             return;
         }
