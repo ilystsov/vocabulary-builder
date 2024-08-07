@@ -22,8 +22,21 @@ function fetchAndDisplayFavorites() {
                 'favorites-card-container',
             );
             wordCardContainer.innerHTML = ''; // Clear previous cards
+
+            let language = getLanguageFromUrl();
+            if (language) {
+                localStorage.setItem('language', language);
+            } else {
+                language = localStorage.getItem('language') || 'ru';
+                const urlParams = new URLSearchParams(window.location.search);
+                urlParams.set('language', language);
+                const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+
+                window.location.replace(newUrl);
+            }
+
             data.forEach((wordData) => {
-                const wordCard = createWordCard(wordData, 'ru'); // Assuming 'ru' is the default language
+                const wordCard = createWordCard(wordData, language); // Assuming 'ru' is the default language
                 wordCardContainer.appendChild(wordCard);
             });
 
@@ -35,7 +48,7 @@ function fetchAndDisplayFavorites() {
 }
 
 function adjustCardLayout() {
-    var COL_COUNT = 4; // set this to however many columns you want
+    var COL_COUNT = 3; // set this to however many columns you want
     var col_heights = [],
         container = document.getElementById('favorites-card-container');
     for (var i = 0; i <= COL_COUNT; i++) {
