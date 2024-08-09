@@ -39,15 +39,29 @@ function fetchAndDisplayFavorites() {
                 const wordCard = createWordCard(wordData, language); // Assuming 'ru' is the default language
                 wordCardContainer.appendChild(wordCard);
             });
-            const msnry = new Masonry(wordCardContainer, {
-                itemSelector: '.word-card',
-                columnWidth: '.word-card',
-                gutter: 16,
-                fitWidth: true,
-            });
-            imagesLoaded(wordCardContainer, function () {
-                msnry.layout();
-            });
+
+            if (data.length === 0) {
+                // If no words are saved, display a message
+                const noWordsMessage = document.createElement('p');
+                noWordsMessage.textContent = 'У вас пока нет сохраненных слов.';
+                noWordsMessage.className = 'no-words-message';
+                wordCardContainer.appendChild(noWordsMessage);
+            } else {
+                data.forEach((wordData) => {
+                    const wordCard = createWordCard(wordData, language);
+                    wordCardContainer.appendChild(wordCard);
+                });
+
+                const msnry = new Masonry(wordCardContainer, {
+                    itemSelector: '.word-card',
+                    columnWidth: '.word-card',
+                    gutter: 16,
+                    fitWidth: true,
+                });
+                imagesLoaded(wordCardContainer, function () {
+                    msnry.layout();
+                });
+            }
         })
         .catch((error) =>
             console.error('Error fetching favorite words:', error),

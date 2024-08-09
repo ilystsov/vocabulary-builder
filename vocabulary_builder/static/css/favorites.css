@@ -5,7 +5,13 @@
     padding: 16px;
 }
 
-/* Карточка слова */
 .word-card {
-    margin-bottom: 16px; /* Отступ внизу для Masonry */
+    margin-bottom: 16px;
+}
+
+.no-words-message {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
 }
