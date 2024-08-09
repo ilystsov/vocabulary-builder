@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/css/favorites.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
 </head>
 <body class="gamma1 hidden">
     <div class="page-container">
@@ -56,10 +58,8 @@
         </div>
         <div class="gamma1">
             <main class="main-container">
-                <div class="simple-box main-content flex-column with-gap">
-                    <section id="favorites-card-container" class="flex-row flex-wrap justify-content-start align-items-start with-gap">
-                        <!-- Favorite words will be dynamically added here -->
-                    </section>
+                <div class="favorites-container" id="favorites-card-container">
+                    <!-- Cards will be appended here by JavaScript -->
                 </div>
             </main>
         </div>

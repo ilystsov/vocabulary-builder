@@ -1,5 +1,6 @@
 .word-card {
     font-family: 'Arial', sans-serif;
+    width: 284px;
 }
 
 .word-card__header {

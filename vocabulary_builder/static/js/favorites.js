@@ -39,30 +39,19 @@ function fetchAndDisplayFavorites() {
                 const wordCard = createWordCard(wordData, language); // Assuming 'ru' is the default language
                 wordCardContainer.appendChild(wordCard);
             });
-
-            adjustCardLayout();
+            const msnry = new Masonry(wordCardContainer, {
+                itemSelector: '.word-card',
+                columnWidth: '.word-card',
+                gutter: 16,
+                fitWidth: true,
+            });
+            imagesLoaded(wordCardContainer, function () {
+                msnry.layout();
+            });
         })
         .catch((error) =>
             console.error('Error fetching favorite words:', error),
         );
-}
-
-function adjustCardLayout() {
-    var COL_COUNT = 3; // set this to however many columns you want
-    var col_heights = [],
-        container = document.getElementById('favorites-card-container');
-    for (var i = 0; i <= COL_COUNT; i++) {
-        col_heights.push(0);
-    }
-
-    for (var i = 0; i < container.children.length; i++) {
-        var order = (i + 1) % COL_COUNT || COL_COUNT;
-        container.children[i].style.order = order;
-        col_heights[order] += parseFloat(container.children[i].clientHeight);
-    }
-
-    var highest = Math.max.apply(Math, col_heights);
-    container.style.height = highest + 'px';
 }
 
 document.addEventListener('DOMContentLoaded', fetchAndDisplayFavorites);
