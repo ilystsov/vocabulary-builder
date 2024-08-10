@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-25 16:30+0500\n"
+"POT-Creation-Date: 2024-08-10 12:11+0500\n"
 "PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -17,6 +17,64 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
+
+#: vocabulary_builder/templates/favorites.html:46
+#: vocabulary_builder/templates/learn.html:43
+#: vocabulary_builder/templates/login.html:42
+#: vocabulary_builder/templates/page_not_found.html:42
+#: vocabulary_builder/templates/signup.html:42
+msgid "Тесты"
+msgstr "Tests"
+
+#: vocabulary_builder/templates/favorites.html:47
+#: vocabulary_builder/templates/index.html:63
+#: vocabulary_builder/templates/learn.html:44
+#: vocabulary_builder/templates/login.html:43
+#: vocabulary_builder/templates/page_not_found.html:43
+#: vocabulary_builder/templates/signup.html:43
+msgid "Избранное"
+msgstr "Favoriten"
+
+#: vocabulary_builder/templates/favorites.html:53
+#: vocabulary_builder/templates/learn.html:50
+msgid "Выход"
+msgstr "Abmelden"
+
+#: vocabulary_builder/templates/favorites.html:73
+#: vocabulary_builder/templates/index.html:86
+#: vocabulary_builder/templates/learn.html:87
+#: vocabulary_builder/templates/login.html:80
+#: vocabulary_builder/templates/page_not_found.html:71
+#: vocabulary_builder/templates/signup.html:80
+msgid "О нас"
+msgstr "Über uns"
+
+#: vocabulary_builder/templates/favorites.html:74
+#: vocabulary_builder/templates/index.html:87
+#: vocabulary_builder/templates/learn.html:88
+#: vocabulary_builder/templates/login.html:81
+#: vocabulary_builder/templates/page_not_found.html:72
+#: vocabulary_builder/templates/signup.html:81
+msgid "Контакты"
+msgstr "Kontakt"
+
+#: vocabulary_builder/templates/favorites.html:75
+#: vocabulary_builder/templates/index.html:88
+#: vocabulary_builder/templates/learn.html:89
+#: vocabulary_builder/templates/login.html:82
+#: vocabulary_builder/templates/page_not_found.html:73
+#: vocabulary_builder/templates/signup.html:82
+msgid "Политика конфиденциальности"
+msgstr "Datenschutzrichtlinie"
+
+#: vocabulary_builder/templates/favorites.html:83
+#: vocabulary_builder/templates/index.html:114
+#: vocabulary_builder/templates/learn.html:98
+#: vocabulary_builder/templates/login.html:91
+#: vocabulary_builder/templates/page_not_found.html:82
+#: vocabulary_builder/templates/signup.html:91
+msgid "Примеры:"
+msgstr "Beispiele:"
 
 #: vocabulary_builder/templates/index.html:42
 #: vocabulary_builder/templates/login.html:46
@@ -58,14 +116,6 @@ msgstr ""
 "Erhalten Sie per Knopfdruck ein zufälliges englisches Wort mit seiner "
 "Übersetzung, Beispielen und Transkription."
 
-#: vocabulary_builder/templates/index.html:63
-#: vocabulary_builder/templates/learn.html:43
-#: vocabulary_builder/templates/login.html:43
-#: vocabulary_builder/templates/page_not_found.html:43
-#: vocabulary_builder/templates/signup.html:43
-msgid "Избранное"
-msgstr "Favoriten"
-
 #: vocabulary_builder/templates/index.html:64
 msgid "Добавляйте слова в избранное для быстрого доступа и лучшего запоминания."
 msgstr ""
@@ -83,38 +133,14 @@ msgid ""
 msgstr "Testen Sie Ihr Wissen mit interaktiven Quizzen und Lückentextübungen."
 
 #: vocabulary_builder/templates/index.html:73
-#: vocabulary_builder/templates/learn.html:61
+#: vocabulary_builder/templates/learn.html:73
 msgid "Получить новое слово"
 msgstr "Neues Wort bekommen"
 
 #: vocabulary_builder/templates/index.html:74
-#: vocabulary_builder/templates/learn.html:62
+#: vocabulary_builder/templates/learn.html:74
 msgid "Загрузка..."
 msgstr "Lädt..."
-
-#: vocabulary_builder/templates/index.html:86
-#: vocabulary_builder/templates/learn.html:74
-#: vocabulary_builder/templates/login.html:80
-#: vocabulary_builder/templates/page_not_found.html:71
-#: vocabulary_builder/templates/signup.html:80
-msgid "О нас"
-msgstr "Über uns"
-
-#: vocabulary_builder/templates/index.html:87
-#: vocabulary_builder/templates/learn.html:75
-#: vocabulary_builder/templates/login.html:81
-#: vocabulary_builder/templates/page_not_found.html:72
-#: vocabulary_builder/templates/signup.html:81
-msgid "Контакты"
-msgstr "Kontakt"
-
-#: vocabulary_builder/templates/index.html:88
-#: vocabulary_builder/templates/learn.html:76
-#: vocabulary_builder/templates/login.html:82
-#: vocabulary_builder/templates/page_not_found.html:73
-#: vocabulary_builder/templates/signup.html:82
-msgid "Политика конфиденциальности"
-msgstr "Datenschutzrichtlinie"
 
 #: vocabulary_builder/templates/index.html:100
 msgid "Необходима авторизация"
@@ -138,24 +164,26 @@ msgstr "Anmelden"
 msgid "Зарегистрироваться"
 msgstr "Registrieren"
 
-#: vocabulary_builder/templates/index.html:114
-#: vocabulary_builder/templates/learn.html:85
-#: vocabulary_builder/templates/login.html:91
-#: vocabulary_builder/templates/page_not_found.html:82
-#: vocabulary_builder/templates/signup.html:91
-msgid "Примеры:"
-msgstr "Beispiele:"
+#: vocabulary_builder/templates/learn.html:62
+msgid "С возвращением"
+msgstr "Willkommen zurück"
 
-#: vocabulary_builder/templates/learn.html:42
-#: vocabulary_builder/templates/login.html:42
-#: vocabulary_builder/templates/page_not_found.html:42
-#: vocabulary_builder/templates/signup.html:42
-msgid "Тесты"
-msgstr "Tests"
+#: vocabulary_builder/templates/learn.html:63
+msgid "Выучим сегодня новое слово?"
+msgstr "Lernen wir heute ein neues Wort?"
 
-#: vocabulary_builder/templates/learn.html:49
-msgid "Выход"
-msgstr "Abmelden"
+#: vocabulary_builder/templates/learn.html:66
+msgid "Не забывайте повторять старые слова!"
+msgstr "Vergessen Sie nicht, alte Wörter zu wiederholen!"
+
+#: vocabulary_builder/templates/learn.html:67
+msgid "Помните: регулярность — ключ к успеху."
+msgstr "Denken Sie daran: Regelmäßigkeit ist der Schlüssel zum Erfolg."
+
+#: vocabulary_builder/templates/learn.html:68
+msgid "Спасибо, что вы с нами."
+msgstr "Vielen Dank, dass Sie bei uns sind."
+
 
 #: vocabulary_builder/templates/login.html:6
 msgid "Login"
