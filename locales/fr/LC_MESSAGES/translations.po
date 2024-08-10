@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-10 12:11+0500\n"
+"POT-Creation-Date: 2024-08-10 15:42+0500\n"
 "PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -20,75 +20,82 @@ msgstr ""
 
 #: vocabulary_builder/templates/favorites.html:46
 #: vocabulary_builder/templates/learn.html:43
-#: vocabulary_builder/templates/login.html:42
 #: vocabulary_builder/templates/page_not_found.html:42
-#: vocabulary_builder/templates/signup.html:42
+#: vocabulary_builder/templates/tests.html:43
 msgid "Тесты"
 msgstr "Tests"
 
 #: vocabulary_builder/templates/favorites.html:47
 #: vocabulary_builder/templates/index.html:63
 #: vocabulary_builder/templates/learn.html:44
-#: vocabulary_builder/templates/login.html:43
 #: vocabulary_builder/templates/page_not_found.html:43
-#: vocabulary_builder/templates/signup.html:43
+#: vocabulary_builder/templates/tests.html:44
 msgid "Избранное"
 msgstr "Favoris"
 
 #: vocabulary_builder/templates/favorites.html:53
 #: vocabulary_builder/templates/learn.html:50
+#: vocabulary_builder/templates/tests.html:50
 msgid "Выход"
 msgstr "Déconnexion"
 
-#: vocabulary_builder/templates/favorites.html:73
+#: vocabulary_builder/templates/favorites.html:63
+msgid "У вас пока нет сохраненных слов"
+msgstr "Vous n'avez pas encore de mots enregistrés"
+
+#: vocabulary_builder/templates/favorites.html:75
 #: vocabulary_builder/templates/index.html:86
 #: vocabulary_builder/templates/learn.html:87
-#: vocabulary_builder/templates/login.html:80
+#: vocabulary_builder/templates/login.html:76
 #: vocabulary_builder/templates/page_not_found.html:71
-#: vocabulary_builder/templates/signup.html:80
+#: vocabulary_builder/templates/signup.html:76
+#: vocabulary_builder/templates/tests.html:76
 msgid "О нас"
 msgstr "À propos"
 
-#: vocabulary_builder/templates/favorites.html:74
+#: vocabulary_builder/templates/favorites.html:76
 #: vocabulary_builder/templates/index.html:87
 #: vocabulary_builder/templates/learn.html:88
-#: vocabulary_builder/templates/login.html:81
+#: vocabulary_builder/templates/login.html:77
 #: vocabulary_builder/templates/page_not_found.html:72
-#: vocabulary_builder/templates/signup.html:81
+#: vocabulary_builder/templates/signup.html:77
+#: vocabulary_builder/templates/tests.html:77
 msgid "Контакты"
 msgstr "Contact"
 
-#: vocabulary_builder/templates/favorites.html:75
+#: vocabulary_builder/templates/favorites.html:77
 #: vocabulary_builder/templates/index.html:88
 #: vocabulary_builder/templates/learn.html:89
-#: vocabulary_builder/templates/login.html:82
+#: vocabulary_builder/templates/login.html:78
 #: vocabulary_builder/templates/page_not_found.html:73
-#: vocabulary_builder/templates/signup.html:82
+#: vocabulary_builder/templates/signup.html:78
+#: vocabulary_builder/templates/tests.html:78
 msgid "Политика конфиденциальности"
 msgstr "Politique de confidentialité"
 
-#: vocabulary_builder/templates/favorites.html:83
+#: vocabulary_builder/templates/favorites.html:85
 #: vocabulary_builder/templates/index.html:114
 #: vocabulary_builder/templates/learn.html:98
-#: vocabulary_builder/templates/login.html:91
+#: vocabulary_builder/templates/login.html:87
 #: vocabulary_builder/templates/page_not_found.html:82
-#: vocabulary_builder/templates/signup.html:91
+#: vocabulary_builder/templates/signup.html:87
+#: vocabulary_builder/templates/tests.html:87
 msgid "Примеры:"
 msgstr "Exemples:"
 
 #: vocabulary_builder/templates/index.html:42
-#: vocabulary_builder/templates/login.html:46
-#: vocabulary_builder/templates/login.html:57
+#: vocabulary_builder/templates/login.html:42
+#: vocabulary_builder/templates/login.html:53
 #: vocabulary_builder/templates/page_not_found.html:46
-#: vocabulary_builder/templates/signup.html:46
+#: vocabulary_builder/templates/signup.html:42
 msgid "Вход"
 msgstr "Connexion"
 
 #: vocabulary_builder/templates/index.html:43
-#: vocabulary_builder/templates/login.html:47
+#: vocabulary_builder/templates/login.html:43
 #: vocabulary_builder/templates/page_not_found.html:47
-#: vocabulary_builder/templates/signup.html:47
-#: vocabulary_builder/templates/signup.html:57
+#: vocabulary_builder/templates/signup.html:43
+#: vocabulary_builder/templates/signup.html:53
 msgid "Регистрация"
 msgstr "Inscription"
 
@@ -157,12 +164,12 @@ msgstr ""
 "fonctionnalité."
 
 #: vocabulary_builder/templates/index.html:105
-#: vocabulary_builder/templates/login.html:68
+#: vocabulary_builder/templates/login.html:64
 msgid "Войти"
 msgstr "Se connecter"
 
 #: vocabulary_builder/templates/index.html:106
-#: vocabulary_builder/templates/signup.html:68
+#: vocabulary_builder/templates/signup.html:64
 msgid "Зарегистрироваться"
 msgstr "S'inscrire"
 
@@ -186,18 +193,17 @@ msgstr "Rappelez-vous : la régularité est la clé du succès."
 msgid "Спасибо, что вы с нами."
 msgstr "Merci d'être avec nous."
 
-
 #: vocabulary_builder/templates/login.html:6
 msgid "Login"
 msgstr "Connexion"
 
-#: vocabulary_builder/templates/login.html:61
-#: vocabulary_builder/templates/signup.html:61
+#: vocabulary_builder/templates/login.html:57
+#: vocabulary_builder/templates/signup.html:57
 msgid "Имя пользователя"
 msgstr "Nom d'utilisateur"
 
-#: vocabulary_builder/templates/login.html:65
-#: vocabulary_builder/templates/signup.html:65
+#: vocabulary_builder/templates/login.html:61
+#: vocabulary_builder/templates/signup.html:61
 msgid "Пароль"
 msgstr "Mot de passe"
 
@@ -216,6 +222,20 @@ msgstr "Accueil"
 #: vocabulary_builder/templates/signup.html:6
 msgid "Register"
 msgstr "S'inscrire"
+
+#: vocabulary_builder/templates/tests.html:62
+msgid "Функциональность скоро будет добавлена!"
+msgstr ""
+
+#: vocabulary_builder/templates/tests.html:63
+msgid ""
+"Мы активно работаем над этим, и скоро вы сможете пользоваться тестами для"
+" проверки своих знаний."
+msgstr ""
+
+#: vocabulary_builder/templates/tests.html:65
+msgid "Вернуться к обучению"
+msgstr ""
 
 #~ msgid "Страница не найдена"
 #~ msgstr ""

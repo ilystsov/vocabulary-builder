@@ -21,7 +21,7 @@ function fetchAndDisplayFavorites() {
             const wordCardContainer = document.getElementById(
                 'favorites-card-container',
             );
-            wordCardContainer.innerHTML = ''; // Clear previous cards
+            const noWordsMessage = document.getElementById('no-words-message');
 
             let language = getLanguageFromUrl();
             if (language) {
@@ -35,18 +35,8 @@ function fetchAndDisplayFavorites() {
                 window.location.replace(newUrl);
             }
 
-            data.forEach((wordData) => {
-                const wordCard = createWordCard(wordData, language); // Assuming 'ru' is the default language
-                wordCardContainer.appendChild(wordCard);
-            });
-
-            if (data.length === 0) {
-                // If no words are saved, display a message
-                const noWordsMessage = document.createElement('p');
-                noWordsMessage.textContent = 'У вас пока нет сохраненных слов.';
-                noWordsMessage.className = 'no-words-message';
-                wordCardContainer.appendChild(noWordsMessage);
-            } else {
+            if (data.length !== 0) {
+                noWordsMessage.style.display = 'none';
                 data.forEach((wordData) => {
                     const wordCard = createWordCard(wordData, language);
                     wordCardContainer.appendChild(wordCard);
@@ -63,9 +53,9 @@ function fetchAndDisplayFavorites() {
                 });
             }
         })
-        .catch((error) =>
-            console.error('Error fetching favorite words:', error),
-        );
+        .catch((error) => {
+            console.error('Error fetching favorite words:', error);
+        });
 }
 
 document.addEventListener('DOMContentLoaded', fetchAndDisplayFavorites);
