@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/word_card.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/learn.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="gamma1 hidden">
@@ -54,17 +55,29 @@
             </header>
         </div>
 
-        <div class="gamma1">
-            <main class="main-container">
-                <div class="simple-box main-content flex-column with-gap">
-                    <section class="flex-column justify-content-start align-items-center with-gap">
-                        <button id="get-new-word-button" class="simple-button font-size-bigger">{{ _('Получить новое слово') }}</button>
-                        <div id="word-card-loading-indicator" class="font-size-bigger font-weight-bold fadein hidden">{{ _('Загрузка...') }}</div>
-                        <div id="word-card-container" class="word-card-container hidden"></div>
-                    </section>
-                </div>
-            </main>
-        </div>
+    <div class="gamma1">
+        <main class="main-container">
+            <div class="simple-box main-content flex-column with-gap">
+                <section class="greeting flex-column justify-content-center align-items-center">
+                    <h1 id="greeting-text">{{ _('С возвращением') }}, {{ username }}!</h1>
+                    <p id="changing-text">{{ _('Выучим сегодня новое слово?') }}</p>
+
+                    <div id="hidden-messages" class="hidden">
+                        <p>{{ _('Не забывайте повторять старые слова!') }}</p>
+                        <p>{{ _('Помните: регулярность — ключ к успеху.') }}</p>
+                        <p>{{ _('Спасибо, что вы с нами.') }}</p>
+                    </div>
+                </section>
+
+                <section class="flex-column justify-content-start align-items-center with-gap">
+                    <button id="get-new-word-button" class="simple-button font-size-bigger">{{ _('Получить новое слово') }}</button>
+                    <div id="word-card-loading-indicator" class="font-size-bigger font-weight-bold fadein hidden">{{ _('Загрузка...') }}</div>
+                    <div id="word-card-container" class="word-card-container hidden"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
 
         <div class="gamma2">
             <footer class="footer">

@@ -165,3 +165,41 @@ document.addEventListener('DOMContentLoaded', function () {
         setupLearnPageEventListeners();
     }
 });
+
+function _(msgid) {
+    return msgid;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const changingText = document.getElementById('changing-text');
+    const hiddenMessages = document.querySelectorAll('#hidden-messages p');
+
+    const messages = Array.from(hiddenMessages).map((p) => p.textContent);
+
+    let currentIndex = 0;
+
+    function fadeInText(newText) {
+        changingText.textContent = newText;
+        changingText.classList.remove('fade-out');
+        changingText.classList.add('fade-in');
+    }
+
+    function fadeOutText(callback) {
+        changingText.classList.remove('fade-in');
+        changingText.classList.add('fade-out');
+        setTimeout(callback, 1000); // Ждем 1 секунду до завершения анимации
+    }
+
+    let intervalId = setInterval(changeText, 8000);
+
+    function changeText() {
+        if (currentIndex < messages.length) {
+            fadeOutText(() => {
+                fadeInText(messages[currentIndex]);
+                currentIndex += 1;
+            });
+        } else {
+            clearInterval(intervalId); // Останавливаем цикл после последнего сообщения
+        }
+    }
+});

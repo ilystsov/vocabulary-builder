@@ -1,0 +1,32 @@
+.greeting {
+    text-align: center;
+}
+
+.greeting h1 {
+    font-size: 2em; /* Размер шрифта заголовка */
+    margin-bottom: 10px; /* Отступ снизу */
+    color: #333; /* Цвет текста */
+}
+
+.greeting p {
+    font-size: 1.2em; /* Размер шрифта текста */
+    color: #666; /* Цвет текста */
+    margin: 0; /* Убираем отступы */
+}
+#changing-text {
+    display: inline-block;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+#changing-text.fade-out {
+    opacity: 0;
+}
+
+#changing-text.fade-in {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
