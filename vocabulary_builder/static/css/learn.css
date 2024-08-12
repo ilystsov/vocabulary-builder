@@ -5,7 +5,6 @@
 .greeting h1 {
     font-size: 2em; /* Размер шрифта заголовка */
     margin-bottom: 10px; /* Отступ снизу */
-    color: #333; /* Цвет текста */
 }
 
 .greeting p {
@@ -17,6 +16,10 @@
     display: inline-block;
     opacity: 1;
     transition: opacity 1s ease-in-out;
+}
+
+.gamma2 .greeting p {
+    color: #999; /* Более светлый серый цвет для тёмной темы */
 }
 
 #changing-text.fade-out {

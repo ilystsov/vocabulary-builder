@@ -11,7 +11,11 @@
 
 .no-words-message {
     font-size: 18px;
-    color: #555;
+    color: #666;
     text-align: center;
     margin-top: 20px;
+}
+
+.gamma2 .no-words-message {
+    color: #ccc;
 }
