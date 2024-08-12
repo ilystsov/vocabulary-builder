@@ -139,3 +139,28 @@ async def get_favorite_words(
             "user_id": current_user.user_id,
         },
     )
+
+
+@router.get("/tests")
+async def get_tests_page(
+    request: Request,
+    language: LanguageModel = LanguageModel.ru,
+    current_user: UserBase = Depends(get_current_user),
+):
+    """
+    Serve the tests page.
+
+    :param request: HTTP request.
+    :param language: Language code.
+    :param current_user: Current user dependency.
+    :return: HTML response with the tests page.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="tests.html",
+        context={
+            "_": _(language.value),
+            "language": language.value,
+            "username": current_user.username,
+        },
+    )
