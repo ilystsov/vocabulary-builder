@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-10 15:42+0500\n"
+"POT-Creation-Date: 2024-08-12 13:41+0500\n"
 "PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -49,7 +49,7 @@ msgstr "Sie haben noch keine gespeicherten Wörter"
 #: vocabulary_builder/templates/login.html:76
 #: vocabulary_builder/templates/page_not_found.html:71
 #: vocabulary_builder/templates/signup.html:76
-#: vocabulary_builder/templates/tests.html:76
+#: vocabulary_builder/templates/tests.html:75
 msgid "О нас"
 msgstr "Über uns"
 
@@ -59,7 +59,7 @@ msgstr "Über uns"
 #: vocabulary_builder/templates/login.html:77
 #: vocabulary_builder/templates/page_not_found.html:72
 #: vocabulary_builder/templates/signup.html:77
-#: vocabulary_builder/templates/tests.html:77
+#: vocabulary_builder/templates/tests.html:76
 msgid "Контакты"
 msgstr "Kontakt"
 
@@ -69,7 +69,7 @@ msgstr "Kontakt"
 #: vocabulary_builder/templates/login.html:78
 #: vocabulary_builder/templates/page_not_found.html:73
 #: vocabulary_builder/templates/signup.html:78
-#: vocabulary_builder/templates/tests.html:78
+#: vocabulary_builder/templates/tests.html:77
 msgid "Политика конфиденциальности"
 msgstr "Datenschutzrichtlinie"
 
@@ -79,7 +79,7 @@ msgstr "Datenschutzrichtlinie"
 #: vocabulary_builder/templates/login.html:87
 #: vocabulary_builder/templates/page_not_found.html:82
 #: vocabulary_builder/templates/signup.html:87
-#: vocabulary_builder/templates/tests.html:87
+#: vocabulary_builder/templates/tests.html:86
 msgid "Примеры:"
 msgstr "Beispiele:"
 
@@ -223,17 +223,20 @@ msgstr "Registrieren"
 
 #: vocabulary_builder/templates/tests.html:62
 msgid "Функциональность скоро будет добавлена!"
-msgstr ""
+msgstr "Die Funktionalität wird bald hinzugefügt!"
 
 #: vocabulary_builder/templates/tests.html:63
 msgid ""
 "Мы активно работаем над этим, и скоро вы сможете пользоваться тестами для"
 " проверки своих знаний."
 msgstr ""
+"Wir arbeiten aktiv daran, und bald werden Sie Tests nutzen können, um"
+"Ihr Wissen zu überprüfen."
 
-#: vocabulary_builder/templates/tests.html:65
+#: vocabulary_builder/templates/tests.html:64
 msgid "Вернуться к обучению"
-msgstr ""
+msgstr "Zurück zum Lernen"
+
 
 #~ msgid "Логин"
 #~ msgstr "Login"

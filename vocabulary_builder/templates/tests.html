@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Builder</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', path='/images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', path='/images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', path='/images/favicon/site.webmanifest') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/word_card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/tests.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="gamma1 hidden">
+    <div class="page-container">
+        <div class="gamma1">
+            <header class="header">
+                <div class="header-content flex-row flex-wrap justify-content-between align-items-center with-gap">
+                    <a aria-label="Vocabulary Builder Home" class="flex-link" href="/learn?language={{ language }}">
+                        <div class="flex-row justify-content-between align-items-center with-gap">
+                            <div class="logo"></div>
+                            <h1 class="site-title text-center margin-top-0 margin-bottom-0">Vocabulary Builder</h1>
+                        </div>
+                    </a>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <div class="dropdown">
+                            <button class="icon-button"><i class="fas fa-globe"></i></button>
+                            <div class="dropdown-content">
+                                <a href="/learn?language=ru" class="link">Русский</a>
+                                <a href="/learn?language=uk" class="link">Українська</a>
+                                <a href="/learn?language=fr" class="link">Français</a>
+                                <a href="/learn?language=de" class="link">Deutsch</a>
+                            </div>
+                        </div>
+                        <button id="toggle-theme-button" class="icon-button"><i class="fas fa-adjust"></i></button>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap">
+                        <a href="/tests?language={{ language }}" class="link font-size-bigger">{{ _('Тесты') }}</a>
+                        <a href="/favorites?language={{ language }}" class="link font-size-bigger">{{ _('Избранное') }}</a>
+                    </nav>
+                    <nav class="flex-row justify-content-between align-items-center with-gap margin-auto">
+                        <div class="dropdown">
+                            <a href="/learn?language={{ language }}" class="link font-size-bigger">{{ username }}</a>
+                            <div class="dropdown-content">
+                                <a href="/logout?language={{ language }}" class="link">{{ _('Выход') }}</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+        </div>
+
+
+    <div class="gamma1">
+        <main class="main-container">
+            <div class="simple-box main-content flex-column align-items-center justify-content-center">
+                <h1 id="coming-soon">{{ _('Функциональность скоро будет добавлена!') }}</h1>
+                <p class="subtext">{{ _('Мы активно работаем над этим, и скоро вы сможете пользоваться тестами для проверки своих знаний.') }}</p>
+                <a href="/learn?language={{ language }}" class="simple-button font-size-bigger no-underline">{{ _('Вернуться к обучению') }}</a>
+            </div>
+        </main>
+    </div>
+
+
+        <div class="gamma2">
+            <footer class="footer">
+                <div class="footer-content flex-column justify-content-start align-items-center with-gap">
+                    <p class="font-size-smaller font-color-addition text-center margin-top-0 margin-bottom-0">&copy; 2024 Vocabulary Builder. All rights reserved.</p>
+                    <nav class="flex-row justify-content-evenly align-items-center flex-wrap with-gap2">
+                        <a href="#" class="link">{{ _('О нас') }}</a>
+                        <a href="#" class="link">{{ _('Контакты') }}</a>
+                        <a href="#" class="link">{{ _('Политика конфиденциальности') }}</a>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Hidden block with translations -->
+    <div id="hidden-translations" class="hidden">
+        <div data-key="examples">{{ _('Примеры:') }}</div>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/index.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/word_card.js') }}"></script>
+</body>
+</html>

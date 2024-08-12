@@ -1,0 +1,21 @@
+.main-container {
+    text-align: center;
+}
+
+.simple-box h1 {
+    margin-bottom: 10px;
+}
+.subtext {
+    color: #666;
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.gamma2 .subtext {
+    color: #999; /* Более светлый серый цвет для тёмной темы */
+}
+
+.simple-button.no-underline {
+    text-decoration: none; /* Убирает подчеркивание */
+}
