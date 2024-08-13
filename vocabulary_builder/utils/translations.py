@@ -1,6 +1,11 @@
+"""
+This module provides functions and classes for handling translations
+across different languages using gettext.
+"""
 import gettext
 from enum import Enum
 from pathlib import Path
+from typing import Callable
 
 
 class LanguageModel(str, Enum):
@@ -12,7 +17,7 @@ class LanguageModel(str, Enum):
     de = "de"
 
 
-def _(language: str):
+def _(language: str) -> Callable[[str], str]:
     """
     Retrieve the gettext translation function for the specified language.
 

@@ -1,3 +1,7 @@
+"""
+This module provides functions and classes for user authentication,
+including password hashing, user verification, and JWT token management.
+"""
 import os
 from datetime import datetime, timedelta, timezone
 
@@ -84,7 +88,7 @@ def authenticate_user(
     return UserBase(username=username, user_id=str(user.id))
 
 
-def create_access_token(data: dict, expires_delta: timedelta):
+def create_access_token(data: dict, expires_delta: timedelta) -> str:
     """
     Create a JWT access token.
 

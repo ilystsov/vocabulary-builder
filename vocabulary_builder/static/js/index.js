@@ -78,11 +78,13 @@ function setupWelcomePageEventListeners() {
     const favoritesFeature = document.getElementById('favorites-feature');
     favoritesFeature.addEventListener('click', () => {
         showRegistrationModal();
+        return;
     });
 
     const testingFeature = document.getElementById('testing-feature');
     testingFeature.addEventListener('click', () => {
         showRegistrationModal();
+        return;
     });
 }
 

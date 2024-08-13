@@ -1,3 +1,7 @@
+"""
+Pydantic models for the application.
+These models are used for validation and serialization of data.
+"""
 from pydantic import UUID4, BaseModel
 
 

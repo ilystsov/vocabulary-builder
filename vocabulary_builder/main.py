@@ -26,7 +26,9 @@ app.include_router(words.router)
 
 
 @app.exception_handler(StarletteHTTPException)
-async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
+async def custom_http_exception_handler(
+    request: Request, exc: StarletteHTTPException
+) -> JSONResponse | RedirectResponse:
     """
     Redirect to the error page if the status code is 404 or 422.
 

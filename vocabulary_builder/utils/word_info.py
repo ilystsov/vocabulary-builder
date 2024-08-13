@@ -1,10 +1,14 @@
+"""
+This module provides functions to format word data and
+fetch random words from the database.
+"""
 from sqlalchemy.orm import Session
 
 from vocabulary_builder.db.crud import get_random_word
 from vocabulary_builder.db.models import WordModel
 
 
-def format_word_info(word: WordModel):
+def format_word_info(word: WordModel) -> dict:
     """
     Format word information into a dictionary.
 
