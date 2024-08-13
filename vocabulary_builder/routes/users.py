@@ -1,3 +1,4 @@
+"""API routes for managing user saved words"""
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import UUID4
 from requests import Session
@@ -17,12 +18,14 @@ router = APIRouter()
 
 
 @router.post("/users/{user_id}/words")
-async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
+async def save_word(
+    user_id: UUID4, word: WordBase, db: Session = Depends(get_db)
+) -> dict:
     """
     Save a word for the user.
 
     :param user_id: User ID.
-    :param word: Word data.
+    :param word: Word data to be saved.
     :param db: Database session dependency.
     :return: JSON response with a success message.
     """
@@ -34,12 +37,14 @@ async def save_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db
 
 
 @router.delete("/users/{user_id}/words")
-async def remove_word(user_id: UUID4, word: WordBase, db: Session = Depends(get_db)):
+async def remove_word(
+    user_id: UUID4, word: WordBase, db: Session = Depends(get_db)
+) -> dict:
     """
     Remove a word for the user.
 
     :param user_id: User ID.
-    :param word: Word data.
+    :param word: Word data to be removed.
     :param db: Database session dependency.
     :return: JSON response with a success message.
     """

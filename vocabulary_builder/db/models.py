@@ -118,6 +118,7 @@ class UserModel(BaseModel):
     :param id: Primary key.
     :param username: The username of the user.
     :param hashed_password: The hashed password of the user.
+    :param favorite_words: List of user's favorite words.
     """
 
     __tablename__ = "users"

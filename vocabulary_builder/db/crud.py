@@ -27,7 +27,7 @@ def create_user(db: Session, username: str, hashed_password: str) -> UserModel:
 
     :param db: The database session.
     :param username: The username of the new user.
-    :param password: The plain text password of the new user.
+    :param hashed_password: The plain text password of the new user.
     :return: The created user record.
     """
     user = UserModel(username=username, hashed_password=hashed_password)

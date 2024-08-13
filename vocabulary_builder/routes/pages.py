@@ -1,3 +1,4 @@
+"""Routes for rendering HTML pages"""
 from fastapi import APIRouter, Depends
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
@@ -16,12 +17,12 @@ router = APIRouter()
 templates = Jinja2Templates(directory="vocabulary_builder/templates")
 
 
-@router.get("/", response_class=HTMLResponse)
+@router.get("/")
 def get_main_page_in_language(
     request: Request,
     language: LanguageModel = LanguageModel.ru,
     db: Session = Depends(get_db),
-):
+) -> HTMLResponse:
     """
     Serve the main page in the specified language.
 
@@ -40,11 +41,11 @@ def get_main_page_in_language(
     )
 
 
-@router.get("/signup", response_class=HTMLResponse)
+@router.get("/signup")
 def register_page(
     request: Request,
     language: LanguageModel = LanguageModel.ru,
-):
+) -> HTMLResponse:
     """
     Serve the registration page.
 
@@ -59,8 +60,10 @@ def register_page(
     )
 
 
-@router.get("/login", response_class=HTMLResponse)
-def login_page(request: Request, language: LanguageModel = LanguageModel.ru):
+@router.get("/login")
+def login_page(
+    request: Request, language: LanguageModel = LanguageModel.ru
+) -> HTMLResponse:
     """
     Serve the login page.
 
@@ -69,8 +72,9 @@ def login_page(request: Request, language: LanguageModel = LanguageModel.ru):
     :return: HTML response with the login page.
     """
     return templates.TemplateResponse(
-        "login.html",
-        {"request": request, "language": language.value, "_": _(language.value)},
+        request=request,
+        name="login.html",
+        context={"_": _(language.value), "language": language.value},
     )
 
 
@@ -79,14 +83,14 @@ def get_learn_page_in_language(
     request: Request,
     language: LanguageModel = LanguageModel.ru,
     current_user: UserBase = Depends(get_current_user),
-):
+) -> HTMLResponse:
     """
     Endpoint to learn a new word for the current user.
 
     :param request: HTTP request.
     :param language: Language code.
     :param current_user: Current user dependency.
-    :return: HTML response with the main page content in the specified language.
+    :return: HTML response with the learn page content for logged-in user.
     """
     return templates.TemplateResponse(
         request=request,
@@ -100,7 +104,9 @@ def get_learn_page_in_language(
 
 
 @router.get("/page_not_found")
-async def page_not_found(request: Request, language: LanguageModel = LanguageModel.ru):
+async def page_not_found(
+    request: Request, language: LanguageModel = LanguageModel.ru
+) -> HTMLResponse:
     """
     Serve the error page with a custom image based on the status code and language.
 
@@ -120,7 +126,7 @@ async def get_favorite_words(
     request: Request,
     language: LanguageModel = LanguageModel.ru,
     current_user: UserBase = Depends(get_current_user),
-):
+) -> HTMLResponse:
     """
     Retrieve favorite words for the current user.
 
@@ -146,7 +152,7 @@ async def get_tests_page(
     request: Request,
     language: LanguageModel = LanguageModel.ru,
     current_user: UserBase = Depends(get_current_user),
-):
+) -> HTMLResponse:
     """
     Serve the tests page.
 

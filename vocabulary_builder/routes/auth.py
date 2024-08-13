@@ -1,3 +1,4 @@
+"""User authentication and registration routes"""
 from datetime import timedelta
 
 from fastapi import APIRouter, Depends, Form, HTTPException
@@ -25,7 +26,7 @@ async def register_user(
     password: str = Form(...),
     language: str = Form("ru"),
     db: Session = Depends(get_db),
-):
+) -> RedirectResponse:
     """
     Endpoint to register a new user.
 
@@ -33,7 +34,7 @@ async def register_user(
     :param password: Password from form data.
     :param language: Language from form data (default is 'ru').
     :param db: Database session dependency.
-    :return: JSON response with a message.
+    :return: Redirect response to login page with language parameter.
     """
     db_user = get_user_by_username(db, username)
     if db_user:
@@ -56,7 +57,7 @@ async def login_for_access_token(
     :param password: Password from form data.
     :param language: Language from form data (default is 'ru').
     :param db: Database session dependency.
-    :return: JWT access token.
+    :return: Redirect response to learn page with JWT access token cookie.
     """
     user = authenticate_user(username, password, db)
     if not user:
@@ -74,7 +75,7 @@ async def login_for_access_token(
 
 
 @router.get("/logout")
-async def logout(language: LanguageModel = LanguageModel.ru):
+async def logout(language: LanguageModel = LanguageModel.ru) -> RedirectResponse:
     """
     Endpoint to log out and remove the access token cookie.
 

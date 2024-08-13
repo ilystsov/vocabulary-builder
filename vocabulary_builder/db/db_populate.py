@@ -1,7 +1,9 @@
+"""Database population utility for adding words and related records from a JSON file."""
 import json
 import sys
 import uuid
 from pathlib import Path
+from typing import Any
 
 from sqlalchemy.orm import Session
 
@@ -15,12 +17,12 @@ from vocabulary_builder.db.models import (
 )
 
 
-def create_audio_placeholder():
+def create_audio_placeholder() -> bytes:
     """Create a placeholder for audio data."""
     return b"Audio Placeholder"
 
 
-def load_json(file_path):
+def load_json(file_path: str) -> list[dict[str, Any]]:
     """
     Load JSON data from a file.
 
@@ -31,7 +33,7 @@ def load_json(file_path):
         return json.load(file)
 
 
-def populate_database(data, session: Session):
+def populate_database(data: list[dict[str, Any]], session: Session) -> None:
     """
     Populate the database with word data.
 
@@ -53,12 +55,12 @@ def populate_database(data, session: Session):
                 audio=create_audio_placeholder(),
             )
             session.add(word)
-            session.flush()  # Flush to get the word.id
+            session.flush()
 
             for semantic_data in word_data["semantics"]:
                 semantic = SemanticModel(id=uuid.uuid4(), word_id=word.id)
                 session.add(semantic)
-                session.flush()  # Flush to get the semantic.id
+                session.flush()
 
                 for example_text in semantic_data["examples"]:
                     example = ExampleModel(
@@ -74,7 +76,7 @@ def populate_database(data, session: Session):
                         word=translation_data["word"],
                     )
                     session.add(translation)
-                    session.flush()  # Flush to get the translation.id
+                    session.flush()
 
                     for translated_example_text in translation_data["examples"]:
                         example_translation = ExampleTranslationModel(
@@ -84,7 +86,7 @@ def populate_database(data, session: Session):
                         )
                         session.add(example_translation)
 
-            session.commit()  # Commit after adding all data related to one word
+            session.commit()
             successful_words += 1
         except Exception as e:
             print(f"Error populating database for word '{word_data['word']}': {e}")
@@ -97,7 +99,7 @@ def populate_database(data, session: Session):
     )
 
 
-def main():
+def main() -> None:
     """Populate the database."""
     if len(sys.argv) != 2:
         print("Usage: db_populate.py <path_to_json_file>")

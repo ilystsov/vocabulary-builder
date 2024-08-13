@@ -1,3 +1,4 @@
+"""Database cleanup utility for deleting words and related records."""
 import sys
 
 from sqlalchemy.orm import Session
@@ -12,7 +13,7 @@ from vocabulary_builder.db.models import (
 )
 
 
-def delete_word(word: str, session: Session):
+def delete_word(word: str, session: Session) -> None:
     """
     Delete all records related to a specific word from the database.
 
