@@ -1,5 +1,3 @@
-// import { fetchAndDisplayWordCard } from './word_card.js';
-
 // Universal
 
 function highlightButton(button) {
@@ -47,27 +45,6 @@ function closeRegistrationModal() {
     document.body.classList.remove('overflow-hidden');
 }
 
-// Registration and log in
-
-function checkRegistration() {
-    // Replace this with actual registration check logic
-    const isRegistered = false;
-
-    if (!isRegistered) {
-        return showRegistrationModal();
-    } else {
-        return true;
-    }
-}
-
-// function redirectToSignUp() {
-//     window.location.href = '/signup';
-// }
-
-// function redirectToLogIn() {
-//     window.location.href = '/login';
-// }
-
 // Specific event listeners
 
 function setupWelcomePageEventListeners() {
@@ -98,20 +75,14 @@ function setupWelcomePageEventListeners() {
         highlightButton(getNewWordButton);
     });
 
-    const favouritesFeature = document.getElementById('favourites-feature');
-    favouritesFeature.addEventListener('click', () => {
-        if (!checkRegistration()) {
-            return;
-        }
-        // goto favourites
+    const favoritesFeature = document.getElementById('favorites-feature');
+    favoritesFeature.addEventListener('click', () => {
+        showRegistrationModal();
     });
 
     const testingFeature = document.getElementById('testing-feature');
     testingFeature.addEventListener('click', () => {
-        if (!checkRegistration()) {
-            return;
-        }
-        // goto testing
+        showRegistrationModal();
     });
 }
 
@@ -187,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function fadeOutText(callback) {
         changingText.classList.remove('fade-in');
         changingText.classList.add('fade-out');
-        setTimeout(callback, 1000); // Ждем 1 секунду до завершения анимации
+        setTimeout(callback, 1000); // Wait 1 second for the animation to complete
     }
 
     let intervalId = setInterval(changeText, 8000);
@@ -199,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentIndex += 1;
             });
         } else {
-            clearInterval(intervalId); // Останавливаем цикл после последнего сообщения
+            clearInterval(intervalId); // Stop the loop after the last message
         }
     }
 });

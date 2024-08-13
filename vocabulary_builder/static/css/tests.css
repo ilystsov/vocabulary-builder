@@ -13,9 +13,9 @@
 }
 
 .gamma2 .subtext {
-    color: #999; /* Более светлый серый цвет для тёмной темы */
+    color: #999;
 }
 
 .simple-button.no-underline {
-    text-decoration: none; /* Убирает подчеркивание */
+    text-decoration: none;
 }

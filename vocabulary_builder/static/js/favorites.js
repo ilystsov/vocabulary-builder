@@ -1,5 +1,3 @@
-// favorites.js
-
 function fetchAndDisplayFavorites() {
     const accessToken = getCookie('access_token');
     if (!accessToken) {
