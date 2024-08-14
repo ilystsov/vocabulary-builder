@@ -12,6 +12,11 @@ bcrypt = "*"
 pydantic = "*"
 pyjwt = "*"
 pytest = "*"
+psycopg2-binary = "*"
+uvicorn = "*"
+python-multipart = "*"
+jinja2 = "*"
+requests = "*"
 
 [dev-packages]
 babel = "*"
