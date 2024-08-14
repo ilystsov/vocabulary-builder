@@ -2,13 +2,20 @@ FROM python:3.10
 
 WORKDIR /app
 
+# For pg_isready command
+RUN apt-get update && apt-get install -y postgresql-client
+
 COPY Pipfile Pipfile.lock /app/
 
+# Install dependencies
 RUN pip install pipenv && pipenv install --system --deploy
 
-COPY . /app/
+# Copy only the necessary application files
+COPY ./vocabulary_builder /app/vocabulary_builder
+COPY ./docker/entrypoint.sh /app/entrypoint.sh
+COPY ./tiny_db_input.json /app/tiny_db_input.json
+COPY .env /app/.env
 
-COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 8000
