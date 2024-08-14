@@ -1,8 +1,0 @@
-[flake8]
-max-line-length = 88
-extend-ignore=B008
-exclude = .git,__pycache__,old,build,dist
-per-file-ignores =
-    vocabulary_builder/db/db_filling_example.py:E501
-    vocabulary_builder/main.py:B008
-    vocabulary_builder/db/migration/env.py:F401
