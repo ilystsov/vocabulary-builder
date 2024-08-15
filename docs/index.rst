@@ -20,6 +20,7 @@ After saving a new word, users can test themselves, enhancing their learning exp
    :caption: Contents:
 
    api
+   database
 
 
 Indices and tables
