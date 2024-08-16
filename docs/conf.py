@@ -9,6 +9,8 @@ import os
 import sys
 
 
+os.environ["DATABASE_URL"] = "postgresql://user:password@localhost:5432/db"
+
 sys.path.insert(0, os.path.abspath(".."))
 
 
