@@ -1,29 +1,51 @@
-## Vocabulary Builder
+# Vocabulary Builder 🧠✨
 
-### Project Overview
+**Vocabulary Builder** is a web application designed
+to help you expand your English vocabulary
+effortlessly.
 
-The goal of this project is to develop a website dedicated to facilitating English language learning.
+## 📚 Key Features
 
-#### Key Features:
+-   **Random Word Generator:** Discover new words
+    with their translations and usage examples.
+-   **Favorite Words:** Save words that you want
+    to revisit.
+-   **Multilingual Support:** The application
+    supports multiple languages, making it
+    easier to learn from your native language.
 
--   Retrieving a random word with an example of its use.
--   User registration and saving favorite words.
--   Testing the user on learned words.
+## 🚀 Getting Started
 
-### Anticipated Stack
+**1. Clone the repository:**
 
--   FastAPI
--   PostgreSQL
--   SQLAlchemy
--   alembic
--   Jinja2
--   HTML
--   CSS
--   JavaScript
--   Docker
+```bash
+git clone git@github.com:ilystsov/vocabulary-builder.git
+```
 
-### Interface Mockup
+**2. Set up the environment:**
 
-![][interface_draft]
+```bash
+docker-compose up --build
+```
 
-[interface_draft]: assets/interface_draft.png
+**3. Access the site:**
+Once the setup is complete, open your browser and go to http://localhost:8000.
+
+## 📸 Screenshots
+
+Here’s a glimpse of what you’ll experience:
+![landing_interface](assets/landing_interface.png)
+
+## 📖 Documentation
+
+For detailed technical documentation, please visit the [Vocabulary Builder Documentation](https://vocabulary-builder.readthedocs.io/en/latest/index.html).
+
+## 🛠️ Technologies Used
+
+-   **FastAPI** for building the backend
+-   **PostgreSQL** for database management
+-   **Docker** for containerization
+-   **SQLAlchemy** for ORM
+-   **Alembic** for database migrations
+-   **Jinja2** for templating
+-   **Babel** for internationalization
