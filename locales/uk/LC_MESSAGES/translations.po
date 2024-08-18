@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-12 13:41+0500\n"
+"POT-Creation-Date: 2024-08-18 11:07+0500\n"
 "PO-Revision-Date: 2024-06-26 17:06+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.15.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: vocabulary_builder/templates/favorites.html:46
 #: vocabulary_builder/templates/learn.html:43
@@ -45,7 +45,6 @@ msgid "У вас пока нет сохраненных слов"
 msgstr "У вас поки немає збережених слів"
 
 #: vocabulary_builder/templates/favorites.html:75
-#: vocabulary_builder/templates/index.html:86
 #: vocabulary_builder/templates/learn.html:87
 #: vocabulary_builder/templates/login.html:76
 #: vocabulary_builder/templates/page_not_found.html:71
@@ -55,7 +54,6 @@ msgid "О нас"
 msgstr "Про нас"
 
 #: vocabulary_builder/templates/favorites.html:76
-#: vocabulary_builder/templates/index.html:87
 #: vocabulary_builder/templates/learn.html:88
 #: vocabulary_builder/templates/login.html:77
 #: vocabulary_builder/templates/page_not_found.html:72
@@ -65,7 +63,6 @@ msgid "Контакты"
 msgstr "Контакти"
 
 #: vocabulary_builder/templates/favorites.html:77
-#: vocabulary_builder/templates/index.html:88
 #: vocabulary_builder/templates/learn.html:89
 #: vocabulary_builder/templates/login.html:78
 #: vocabulary_builder/templates/page_not_found.html:73
@@ -75,7 +72,7 @@ msgid "Политика конфиденциальности"
 msgstr "Політика конфіденційності"
 
 #: vocabulary_builder/templates/favorites.html:85
-#: vocabulary_builder/templates/index.html:114
+#: vocabulary_builder/templates/index.html:113
 #: vocabulary_builder/templates/learn.html:98
 #: vocabulary_builder/templates/login.html:87
 #: vocabulary_builder/templates/page_not_found.html:82
@@ -152,11 +149,19 @@ msgstr "Отримати нове слово"
 msgid "Загрузка..."
 msgstr "Завантаження..."
 
-#: vocabulary_builder/templates/index.html:100
+#: vocabulary_builder/templates/index.html:84
+msgid "Все права защищены."
+msgstr "Всі права захищені."
+
+#: vocabulary_builder/templates/index.html:87
+msgid "Обратная связь"
+msgstr "Зворотний зв'язок"
+
+#: vocabulary_builder/templates/index.html:99
 msgid "Необходима авторизация"
 msgstr "Необхідна авторизація"
 
-#: vocabulary_builder/templates/index.html:103
+#: vocabulary_builder/templates/index.html:102
 msgid ""
 "Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы получить "
 "доступ к этой функции."
@@ -164,12 +169,12 @@ msgstr ""
 "Будь ласка, увійдіть до системи або зареєструйтеся, щоб отримати доступ "
 "до цієї функції."
 
-#: vocabulary_builder/templates/index.html:105
+#: vocabulary_builder/templates/index.html:104
 #: vocabulary_builder/templates/login.html:64
 msgid "Войти"
 msgstr "Увійти"
 
-#: vocabulary_builder/templates/index.html:106
+#: vocabulary_builder/templates/index.html:105
 #: vocabulary_builder/templates/signup.html:64
 msgid "Зарегистрироваться"
 msgstr "Зареєструватися"
@@ -239,7 +244,6 @@ msgstr ""
 #: vocabulary_builder/templates/tests.html:64
 msgid "Вернуться к обучению"
 msgstr "Повернутися до навчання"
-
 
 #~ msgid "Логин"
 #~ msgstr "Логін"
