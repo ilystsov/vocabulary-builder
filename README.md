@@ -25,7 +25,7 @@ git clone git@github.com:ilystsov/vocabulary-builder.git
 **2. Set up the environment:**
 
 ```bash
-docker-compose up --build
+make run
 ```
 
 **3. Access the site:**
