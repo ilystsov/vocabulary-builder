@@ -17,9 +17,9 @@ uvicorn = "*"
 python-multipart = "*"
 jinja2 = "*"
 requests = "*"
+babel = "*"
 
 [dev-packages]
-babel = "*"
 doit = "*"
 sphinx = "*"
 flake8 = "*"
