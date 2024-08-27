@@ -7,6 +7,9 @@ if [ ! -f /app/.env ]; then
   cp .env.example .env
 fi
 
+# Run doit mo to generate binary translation files
+doit i18n
+
 # Load environment variables from .env
 if [ -f /app/.env ]; then
   . /app/.env

@@ -10,9 +10,9 @@ services:
         env_file:
             - .env
         volumes:
-            - ./vocabulary_builder:/app/vocabulary_builder:ro
-            - ./locales:/app/locales:ro
-            - .env:/app/env:ro
+            - ./vocabulary_builder:/app/vocabulary_builder
+            - ./locales:/app/locales
+            - .env:/app/env
         depends_on:
             - db
 

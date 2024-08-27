@@ -10,11 +10,17 @@ COPY Pipfile Pipfile.lock /app/
 # Install dependencies
 RUN pip install pipenv && pipenv install --system --deploy
 
+# Install doit
+RUN pip install doit
+
 # Copy only the necessary application files
 COPY ./vocabulary_builder /app/vocabulary_builder
 COPY ./docker/entrypoint.sh /app/entrypoint.sh
 COPY ./tiny_db_input.json /app/tiny_db_input.json
 COPY .env /app/.env
+COPY dodo.py /app/dodo.py
+COPY locales /app/locales
+COPY babel.cfg /app/babel.cfg
 
 RUN chmod +x /app/entrypoint.sh
 
