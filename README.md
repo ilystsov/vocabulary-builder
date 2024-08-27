@@ -22,14 +22,15 @@ effortlessly.
 git clone git@github.com:ilystsov/vocabulary-builder.git
 ```
 
-**2. Set up the environment:**
+**2. Run the application:**
+Make sure Docker is installed and running, then use **make** to start the application:
 
 ```bash
 make run
 ```
 
 **3. Access the site:**
-Once the setup is complete, open your browser and go to http://localhost:8000.
+Open your browser and go to http://localhost:8000.
 
 ## 📸 Screenshots
 
